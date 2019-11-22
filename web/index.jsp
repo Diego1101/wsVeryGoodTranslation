@@ -7,7 +7,6 @@
     String pagina = "jspAcceso.jsp";
     String header = "headers/main.jsp";
     String dir = "";
-    request.getSession().setAttribute("rol", 1);
     if (request.getSession().getAttribute("rol") != null) {
         header = request.getSession().getAttribute("rol").toString();
         if (header.equals("2")) {
