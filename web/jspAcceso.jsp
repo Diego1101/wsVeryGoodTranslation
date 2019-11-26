@@ -22,7 +22,7 @@
         </div>
     </div>
 
-
+    <body>
     <center>
         <form action="general.do" method="post">
             <table >
@@ -99,3 +99,4 @@
     <br>
     </div>
 </section>
+         </body>
