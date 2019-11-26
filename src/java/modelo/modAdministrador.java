@@ -96,4 +96,60 @@ public class modAdministrador {
         cnn.close();
     }
     
+    public int regAdministrador() throws SQLException{
+        int res=0;
+        modConexion con=new modConexion();
+        Connection cnn=con.conexion();
+        String consultaSql = "call STP_REGADMINISTRADOR("+Nombre+","+Apellidos+","+Usuario+","+Contrasena+","+Correo+");";
+        Statement st = (Statement) cnn.createStatement();
+        ResultSet rs = st.executeQuery(consultaSql);
+
+        while (rs.next()) {
+            res=Integer.parseInt(rs.getString(1));
+        }
+        rs.close();
+        cnn.close();
+        return res;
+    }
+    
+    public int modificarAdministrador() throws SQLException{
+        int res=0;
+        modConexion con=new modConexion();
+        Connection cnn=con.conexion();
+        String consultaSql = "call STP_MODADMINISTRADOR("+CveAdministrador+","+Nombre+","+Apellidos+","+Contrasena+","+Correo+");";
+        Statement st = (Statement) cnn.createStatement();
+        ResultSet rs = st.executeQuery(consultaSql);
+
+        while (rs.next()) {
+            res=Integer.parseInt(rs.getString(1));
+        }
+        rs.close();
+        cnn.close();
+        return res;
+    }
+    
+    public int statusAdministrador() throws SQLException{
+        int res=0;
+        modConexion con=new modConexion();
+        Connection cnn=con.conexion();
+        String consultaSql = "call STP_STSADMINISTRADOR("+CveAdministrador+","+Status+");";
+        Statement st = (Statement) cnn.createStatement();
+        ResultSet rs = st.executeQuery(consultaSql);
+
+        while (rs.next()) {
+            res=Integer.parseInt(rs.getString(1));
+        }
+        rs.close();
+        cnn.close();
+        return res;
+    }
+    
+    public ResultSet listarTraductoresAdmin() throws SQLException{
+        modConexion con=new modConexion();
+        Connection cnn=con.conexion();
+        String consultaSql = "call STP_LISTARVENDEDORESADMIN("+CveAdministrador+");";
+        Statement st = (Statement) cnn.createStatement();
+        ResultSet rs = st.executeQuery(consultaSql);
+        return rs;
+    }
 }
