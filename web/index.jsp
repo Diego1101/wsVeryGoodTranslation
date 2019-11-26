@@ -1,4 +1,3 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
@@ -41,15 +40,9 @@
 
         <title>Very Good Translation</title>
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/unicons.css">
-        <link rel="stylesheet" href="css/owl.carousel.min.css">
-        <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-        <!-- MAIN STYLE -->
-        <link rel="stylesheet" href="css/tooplate-style.css">
-
-        <link rel="stylesheet" href="/css/PruebaCSS.css">
+          <link rel="stylesheet" href="css/bootstrap.min.css">
+          <link rel="stylesheet" href="css/Estilo.css">
+          
 
         <style type="text/css">
             .auto-style1 {
@@ -148,19 +141,20 @@
 
 
         <!-- FOOTER -->
-        <footer class="footer py-5">
-            <div class="container">
-                <div class="row">
+        
+    <footer class="pie-pagina" style="position:absolute">
+      <div class="container">
+        <div class="row">
 
-                    <div class="col-lg-12 col-12">
-                        <p class="copyright-text text-center">Copyright &copy; Very Good Translation</p>
+          <div class="col-lg-12 col-12" align="center">
+            <p style="color:#ffffff;">Copyright &copy; Very Good Translation</p>
 
-                    </div>
+          </div>
 
-                </div>
-            </div>
+        </div>
+      </div>
 
-        </footer>
+    </footer>
         <footer id="main-footer">
 
             <div class="container">
