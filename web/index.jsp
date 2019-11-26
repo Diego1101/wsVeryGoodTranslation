@@ -148,19 +148,19 @@
 
 
         <!-- FOOTER -->
-        <footer class="pie-pagina">
-      <div class="container">
-        <div class="row">
+        <footer class="footer py-5">
+            <div class="container">
+                <div class="row">
 
-          <div class="col-lg-12 col-12" align="center">
-            <p style="color:#ffffff;">Copyright &copy; Very Good Translation</p>
+                    <div class="col-lg-12 col-12">
+                        <p class="copyright-text text-center">Copyright &copy; Very Good Translation</p>
 
-          </div>
+                    </div>
 
-        </div>
-      </div>
+                </div>
+            </div>
 
-    </footer>
+        </footer>
         <footer id="main-footer">
 
             <div class="container">
