@@ -8,6 +8,10 @@
         <servlet-name>general</servlet-name>
         <servlet-class>controlador.general</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>administrador</servlet-name>
+        <servlet-class>controlador.administrador</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>vendedor</servlet-name>
         <url-pattern>/vendedor.do</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>general</servlet-name>
         <url-pattern>/general.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>administrador</servlet-name>
+        <url-pattern>/administrador.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
