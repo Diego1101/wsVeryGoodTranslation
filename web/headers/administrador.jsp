@@ -17,22 +17,19 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a href="index.jsp?op=jspABCVendedor.jsp" class="nav-link"><span data-hover="Vendedor">Vendedor</span></a>
+                    <a href="index.jsp?op=jspABCVendedor.jsp" class="nav-link"><span data-hover="Vendedores">Vendedores</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.jsp?op=jspReportes.jsp" class="nav-link"><span data-hover="Reportes">Reportes</span></a>
+                    <a href="index.jsp?op=jspDescuento.jsp" class="nav-link"><span data-hover="Descuento">Descuento</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="#about" class="nav-link"><span data-hover="Descuento">Descuento</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="#project" class="nav-link"><span data-hover="Traducción">Traducción</span></a>
-                    <ul>
-                        <li><a href="index.jsp?op=jspPrecio.jsp">Precio</a></li>
-                    </ul>
+                    <a href="index.jsp?op=jspPrecio.jsp" class="nav-link"><span data-hover="Precio">Precio</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="index.jsp?op=jspCotizacionesA.jsp" class="nav-link"><span data-hover="Cotizaciones">Cotizaciones</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.jsp?op=jspReportes.jsp" class="nav-link"><span data-hover="Reportes">Reportes</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="jspCerrarSesion.jsp" class="nav-link"><span data-hover="Cerrar Sesion">Cerrar Sesion</span></a>

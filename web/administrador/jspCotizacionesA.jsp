@@ -64,6 +64,7 @@
               <select class="form-control"  name="cmb_TipoDescuento" id="cmb_TipoDescuento">
                 <option value="porcentaje">Porcentaje</option>
                 <option value="dinero">Dinero</option>
+                <option value="pagina">Gerencial</option>
               </select>
             </td>
             <td>
