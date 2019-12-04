@@ -1,78 +1,111 @@
 <%-- 
     Document   : jspCotizacionesV
-    Created on : 22/10/2019, 11:28:24 AM
-    Author     : diego
+    Created on : Dec 3, 2019, 11:53:30 PM
+    Author     : migue
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-
-
-<div style="border-right: solid;border-color: #000;border-width:50px; background: rgb(236,239,001); color: #fff;  width: 100%; height: 10%;">
-    <center >
-        <br><br>
+  <div class="fondo-negro">
+      <center >
         <div class="titulo">
-            Cotizaciones
+          Cotizaciones
         </div>
-        <br>
-    </center>
-</div>
+      </center>
+    </div>
 
 
-<!-- CONTENIDO -->
-<center>
-    <table>
-        <tr align="center">
-            &nbsp&nbsp  <td class="full-text">Cotización:</td>
-            <td>  <label for="lblID"> ------------------</label></td>
-        </tr>
-
+    <!-- CONTENIDO -->
+  <section class="m-content">
+    <center class="prz">
+      <div class="texto2" style="background: none;">
+      <table>
         <tr>
-
-        <br>
-        <td class="full-text">
-            Tipo de Cotizacion: &nbsp&nbsp
-        <td>
-            <select class="small-text">
-                <option value="Palabra">Por palabra</option>
-                <option value="clientesRegistradps">Por Página</option>
+          <td  align="right" colspan="2">
+            Idioma Origen:
+          </td>
+          <td>
+            <select class="form-control" name="cmb_IdiomaOrigen" id="cmb_IdiomaOrigen">
+              <option>Elige una opción</option>
+              <option value="Ingles">Inglés</option>
+              <option value="Español">Español</option>
+              <option value="Chino">Chino</option>
+              <option value="Japonés">Japonés</option>
             </select>
-        </td>
-        <td>
-            <input type="text" name="txtDescuento" id="" value="">
-        </td>
-        </tr>
-        <br>
+          </td>
         <tr>
-        <tr>
-            <td class="full-text">
-                Descuento: &nbsp&nbsp
-            <td>
-                <select class="small-text">
-                    <option value="Palabra">Porcentaje</option>
-                    <option value="clientesRegistradps">Dinero</option>
-                </select>
+          <tr>
+            <td  align="right" colspan="2">
+              Idioma Destino:
             </td>
             <td>
-                <input type="text" name="txtDescuento" id="" value="">
+              <select class="form-control" name="cmb_IdiomaDestino" id="cmb_IdiomaDestino">
+                <option>Elige una opción</option>
+                <option value="Ingles">Inglés</option>
+                <option value="Español">Español</option>
+                <option value="Chino">Chino</option>
+                <option value="Japonés">Japonés</option>
+              </select>
             </td>
+          <tr>
+        <tr>
+          <td class="texto-Centro" style="width:33%">
+            Tipo de Cotizacion:
+          <td>
+            <select class="form-control" style="width:100%" name="cmb_TipoCotizacion" id="cmb_TipoCotizacion">
+              <option value="palabra">Por palabra</option>
+              <option value="pagina">Por Página</option>
+            </select>
+          </td>
+          <td >
+            <input class="form-control" type="text" name="txt_Cantidad" id="txt_Cantidad" value="">
+          </td>
         </tr>
         <tr>
-            <td></td>
-            <td> <div class="texto" align="center">Total</div> </td>
-            <td> <input type="text" name="txtTotal" id="" value="" readonly="true"> </td>
-        </tr>
-        <tr>
-        <p>
-        <td>
-            <br><br><br>
-        </td>
-        <td>  </td>
-        <td align="right">
-            <input type="submit" class="btn custom-btn " name="btn_Aceptar" value="Aceptar" id="btn_Entrar">
-        </td>
-        </p>
-        </tr>
-    </table>
-</center>
+          <tr>
+            <td class="texto-Centro">
+              Descuento:
+            <td>
+              <select class="form-control"  name="cmb_TipoDescuento" id="cmb_TipoDescuento">
+                <option value="porcentaje">Porcentaje</option>
+                <option value="dinero">Dinero</option>
+              </select>
+            </td>
+            <td>
+              <input class="form-control" type="text" name="txt_Descuento" id="txt_Descuento" value="">
+            </td>
+          </tr>
 
+            <td></td>
+            <td class="texto-Centro">
+              <div align="right">Total: </div>
+            </td>
+            <td>
+              <input type="text" class="nomod" name="txt_Total" id="txt_Total" value="" readonly="true">
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="texto-Centro">
+            </td>
+            <td align="right">
+              <input type="submit" class="btn " name="btn_Aceptar" value="Calcular" id="btn_Entrar">
+            </td>
+          </tr>
+          <tr>
+            <td class="texto-Centro" colspan="2">
+              <div align="right">Correo Electrónico: </div>
+            </td>
+            <td>
+              <input type="email" class="form-control" name="txt_Correo" id="txt_Correo" value="" >
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td align="right">
+              <input type="submit" class="btn  " name="btn_Aceptar" value="Enviar Cotización" id="btn_Entrar">
+            </td>
+        </tr>
+      </table>
+          </div>
+    </center>
+</section>

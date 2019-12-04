@@ -8,15 +8,13 @@
 
 
 
-<div style="text-align: center; background: rgb(236,239,001); border-radius: 0 10px 10px 0; color: #fff;  width: 95%; height: 10%;">
-    <center style="color: #000">
-        <br><br>
-        <h3 style="color: #000">
-            Registro de vendedores
-        </h3>
-        <br>
+  <div class="fondo-negro">
+    <center >
+      <div class="titulo">
+        Registro de vendedores
+      </div>
     </center>
-</div>
+  </div>
 
 <!--
 Nombre
@@ -30,7 +28,7 @@ Correo
 -->
 
 
-<section>
+  <section class="m-content">
     <center>
         <form method="post" action="administrador.do">
             <table>
@@ -158,4 +156,4 @@ Correo
     </center>
     <br>
     </div>
-</section>
+  </section>

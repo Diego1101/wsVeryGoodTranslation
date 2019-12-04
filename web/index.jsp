@@ -142,7 +142,7 @@
 
         <!-- FOOTER -->
         
-    <footer class="pie-pagina" style="position:absolute">
+    <footer class="footer" >
       <div class="container">
         <div class="row">
 
