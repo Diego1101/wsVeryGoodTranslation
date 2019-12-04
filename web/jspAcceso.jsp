@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-
+<link href="css/Acceso.css" rel="stylesheet" type="text/css"/>
 
 <section>
     <div class="container">
@@ -77,23 +77,20 @@
                         <div class="custom-btn-group mt-4" align="center">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input  type="hidden" name="org"value="acceso" id="org">
-                            <input  type="submit" class="btn custom-btn "name="btn_Entrar"value="Acceder"id="btn_Entrar" style="width: 172px" >
+                            <input  type="submit" class="btn  "name="btn_Entrar"value="Acceder"id="btn_Entrar" style="width: 172px" >
                         </div>
                     </td>
                     <td>
                     </td>
                     
                 </tr>
-                <br>
-            <tr>
-              <td> </td>
-              <td align="left" margin="40px">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;¿No tienes cuenta? <a href=""> Registrate aquí</a>
-              </td>
-
-
-            </tr>
+                
+                   
             </table>
+                        <br>
+                 <br>
+                  <br>
+                   <br>
         </form>
     </center>
     <br>

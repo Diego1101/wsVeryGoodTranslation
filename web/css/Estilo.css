@@ -3,34 +3,78 @@
 body {
   font-family: "Maven Pro", sans-serif;
   padding-top: 70px;
-
 }
+
+.cot table tr td, .prz div table tr td, .rp table tr td{
+    padding: 10px 5px;
+}
+
+.trd div table tr td{
+  padding: 15px;
+  width: 50%;
+  font-size: 14pt;
+}
+
+.mtr div table tr td{
+  padding: 10px 5px;
+}
+
+.prs table tr td{
+  padding: 10px 25px;
+}
+
+.cot table tr td{
+    color: #fff;
+    text-shadow: .5pt .5pt #000;
+}
+
+.cot{
+  margin: auto;
+  max-width: 800px;
+  background: #84a;
+  border-radius: 30px;
+  box-shadow: 2px 2px 5px #222;
+  padding: 20px 15px;
+  min-height: 130px;
+}
+
+.m-content{
+  padding: 40px 30px;
+  margin: 20px;
+  min-height: 500px;
+  min-width: 600px;
+  height: 100%;
+}
+
 .titulo{
   font-family: "Maven Pro", sans-serif;
+  padding:30px 0;
   letter-spacing: -1px;
   color:#000;
   font-size:21pt;
   font-weight: bold;
-
+  user-select: none;
 }
 .texto-Centro{
   font-family: "Maven Pro", sans-serif;
+  max-width: 150px;
+  letter-spacing: -1px;
+  font-size: 15pt;
+  color: #000000;
+  font-weight:lighter;
+}
+hr {
+  border-top: 3px solid #000000;
+  width: 70%;
+}
+
+.texto-Central{
+  font-family: "Maven Pro", sans-serif;
+  max-width: 150px;
   letter-spacing: -1px;
   font-size: 22px;
   color: #000000;
   font-weight:lighter;
-}
-.texto-tabla{
-  font-family: "Maven Pro", sans-serif;
-  letter-spacing: -1px;
-  font-size: 24px;
-  color: #000000;
-  font-weight:lighter;
-  margin-left: 30px;
-  border-collapse: separate;
-}
-.encabezadoTabla{
-background-color:#efefef;
 }
 .fondo {
   background-color: rgb(236,239,1);
@@ -41,45 +85,52 @@ background-color:#efefef;
   width:50%;
   height:30%;
 }
+
+
 .fondo-negro{
   border-right: solid;
   border-color: #000;
-  border-width:50px;
+  border-width:40px;
   background: rgb(236,239,001);
    color: #fff;
    width: 100%;
    height: 10%;
 }
 
-.btn{
+.btn, .btnY{
   background: #000000;
+  border: none;
   color: #fff;
   font-weight: bold;
   border-radius: 50px;
   padding: 13px 29px;
-  font-size: 14px;
+  font-size: 12pt;
   line-height: normal;
-  overflow: hidden;
-  transition: all 0.4s ease;
+  transition: ease 0.6s;
 }
-.btn:hover {
+.btn:hover, .btnY:hover {
   background: rgb(236,239,001);
+
+  transform: scale(1.1);
   color: #000000;
 }
-.pie-pagina{
-  background-color: #000000;
+
+.btnY:hover{
+  background: #84a !important;
   color: #fff;
-  padding: 30px;
-  font-weight: bold;
-  line-height:inherit;
-  overflow: hidden;
-  width: 100%;
-  height: 15%;
+}
+
+footer{
+  background-color: #000000;
+  margin: 0;
+  color: #fff;
+  padding: 30px 0;
   position:relative;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
+  bottom:0px;
+  height:30px;
+  width: 100%;
+  height: 80px;
+  
 }
 
 ul {
@@ -113,6 +164,7 @@ ul ul {
 }
 ul ul li {
  float:none;
+  background:#FFFFFF;
  width:150px
 }
  ul ul a {
@@ -122,7 +174,7 @@ ul ul li {
 
 li:hover{
   background: #000;
-  color: #fff;
+  color: #fff; !important
   height: 100%;
 }
 
@@ -337,10 +389,139 @@ b, strong {
   position: relative;
 }
 
+.nomod{
+  display:block;
+  user-select: none;
+  width:100%;
+  max-width:330px;
+  height:calc(1.5em + .75rem + 2px);
+  padding:.375rem .75rem;
+  font-size:1rem;
+  font-weight:400;
+  line-height:1.5;
+  color:#555;
+  background-color:#e3e3e3;
+  background-clip:padding-box;
+  border:1px solid #ced4da;
+  border-radius:.25rem;
+}
 
+.nomod:hover{
+  cursor: default;
+}
 
+.prz .texto, .prz .texto2{
+  margin: 20px auto;
+  max-width: 800px;
+  border-radius: 30px;
+  box-shadow: 2px 2px 5px #222;
+  padding: 15px 15px 25px 15px;
+  min-height: 130px;
+  font-size: 15pt;
+}
 
+.rp{
+  margin: auto;
+  max-width: 800px;
+  min-width: 600px;
+  background: #84a;
+  border-radius: 30px;
+  box-shadow: 2px 2px 5px #222;
+  padding: 20px 15px;
+  min-height: 130px;
+}
 
+.texto table tr td, .texto2 table tr td{
+  font-family: "Maven Pro", sans-serif;
+  max-width: 300px;
+  letter-spacing: -1px;
+  font-weight:normal;
+}
 
+.texto table, .texto2 table{
+  width: 500px;
+}
 
+.texto{
+  background: #84a;
+  color: white;
+  text-shadow: .5pt .5pt #000;
+}
+
+.texto2{
+  background: rgb(236,239,001);
+  color: #000;
+}
+.encabezadoTabla {
+  background-color: #efefef;
+}
+
+.reporte {
+  background-color: #eee;
+  box-shadow: 2px 2px 5px #222;
+  margin: 20px 0;
+  padding: 40px 30px;
+  font-size: 14pt;
+  min-height: 400px;
+  min-width: 600px;
+}
+
+.tRep{
+  padding: 10px;
+  min-width: 500px;
+  width: 100%;
+}
+
+.rs{
+  background-color: #eee;
+  box-shadow: 2px 2px 5px #222;
+  padding: 20px 10px;
+  font-size: 13.5pt;
+  min-height: 200px;
+}
+
+.rs table tr td{
+  width:20%;
+  text-align:center;
+}
+
+.flu-wrapper {
+  display: inline-block;
+  overflow: hidden;
+}
+
+[type="file"] {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 5px 25px;
+  position: absolute !important;
+  white-space: nowrap;
+  width: 1px;
+  transition: ease 0.5s;
+}
+
+[type="file"] + label {
+  background-color: #000;
+  padding: 3px 23px;
+  font-size: 13pt;
+  letter-spacing: 2px;
+  transition: ease 0.5s;
+  border-radius: 4rem;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  padding-left: 2rem 4rem;
+}
+
+[type="file"]:hover + label, [type="file"] + label:hover {
+    background: rgb(236,239,001);
+    color: #000;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+[type="file"]:focus + label {
+  outline: 1px dotted #000;
 }
