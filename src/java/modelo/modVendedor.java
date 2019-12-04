@@ -91,7 +91,9 @@ public class modVendedor {
     }
     
     
-    
+    public modVendedor(){
+        
+    }
     
     
 
@@ -120,7 +122,7 @@ public class modVendedor {
         int res=0;
         modConexion con=new modConexion();
         Connection cnn=con.conexion();
-        String consultaSql = "call STP_REGVENDEDOR("+CveAdminAsig+","+Nombre+","+Apellidos+","+Usuario+","+Contrasena+","+Correo+","+Telefono+");";
+        String consultaSql = "call STP_REGVENDEDOR('"+CveAdminAsig+"','"+Nombre+"','"+Apellidos+"','"+Usuario+"','"+Contrasena+"','"+Correo+"','"+Telefono+"');";
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
 

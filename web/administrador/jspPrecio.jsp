@@ -1,114 +1,95 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<!-- TITULO -->
 
-<div class="container">
-
-    <div class="about-text align-items-center">
-        <center>
-            <br><br>
-            <h3>
-                <span class="mr-2">Precio</span>
-            </h3>
-            <br>
-        </center>
-
-    </div>
+<div class="fondo-negro">
+    <center >
+        <div class="titulo">
+            Precio
+        </div>
+    </center>
 </div>
 
 
 <!-- CONTENIDO -->
-<center>
-    <div class="texto3">
-        <table >
-            <tr align="center" class="textoCentrado">
-                Precio actual
-            </tr>
-            <tr>
-                <td>
-                    &nbsp&nbsp&nbsp&nbsp Precio por palabra:
-                    <label for="lblPrecio">-----------</label>
-                </td>
-            </tr>
-            <br>
-        </table>
-    </div>
-    <div class="texto3">
-        <table >
-            <tr align="center" class="textoCentrado">
-                Factor actual
-            </tr>
-            <tr>
-                <td>
-                    Idioma:
-                </td>
-                <td>
-                    <select class="small-text" value="cmbIdiomas">
-                        <option value="Ingles">Inglés</option>
-                        <option value="Español">Español</option>
-                        <option value="Chino">Chino</option>
-                        <option value="Japonés">Japonés</option>
-                    </select>
-                </td>
-                <td>
-                    &nbsp&nbsp&nbsp&nbsp Precio:
-                    <label for="lblPrecio">-----------</label>
-                </td>
-            </tr>
-            <br>
-        </table>
-    </div>
-    <div class="texto2">
-        <table>
-            <tr align="center" class="textoCentrado">
-                Cambio Factor
-            </tr>
-            <tr>
-                <td>
-                    Idioma:
-                </td>
-                <td>
-                    <select class="small-text"value="cmbIdiomas2">
-                        <option value="Ingles">Inglés</option>
-                        <option value="Español">Español</option>
-                        <option value="Chino">Chino</option>
-                        <option value="Japonés">Japonés</option>
-                    </select>
-                </td>
-                <td>
-                    &nbsp&nbsp Factor Idioma:
-                    <input type="text" name="txtFactor" id="txtFactor" value="">
-                </td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td></td>
-                <td align="right">
-                    <input type="submit" class="btn custom-btn " name="btn_ModFactor" value="Modificar" id="btn_Entrar">
-                </td>
-            </tr>
-        </table>
-    </div>
-</div>
-<div class="texto2">
-    <table>
-        <tr align="center" class="textoCentrado">
-            Cambio Precio
-        </tr>
-        <tr>
-            <td>
-                &nbsp&nbsp Valor Idioma:
-                <input type="text" name="txtPrecio" id="txtPrecio" value="">
-            </td>
-        </tr>
-
-        <tr>
-            <td></td>
-            <td></td>
-            <td align="right">
-                <input type="submit" class="btn custom-btn " name="btn_ModValor" value="Modificar" id="btn_Entrar">
-            </td>
-        </tr>
-    </table>
-</div>
-</center>
+<section class="m-content" style="min-width:600px">
+    <center class="prz" style="padding-right:5px">
+        <div class="texto">
+            <table>
+                <tr align="center">
+                    <td colspan="2" style="font-size: 22pt; background: #672988; text-shadow: none; border-radius: 50px;">
+                        Precio actual
+                    </td>
+                </tr>
+                <tr><td></td></tr>
+                <tr>
+                    <td align="right">
+                        Estandar:
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" name="txtPrecioE" id="txtPrecioE" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        Certificada:
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" name="txtPrecioC" id="txtPrecioC" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        Premium:
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" name="txtPrecioP" id="txtPrecioP" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td ></td>
+                    <td align="right">
+                        <input class="btnY" type="submit" name="btn_ModPrecio" value="Modificar" id="btn_Entrar">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="texto2">
+            <table>
+                <tr align="center">
+                    <td colspan="2" style="font-size: 22pt; background: #c9cc1b; text-shadow: none; border-radius: 50px;">
+                        Factor por idioma
+                    </td>
+                </tr>
+                <tr><td></td></tr>
+                <tr>
+                    <td align="right">
+                        Idioma:
+                    </td>
+                    <td>
+                        <select class="form-control" value="cmbIdiomas2">
+                            <option value="Ingles">Inglés</option>
+                            <option value="Español">Español</option>
+                            <option value="Chino">Chino</option>
+                            <option value="Japonés">Japonés</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        Factor Idioma:
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" name="txtFactor" id="txtFactor" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td ></td>
+                    <td align="right">
+                        <input class="btnY" type="submit" name="btn_ModFactor" value="Modificar" id="btn_Entrar">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </center>
+</section>

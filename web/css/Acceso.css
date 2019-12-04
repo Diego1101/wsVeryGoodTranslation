@@ -1,0 +1,34 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 3, 2019, 5:21:39 PM
+    Author     : migue
+*/
+@import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
+.titulo{
+  font-family: "Maven Pro", sans-serif;
+  letter-spacing: -1px;
+  color:#000;
+  font-size:21pt;
+  font-weight: bold;
+
+}
+.fondo {
+  background-color: rgb(236,239,1);
+  color: black;
+  margin: 20px;
+  padding: 20px;
+  font-size:14pt;
+  width:50%;
+  height:30%;
+}
+.texto-Centro{
+  font-family: "Maven Pro", sans-serif;
+  letter-spacing: -1px;
+  font-size: 22px;
+  color: #000000;
+  font-weight:lighter;
+}

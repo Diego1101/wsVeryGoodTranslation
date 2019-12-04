@@ -15,7 +15,7 @@
         } else if (header.equals("1")) {
             header = "headers/vendedor.jsp";
             dir = "vendedor/";
-            pagina = "jspMainVendedor.jsp";
+            pagina = "jspClientesActuales.jsp";
         } else {
             header = "headers/main.jsp";
         }
@@ -142,7 +142,7 @@
 
         <!-- FOOTER -->
         
-    <footer class="pie-pagina" style="position:absolute">
+    <footer class="footer" >
       <div class="container">
         <div class="row">
 
