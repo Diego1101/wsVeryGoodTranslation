@@ -3,7 +3,7 @@
 
 <%
 
-    String pagina = "jspAcceso.jsp";
+    String pagina = "vendedor/jspClientesActuales.jsp";
     String header = "headers/main.jsp";
     String dir = "";
     if (request.getSession().getAttribute("rol") != null) {
@@ -11,7 +11,7 @@
         if (header.equals("2")) {
             header = "headers/administrador.jsp";
             dir = "administrador/";
-            pagina = "jspMainAdministrador.jsp";
+            pagina = "jspDescuento.jsp";
         } else if (header.equals("1")) {
             header = "headers/vendedor.jsp";
             dir = "vendedor/";
