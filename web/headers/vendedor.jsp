@@ -29,9 +29,11 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="index.jsp?op=jspGestionTraducciones.jsp" class="nav-link"><span data-hover="Cotizaciones">Cotizaciones</span></a>
+                    <a class="nav-link"><span data-hover="Cotizaciones" href="index.jsp?op=jspGestionTraducciones.jsp">Cotizaciones</span></a>
+                    <ul>
                     <li><a href="index.jsp?op=jspRegistrarTraduccion.jsp">Registrar</a></li>
                     <li><a href="index.jsp?op=jspGestionTraducciones.jsp">Gestionar</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="jspCerrarSesion.jsp" class="nav-link"><span data-hover="Cerrar Sesion">Cerrar Sesion</span></a>

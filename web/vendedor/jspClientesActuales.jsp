@@ -23,8 +23,8 @@
         <td style="padding: 15px; ">
           <select class="form-control"name="cmb_Modificacion" id="cmb_Modificacion">
             <option selected='selected'>Elige una opción</option>
-            <option value="MDescuento" id="Sts_Proceso">En proceso</option>
-            <option value="MDatos" id="Sts_Concluida">Concluida </option>      
+            <option value="Sts_Proceso" id="Sts_Proceso">En proceso</option>
+            <option value="Sts_Concluida" id="Sts_Concluida">Concluida </option>      
           </select>
         </td>
         </tr>
