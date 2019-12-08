@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.modAdministrador;
 import modelo.modConexion;
 import modelo.modDescuento;
+import modelo.modIdioma;
 import modelo.modVendedor;
 
 /**
@@ -48,17 +49,28 @@ public class administrador extends HttpServlet {
                 case "addDescuento":
                     registrarDescuento(request, response);
                     break;
-                    
+
                 case "detDescuento":
                     detDescuento(request, response);
                     break;
-                    
+
                 case "modDescuento":
                     modDescuento(request, response);
                     break;
-                    
+
                 case "loadPrecio":
                     loadPrecio(request, response);
+                    break;
+                case "loadIdioma":
+                    loadIdioma(request, response);
+                    break;
+
+                case "modIdioma":
+                    modiIdioma(request, response);
+                    break;
+                    
+                case "addIdioma":
+                    addIdioma(request, response);
                     break;
 
                 default:
@@ -177,11 +189,10 @@ public class administrador extends HttpServlet {
     }
 
     private void detDescuento(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        
-        int id=Integer.parseInt(request.getParameter("id"));
+
+        int id = Integer.parseInt(request.getParameter("id"));
         modDescuento obj = new modDescuento(id);
-        
-        
+
         request.setAttribute("id", obj.getCveDescuento());
         request.setAttribute("txtRazon", obj.getRazonDesc());
         request.setAttribute("txtInicio", obj.getFechaInicio().split(" ")[0]);
@@ -192,8 +203,8 @@ public class administrador extends HttpServlet {
     }
 
     private void modDescuento(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        
-       modDescuento obj = new modDescuento();
+
+        modDescuento obj = new modDescuento();
         obj.setCveDescuento(Integer.parseInt(request.getParameter("id")));
         obj.setRazonDesc(Integer.parseInt(request.getParameter("txtRazon")));
         obj.setFechaInicio(request.getParameter("txtInicio"));
@@ -217,34 +228,95 @@ public class administrador extends HttpServlet {
     }
 
     private void loadPrecio(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
-        
-        modConexion con=new modConexion();
-        Connection cnn=con.conexion();
+
+        modConexion con = new modConexion();
+        Connection cnn = con.conexion();
         String consultaSql = "SELECT TTR_MULTCOSTPAL FROM VGT_TIPOTRADUCCION;";
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
-        float[] p=new float[3];
-        int i=0;
+        float[] p = new float[3];
+        int i = 0;
         while (rs.next()) {
-            p[i]=Float.parseFloat(rs.getString(1));
+            p[i] = Float.parseFloat(rs.getString(1));
             i++;
         }
         rs.close();
         cnn.close();
-       
+
         request.setAttribute("txtPrecioE", p[0]);
         request.setAttribute("txtPrecioC", p[1]);
         request.setAttribute("txtPrecioP", p[2]);
-        
-        
-        List<String[]> res=modDescuento.listarDescuento();
-        
-        
+
+        List<String[]> res = modDescuento.listarDescuento();
+
         request.setAttribute("desc", res);
-        
+
         request.setAttribute("ban", "1");
         request.setAttribute("op", "jspPrecio.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+
+    private void loadIdioma(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        modConexion con = new modConexion();
+        Connection cnn = con.conexion();
+        String consultaSql = "SELECT * FROM VGT_IDIOMA;";
+        Statement st = (Statement) cnn.createStatement();
+        ResultSet detIdiomas = st.executeQuery(consultaSql);
+
+        if(request.getParameter("edo")!=null)request.setAttribute("edo", request.getParameter("edo"));
+        
+        request.setAttribute("idiomas", detIdiomas);
+        request.setAttribute("ban", "1");
+        request.setAttribute("op", "jspABCIdioma.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
+    }
+
+    private void modiIdioma(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        try{
+            
+        int id = Integer.parseInt(request.getParameter("slidioma"));
+        modIdioma idioma = new modIdioma(id);
+        idioma.setCostoPalabra(Float.parseFloat(request.getParameter("txt_FacIdioma")));
+        idioma.setStatus(request.getParameter("slEstatus").charAt(0));
+        if (idioma.modificarIdioma() == 0) {
+            request.setAttribute("edo", "No se econctro el registro");
+        } else {
+            request.setAttribute("edo", "Idioma actualizado");
+
+        }
+        request.setAttribute("op", "jspABCIdioma.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
+        }
+        catch(NumberFormatException ex){
+            request.setAttribute("edo", "Solo introducir numeros");
+            request.setAttribute("op", "jspABCIdioma.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+    }
+
+    private void addIdioma(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        try{
+            
+        modIdioma idioma = new modIdioma();
+        idioma.setCostoPalabra(Float.parseFloat(request.getParameter("txt_NFactor")));
+        idioma.setIdioma(request.getParameter("txt_NIdioma"));
+        if (idioma.regIdioma()== 0) {
+            request.setAttribute("edo", "Ya existe el idioma");
+        } else {
+            request.setAttribute("edo", "Idioma agregado");
+
+        }
+        request.setAttribute("op", "jspABCIdioma.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
+        }
+        catch(NumberFormatException ex){
+            request.setAttribute("edo", "Solo introducir numeros");
+            request.setAttribute("op", "jspABCIdioma.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
     }
 
 }

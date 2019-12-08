@@ -7,3 +7,9 @@
     width: 20px !important;
 }
 
+#error{
+     text-align: center; 
+     color: #ecef01; 
+     font-weight: bold;
+}
+
