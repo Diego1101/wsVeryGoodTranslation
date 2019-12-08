@@ -20,10 +20,10 @@
                     <a href="index.jsp?op=jspABCVendedor.jsp" class="nav-link"><span data-hover="Vendedores">Vendedores</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.jsp?op=jspDescuento.jsp" class="nav-link"><span data-hover="Descuento">Descuento</span></a>
+                    <a href="index.jsp?op=jspPrecio.jsp" class="nav-link"><span data-hover="Precio">Precios</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.jsp?op=jspPrecio.jsp" class="nav-link"><span data-hover="Precio">Precio</span></a>
+                    <a href="index.jsp?op=jspABCIdioma.jsp" class="nav-link"><span data-hover="Idioma">Idiomas</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="index.jsp?op=jspCotizacionesA.jsp" class="nav-link"><span data-hover="Cotizaciones">Cotizaciones</span></a>
