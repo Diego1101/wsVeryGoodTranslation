@@ -3,7 +3,7 @@
 
 <%
 
-    String pagina = "vendedor/jspClientesActuales.jsp";
+    String pagina = "jspAcceso.jsp";
     String header = "headers/main.jsp";
     String dir = "";
     if (request.getSession().getAttribute("rol") != null) {
@@ -11,7 +11,7 @@
         if (header.equals("2")) {
             header = "headers/administrador.jsp";
             dir = "administrador/";
-            pagina = "jspDescuento.jsp";
+            pagina = "jspABCVendedor.jsp";
         } else if (header.equals("1")) {
             header = "headers/vendedor.jsp";
             dir = "vendedor/";
@@ -42,6 +42,7 @@
 
           <link rel="stylesheet" href="css/bootstrap.min.css">
           <link rel="stylesheet" href="css/Estilo.css">
+          <link rel="stylesheet" href="css/style2.css">
           
 
         <style type="text/css">
