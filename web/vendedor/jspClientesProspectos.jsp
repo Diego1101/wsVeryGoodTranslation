@@ -30,7 +30,7 @@
       </td>
   </tr>
       <tr>
-        <!-- obtener un result set con los datos de los clientes prospectos  -->
+        <!-- obtener un result set con los datos de los clientes prospectos  --> 
         </tr>
       </table>
       </center>

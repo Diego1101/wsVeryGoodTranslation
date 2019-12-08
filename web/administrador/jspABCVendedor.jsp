@@ -56,7 +56,7 @@ Correo
                     </td>
                     <td>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" name="txt_Nombre" placeholder="Nombre del empleado" id="txt_Nombre" style="min-width: 240px; width:240;" required>
+                            <input type="text" value="<% out.print((request.getAttribute("txt_Nombre")!=null)?request.getAttribute("txt_Nombre"):"");  %>" class="form-control" name="txt_Nombre" placeholder="Nombre del empleado" id="txt_Nombre" style="min-width: 240px; width:240;" required>
                         </div>
                     </td>
                 </tr>
@@ -72,7 +72,7 @@ Correo
                         <br>
 
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" name="txt_Apellidos" placeholder="Apellidos del empleado" id="txt_Apellidos" style="min-width: 240px; width:240;" required>
+                            <input type="text" value="<% out.print((request.getAttribute("txt_Apellidos")!=null)?request.getAttribute("txt_Apellidos"):"");  %>" class="form-control" name="txt_Apellidos" placeholder="Apellidos del empleado" id="txt_Apellidos" style="min-width: 240px; width:240;" required>
                         </div>
                     </td>
                 </tr>
@@ -87,7 +87,7 @@ Correo
                     <td>
                         <br>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" name="txt_Usuario" placeholder="Nombre de usuario" id="txt_Usuario" style="min-width: 240px; width:240;" required>
+                            <input type="text" value="<% out.print((request.getAttribute("txt_Usuario")!=null)?request.getAttribute("txt_Usuario"):"");  %>" class="form-control" name="txt_Usuario" placeholder="Nombre de usuario" id="txt_Usuario" style="min-width: 240px; width:240;" required>
                         </div>
                     </td>
                 </tr>
@@ -102,7 +102,7 @@ Correo
                     <td>
                         <br>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" name="txt_Tel" placeholder="Número telefónico" id="txt_Tel" style="min-width: 240px; width:240;" required>
+                            <input type="text" value="<% out.print((request.getAttribute("txt_Tel")!=null)?request.getAttribute("txt_Tel"):"");  %>" class="form-control" name="txt_Tel" placeholder="Número telefónico" id="txt_Tel" style="min-width: 240px; width:240;" required>
                         </div>
                     </td>
                 </tr>
@@ -117,7 +117,7 @@ Correo
                     <td>
                         <br>
                         <div class="col-lg-6">
-                            <input type="email" class="form-control" name="txt_Correo" placeholder="example@domain.com" id="txt_Correo" style="min-width: 240px; width:240;" required>
+                            <input type="email" value="<% out.print((request.getAttribute("txt_Correo")!=null)?request.getAttribute("txt_Correo"):"");  %>" class="form-control" name="txt_Correo" placeholder="example@domain.com" id="txt_Correo" style="min-width: 240px; width:240;" required>
                         </div>
                     </td>
                 </tr>
@@ -131,7 +131,7 @@ Correo
                     <td>
                         <br>
                         <div class="col-lg-6">
-                            <input type="password" class="form-control" name="txt_Contra" placeholder="Contraseña" id="txt_Contra" style="min-width: 240px; width:240;" required>
+                            <input type="text" value="<% out.print((request.getAttribute("txt_Contra")!=null)?request.getAttribute("txt_Contra"):"");  %>" class="form-control" name="txt_Contra" placeholder="Contraseña" id="txt_Contra" style="min-width: 240px; width:240;" required>
                         </div>
                     </td>
                 </tr>
