@@ -141,10 +141,17 @@
                             <div class="col-lg-6">
                                 <input type="text" min="0" class="form-control" name="txt_FacIdioma" placeholder="Factor del idioma" id="txt_FacIdioma" style="min-width: 240px; width:240;" required="">
                             </div>
+                            
+                        </td>
+                    <tr>
+                        <td style="height:10px;">
+                            
                         </td>
                     </tr>
+                    </tr>
                     <tr>
-                        <td colspan="2" style="text-align: center; padding: 50px 0 0 0">
+                    <br>
+                        <td colspan="2" style="text-align: center;">
                             <div>
                                 <input type="submit"  class="btn " name="btn_Modificar" value="Modificar" id="btn_Modificar" style="min-width: 180px; width:180;">
                                 <input type="hidden"  name="org" value="modIdioma" id="org">
@@ -153,12 +160,18 @@
                         <td>
                         </td>
                     </tr>
+                    <tr>
+                        <td style="height:10px;">
+                            
+                        </td>
+                    </tr>
                 </table>
             </form>
         </center>
         <br>
+        
         </div>
-        <hr>
+        
     </section>
 </div>
 <div id="div_RegistrarIdioma">

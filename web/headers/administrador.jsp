@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a href="index.jsp?op=jspVendedores.jsp" class="nav-link"><span data-hover="Vendedores">Vendedores</span></a>
+                    <a href="index.jsp?op=jspABCVendedor.jsp" class="nav-link"><span data-hover="Vendedores">Vendedores</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="index.jsp?op=jspPrecio.jsp" class="nav-link"><span data-hover="Precio">Precio</span></a>
@@ -26,10 +26,10 @@
                   <a href="index.jsp?op=jspABCIdioma.jsp" class="nav-link"><span data-hover="Idiomas">Idiomas</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"><span data-hover="Cotizaciones" href="index.jsp?op=jspModificarTraduAdmin.jsp">Cotizaciones</span></a>
+                    <a class="nav-link"><span data-hover="Cotización" href="index.jsp?op=jspModificarTraduAdmin.jsp">Cotización</span></a>
                     <ul>
-                    <li><a href="index.jsp?op=jspRegistrarTraduAdmin.jsp">Registrar</a></li>
-                    <li><a href="index.jsp?op=jspModificarTraduAdmin.jsp">Gestionar</a></li>
+                    <li><a href="index.jsp?op=jspRegistrarTraduAdmin.jsp">Nueva cotización</a></li>
+                    <li><a href="index.jsp?op=jspModificarTraduAdmin.jsp">Gestión</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">

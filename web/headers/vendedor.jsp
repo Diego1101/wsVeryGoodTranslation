@@ -29,17 +29,10 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"><span data-hover="Cotizaciones" href="index.jsp?op=jspGestionTraducciones.jsp">Cotizaciones</span></a>
+                    <a class="nav-link"><span data-hover="Cotización" href="index.jsp?op=jspGestionTraducciones.jsp">Cotización</span></a>
                     <ul>
-                    <li><a href="index.jsp?op=jspRegistrarTraduccion.jsp">Registrar</a></li>
-                    <li><a href="index.jsp?op=jspGestionTraducciones.jsp">Gestionar</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"><span data-hover="Traducciones">Traducciones</span></a>
-                    <ul>
-                        <li><a href="index.jsp?op=jspGestionTraducciones.jsp">Gestión</a></li>
-                        <li><a href="index.jsp?op=jspRegistrarTraduccion.jsp">Nueva traducción</a></li>
+                    <li><a href="index.jsp?op=jspRegistrarTraduccion.jsp">Nueva Cotización</a></li>
+                    <li><a href="index.jsp?op=jspGestionTraducciones.jsp">Gestión</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
