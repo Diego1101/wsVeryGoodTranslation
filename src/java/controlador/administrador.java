@@ -77,6 +77,14 @@ public class administrador extends HttpServlet {
                 case "modPrecio":
                     modifcarPrecio(request, response);
                     break;
+                    
+                case "detVendedor":
+                    detVendedor(request, response);
+                    break;
+                    
+                case "modVendedor":
+                    modificarVendedor(request, response);
+                    break;
 
                 default:
                     request.setAttribute("err", "Pagina no encontrada");
@@ -343,6 +351,66 @@ public class administrador extends HttpServlet {
 
         request.setAttribute("op", "jspPrecio.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+
+    private void detVendedor(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        modVendedor obj = new modVendedor(id);
+
+        request.setAttribute("id", obj.getCveVendedor());
+        request.setAttribute("idAdm", obj.getCveAdminAsig());
+        request.setAttribute("txt_Nombre", obj.getNombre());
+        request.setAttribute("txt_Apellidos", obj.getApellidos());
+        request.setAttribute("txt_Usuario", obj.getUsuario());
+        request.setAttribute("txt_Tel", obj.getTelefono());
+        request.setAttribute("txt_Correo", obj.getCorreo());
+        request.setAttribute("txt_Contra", obj.getContrasena());
+        
+        request.setAttribute("ban", "1");
+        request.setAttribute("op", "jspModVen.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+
+    private void modificarVendedor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        if (request.getParameter("txt_Nombre") != null || request.getParameter("txt_Apellidos") != null || request.getParameter("txt_Usuario") != null || request.getParameter("txt_Contra") != null || request.getParameter("txt_Correo") != null || request.getParameter("txt_Tel") != null) {
+            if ("".equals(request.getParameter("txt_Nombre")) || "".equals(request.getParameter("txt_Apellidos")) || "".equals(request.getParameter("txt_Usuario")) || "".equals(request.getParameter("txt_Contra")) || "".equals(request.getParameter("txt_Correo")) || "".equals(request.getParameter("txt_Tel"))) {
+                request.setAttribute("edo", "Llenar todos los campos");
+                request.setAttribute("op", "jspABCVendedor.jsp");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+
+            } else {
+                int id=Integer.parseInt(request.getParameter("idVen"));
+                modVendedor ven = new modVendedor(id);
+                ven.setCveAdminAsig(Integer.parseInt(request.getParameter("admin")));
+                ven.setNombre(request.getParameter("txt_Nombre"));
+                ven.setApellidos(request.getParameter("txt_Apellidos"));
+                ven.setUsuario(request.getParameter("txt_Usuario"));
+                ven.setContrasena(request.getParameter("txt_Contra"));
+                ven.setTelefono(request.getParameter("txt_Tel"));
+                ven.setCorreo(request.getParameter("txt_Correo"));
+                if (ven.modificarVendedor() == 0) {
+                    request.setAttribute("edo", "No se encontro el vendor");
+                } else {
+                    request.setAttribute("edo", "Vendedor modificado agregado");
+
+                }
+                request.setAttribute("ban", "1");
+                request.setAttribute("txt_Nombre", request.getParameter("txt_Nombre"));
+                request.setAttribute("txt_Apellidos", request.getParameter("txt_Apellidos"));
+                request.setAttribute("txt_Usuario", request.getParameter("txt_Usuario"));
+                request.setAttribute("txt_Contra", request.getParameter("txt_Contra"));
+                request.setAttribute("txt_Tel", request.getParameter("txt_Tel"));
+                request.setAttribute("txt_Correo", request.getParameter("txt_Correo"));
+                request.setAttribute("op", "jspABCVendedor.jsp");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+
+            }
+
+        } else {
+            request.setAttribute("edo", "Error");
+            request.setAttribute("op", "jspABCVendedor.jsp");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
     }
 
 }

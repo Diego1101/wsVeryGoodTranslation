@@ -138,7 +138,8 @@ public class modVendedor {
         int res=0;
         modConexion con=new modConexion();
         Connection cnn=con.conexion();
-        String consultaSql = "call STP_MODVENDEDOR("+CveVendedor+","+CveAdminAsig+","+Nombre+","+Apellidos+","+Contrasena+","+Correo+","+Telefono+");";
+        String consultaSql = "call STP_MODVENDEDOR("+CveVendedor+","+CveAdminAsig+",'"+Nombre+"','"+Apellidos+"','"+Contrasena+"','"+Correo+"','"+Telefono+"');";
+        System.out.println(consultaSql);
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
 
