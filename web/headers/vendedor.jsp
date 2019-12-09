@@ -32,6 +32,13 @@
                     <a href="index.jsp?op=jspCotizacionesV.jsp" class="nav-link"><span data-hover="Cotizaciones">Cotizaciones</span></a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link"><span data-hover="Traducciones">Traducciones</span></a>
+                    <ul>
+                        <li><a href="index.jsp?op=jspGestionTraducciones.jsp">Gestión</a></li>
+                        <li><a href="index.jsp?op=jspRegistrarTraduccion.jsp">Nueva traducción</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
                     <a href="jspCerrarSesion.jsp" class="nav-link"><span data-hover="Cerrar Sesion">Cerrar Sesion</span></a>
                 </li>
             </ul>

@@ -142,7 +142,7 @@
 
         <!-- FOOTER -->
         
-    <footer class="footer" >
+    <footer>
       <div class="container">
         <div class="row">
 
@@ -157,18 +157,7 @@
     </footer>
         <footer id="main-footer">
 
-            <div class="container">
-                <div id="footer-widgets" class="clearfix">
-                    <div class="footer-widget"><div id="custom_html-44" class="widget_text fwidget et_pb_widget widget_custom_html"><div class="textwidget custom-html-widget"><!-- Código de instalación Cliengo para http://www.verygoodtranslation.com -->
-                                <script type="text/javascript">(function () {
-                                        var ldk = document.createElement('script');
-                                        ldk.type = 'text/javascript';
-                                        ldk.async = true;
-                                        ldk.src = 'https://s.cliengo.com/weboptimizer/5cd0c33fe4b0a6deb12cff1b/5cd0c340e4b0a6deb12cff1e.js';
-                                        var s = document.getElementsByTagName('script')[0];
-                                        s.parentNode.insertBefore(ldk, s);
-                                    })();</script></div></div> <!-- end .fwidget --></div> <!-- end .footer-widget --><div class="footer-widget"></div> <!-- end .footer-widget --><div class="footer-widget"></div> <!-- end .footer-widget --><div class="footer-widget"></div> <!-- end .footer-widget -->    </div> <!-- #footer-widgets -->
-            </div>    <!-- .container -->
+           
 
 
             <div id="et-footer-nav">
