@@ -1,6 +1,6 @@
 <%-- 
-    Document   : jspGestionTraducciones
-    Created on : Dec 3, 2019, 11:04:58 AM
+    Document   : jspModificarTraduAdmin
+    Created on : Dec 8, 2019, 6:12:21 PM
     Author     : migue
 --%>
 
