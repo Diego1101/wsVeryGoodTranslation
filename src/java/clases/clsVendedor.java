@@ -45,4 +45,58 @@ public class clsVendedor {
         
     }
     
+    public ResultSet mostrarProspectos() throws SQLException{
+        clsConexion con=new clsConexion();
+        Connection cnn=con.conexion();
+        String consultaSql = "CALL STP_LISTARCLIENTESPROSP(1,1);";
+        Statement st = (Statement) cnn.createStatement();
+        ResultSet rs = st.executeQuery(consultaSql);
+        return rs;
+    }
+    
+    public ResultSet mostrarActivos() throws SQLException{
+        clsConexion con=new clsConexion();
+        Connection cnn=con.conexion();
+        String consultaSql = "CALL STP_LISTARCLIENTESPROSP(2,1);";
+        Statement st = (Statement) cnn.createStatement();
+        ResultSet rs = st.executeQuery(consultaSql);
+        return rs;
+    }
+    
+    public ResultSet listarIdiomas() throws SQLException{
+        clsConexion con=new clsConexion();
+        Connection cnn=con.conexion();
+        String consultaSql = "CALL STP_LISTARIDIOMAS();";
+        Statement st = (Statement) cnn.createStatement();
+        ResultSet rs = st.executeQuery(consultaSql);
+        return rs;
+    }
+    
+    public ResultSet listarDescuentos() throws SQLException{
+        clsConexion con=new clsConexion();
+        Connection cnn=con.conexion();
+        String consultaSql = "CALL STP_LISTARDESCUENTOSVIG();";
+        Statement st = (Statement) cnn.createStatement();
+        ResultSet rs = st.executeQuery(consultaSql);
+        return rs;
+    }
+    
+    public ResultSet listarTiposTraduccion() throws SQLException{
+        clsConexion con=new clsConexion();
+        Connection cnn=con.conexion();
+        String consultaSql = "CALL STP_LISTARTIPOTRADUCCION();";
+        Statement st = (Statement) cnn.createStatement();
+        ResultSet rs = st.executeQuery(consultaSql);
+        return rs;
+    }
+    
+    public ResultSet registrarTraduccion(int cveCliente, int cveVen, int cveIOrigen, int cveIDestino, int cveTipoTrad, int cveTraductor, int cveDescuento, char estatusTrad, String rutaOriginal, String rutaTraduccion, float cantPalabras, float precio, float descuento, float subtotal, float impuesto, int calificacion) throws SQLException{
+        clsConexion con=new clsConexion();
+        Connection cnn=con.conexion();
+        float total = subtotal + impuesto;
+        String consultaSql = "CALL STP_REGTRADUCCION("+ cveCliente +","+cveVen+","+cveIOrigen+","+cveIDestino+","+cveTipoTrad+","+cveTraductor+","+cveDescuento+",'"+estatusTrad+"','"+rutaOriginal+"','"+rutaTraduccion+"',"+cantPalabras+","+ precio+","+ descuento+","+ subtotal+","+ impuesto+","+ total +","+ calificacion+");";
+        Statement st = (Statement) cnn.createStatement();
+        ResultSet rs = st.executeQuery(consultaSql);
+        return rs;
+    }
 }
