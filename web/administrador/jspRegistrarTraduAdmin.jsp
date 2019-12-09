@@ -1,11 +1,10 @@
 <%-- 
-    Document   : jspRegistrarTraduccion
-    Created on : Dec 3, 2019, 10:03:06 PM
+    Document   : jspRegistrarTraduAdmin
+    Created on : Dec 8, 2019, 5:58:08 PM
     Author     : migue
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
   <div class="fondo-negro">
      <center >
        <div class="titulo">
@@ -154,9 +153,8 @@
              Ubicación:
            </td>
            <td align="center">
-<div id="drop_zone">Drop files here</div>
-<output id="list"></output>
-              
+               <input type="file" name="fluArchivo" id="file"/>
+               <label for="file">Sube un archivo</label>
            </td>
          </tr>
          <tr>
@@ -164,7 +162,7 @@
              Ruta:
            </td>
            <td>
-             <output for="" id=list> -- </output>
+             <label for="" id=lbl_Ruta> -- </label>
            </td>
          </tr>
          <tr>
@@ -187,7 +185,6 @@
      </div>
        <input type="button" class="btn" name="btn_CalcularTotal" value="Calcular Desglose" id="btn_CalcularTotal" onclick="aparecerModulo()">
  </center>
-       
    </section>
    <script type="text/javascript">
 
@@ -198,10 +195,9 @@
 
             div1.style.display = "block";
          }
-  
+
 }
     </script>
-        
    <hr>
    
    <section class="m-content" id="div_Desglose" style="min-width:700px;display:none;">
@@ -210,7 +206,7 @@
          <table>
            <tr>
              <td align="right" style="font-size:16pt;">
-              Código Descuento:
+               Descuento: $
              </td>
              <td >
               <input type="text" class="form-control"  name="txt_CodigoDescuento" id="txt_CodigoDescuento" style="width: 180px;" width="150px;"/>

@@ -13,20 +13,24 @@
         <!--  <a >
                                                 <img src="https://verygoodtranslation.com/wp-content/uploads/2019/07/logo3-para-web.png" alt="Very Good Translation" id="logo" data-height-percentage="10" height="50"   />
                                         </a> -->
-        <a class="navbar-brand" href="index.html"><i class='uil uil-user'></i> Administrador</a>
+        <a class="navbar-brand" href="index.jsp?op=jspABCVendedor.jsp"><i class='uil uil-user'></i> Administrador</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
                     <a href="index.jsp?op=jspABCVendedor.jsp" class="nav-link"><span data-hover="Vendedores">Vendedores</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.jsp?op=jspPrecio.jsp" class="nav-link"><span data-hover="Precio">Precios</span></a>
+                    <a href="index.jsp?op=jspPrecio.jsp" class="nav-link"><span data-hover="Precio">Precio</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.jsp?op=jspABCIdioma.jsp" class="nav-link"><span data-hover="Idioma">Idiomas</span></a>
+                  <a href="index.jsp?op=jspABCIdioma.jsp" class="nav-link"><span data-hover="Idiomas">Idiomas</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.jsp?op=jspCotizacionesA.jsp" class="nav-link"><span data-hover="Cotizaciones">Cotizaciones</span></a>
+                    <a class="nav-link"><span data-hover="Cotizaciones" href="index.jsp?op=jspModificarTraduAdmin.jsp">Cotizaciones</span></a>
+                    <ul>
+                    <li><a href="index.jsp?op=jspRegistrarTraduAdmin.jsp">Registrar</a></li>
+                    <li><a href="index.jsp?op=jspModificarTraduAdmin.jsp">Gestionar</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="index.jsp?op=jspReportes.jsp" class="nav-link"><span data-hover="Reportes">Reportes</span></a>
