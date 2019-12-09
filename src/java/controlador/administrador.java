@@ -72,6 +72,10 @@ public class administrador extends HttpServlet {
                 case "addIdioma":
                     addIdioma(request, response);
                     break;
+                    
+                case "modPrecio":
+                    modifcarPrecio(request, response);
+                    break;
 
                 default:
                     request.setAttribute("err", "Pagina no encontrada");
@@ -251,6 +255,8 @@ public class administrador extends HttpServlet {
 
         request.setAttribute("desc", res);
 
+        request.setAttribute("edo", request.getParameter("edo"));
+        
         request.setAttribute("ban", "1");
         request.setAttribute("op", "jspPrecio.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -317,6 +323,16 @@ public class administrador extends HttpServlet {
             request.setAttribute("op", "jspABCIdioma.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
         }
+    }
+
+    private void modifcarPrecio(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        float estandar=Float.parseFloat(request.getParameter("txtPrecioE"));
+//        float certificada=Float.parseFloat(request.getParameter("txtPrecioC"));
+//        float premium=Float.parseFloat(request.getParameter("txtPrecioP"));
+        
+        request.setAttribute("edo", "Falta todo");
+        request.setAttribute("op", "jspPrecio.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
 }
