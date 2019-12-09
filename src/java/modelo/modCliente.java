@@ -88,8 +88,6 @@ public class modCliente {
     }
     
     
-    
-    
     public modCliente(int cve) throws SQLException {
         this.CveCliente=cve;
         modConexion con=new modConexion();
@@ -116,7 +114,7 @@ public class modCliente {
         int res=0;
         modConexion con=new modConexion();
         Connection cnn=con.conexion();
-        String consultaSql = "call STP_REGCLIENTE("+CveTipoCliente+","+Nombre+","+Apellidos+","+CorreoE+","+Telefono+");";
+        String consultaSql = "call STP_REGCLIENTE("+CveTipoCliente+",'"+Nombre+"','"+Apellidos+"','"+CorreoE+"','"+Telefono+"');";
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
 

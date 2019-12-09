@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.modAdministrador;
+import modelo.modCliente;
 import modelo.modConexion;
 import modelo.modDescuento;
 import modelo.modIdioma;
@@ -89,6 +90,10 @@ public class administrador extends HttpServlet {
                     
                 case "loadVendedores":
                     loadVendedores(request, response);
+                    break;
+                    
+                case "regCliente":
+                    regCliente(request, response);
                     break;
 
                 default:
@@ -428,6 +433,30 @@ public class administrador extends HttpServlet {
         request.setAttribute("ban", "1");
         request.setAttribute("op", "jspVendedores.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+
+    private void regCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        modCliente obj = new modCliente();
+        obj.setCveTipoCliente(0);
+        obj.setNombre(request.getParameter("txt_Nombre"));
+        obj.setApellidos(request.getParameter("txt_Apellido"));
+        obj.setCorreoE(request.getParameter("txt_Email"));
+        obj.setTelefono(request.getParameter("txt_Telefono"));
+        if (obj.regCliente()== 0) {
+            request.setAttribute("edoC", "El correo ya existe");
+        } else {
+            request.setAttribute("edoC", "Cliente agregado");
+
+        }
+        request.setAttribute("txt_Nombre", request.getParameter("txt_Nombre"));
+        request.setAttribute("txt_Apellido", request.getParameter("txt_Apellido"));
+        request.setAttribute("txt_Email", request.getParameter("txt_Email"));
+        request.setAttribute("txt_Telefono", request.getParameter("txt_Telefono"));
+        request.setAttribute("op", "jspRegistrarTraduAdmin.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
     }
 
 }
