@@ -14,6 +14,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.modAdministrador;
+import modelo.modConexion;
+import modelo.modVendedor;
 
 /**
  *
@@ -55,7 +58,7 @@ public class general extends HttpServlet {
             throws ServletException, IOException, SQLException {
         String usu=request.getParameter("txt_Usuario");
         String pass=request.getParameter("txt_Contra");
-        clsConexion obj=new clsConexion();
+        modConexion obj=new modConexion();
         String[] res=obj.iniciarSesion(usu, pass);
         
         if(res[0].equals("0")){
@@ -66,12 +69,14 @@ public class general extends HttpServlet {
             if(res[0].equals("1")){
                 //vendedor
                 request.getSession().setAttribute("rol", 1);
-                request.getSession().setAttribute("usu", new clsVendedor(Integer.parseInt(res[1])));
+                request.getSession().setAttribute("id", res[1]);
+                request.getSession().setAttribute("usu", new modVendedor(Integer.parseInt(res[1])));
             }
             else if(res[0].equals("2")){
                 //administrador
                 request.getSession().setAttribute("rol", 2);
-                request.getSession().setAttribute("usu", new clsAdministrador(Integer.parseInt(res[1])));
+                request.getSession().setAttribute("id", res[1]);
+                request.getSession().setAttribute("usu", new modAdministrador(Integer.parseInt(res[1])));
             }
         }
         

@@ -38,31 +38,26 @@
 <!-- CONTENIDO -->
 <section class="m-content" style="min-width:600px">
     <center class="prz" style="padding-right:5px">
+        <%
+            if (request.getAttribute("edo") != null) {
+        %>
+        <div id="error" style="font-size: 2rem">
+            <%=request.getAttribute("edo")%>
+        </div>
+        <%
+            }
+        %>
         <div class="texto">
             <form method="post" action="administrador.do">
                 <table>
-                   
+
                     <tr align="center">
                         <td colspan="2" style="font-size: 22pt; background: #672988; text-shadow: none; border-radius: 50px;">
                             Precio actual
                         </td>
                     </tr>
                     <tr><td></td></tr>
-                     <%
-                        if (request.getAttribute("edo") != null) {
-                    %>
-                    <tr>
-                        <td>
 
-                            <div id="error">
-                                <%=request.getAttribute("edo")%>
-                            </div>
-
-                        </td>
-                    </tr>
-                    <%
-                        }
-                    %>
                     <tr>
                         <td align="right">
                             Estandar:

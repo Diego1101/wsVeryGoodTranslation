@@ -79,7 +79,7 @@ else{
                             Razon: 
                         </td>
                         <td>
-                            <input class="form-control" type="number" name="txtRazon" id="txtFactor" value="<% out.print((request.getAttribute("txtRazon")!=null)?request.getAttribute("txtRazon"):"");  %>" required readonly>
+                            <input class="form-control" type="text" name="txtRazon" id="txtFactor" value="<% out.print((request.getAttribute("txtRazon")!=null)?request.getAttribute("txtRazon"):"");  %>" required readonly>
                         </td>
                     </tr>
                     <tr>
@@ -125,7 +125,7 @@ else{
         if (document.getElementById("txtFactor").value === "") {
             error += "No dejar campos vacios";
         }
-        else if(document.getElementById("txtFactor").value>10){
+        else if(document.getElementById("txtFactor").value>100){
             error += "Introducir porcentajes";
         }
         

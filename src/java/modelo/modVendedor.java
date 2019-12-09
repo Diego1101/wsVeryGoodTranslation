@@ -9,11 +9,15 @@ import com.mysql.jdbc.Statement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Adaleysi
  */
 public class modVendedor {
+
     int CveVendedor, CveAdminAsig;
     String Nombre, Apellidos, Usuario, Contrasena, Correo, Telefono;
     char Status;
@@ -89,90 +93,117 @@ public class modVendedor {
     public void setStatus(char Status) {
         this.Status = Status;
     }
-    
-    
-    public modVendedor(){
-        
+
+    public modVendedor() {
+
     }
-    
-    
 
     public modVendedor(int cve) throws SQLException {
         this.CveVendedor = cve;
-        modConexion con=new modConexion();
-        Connection cnn=con.conexion();
-        String consultaSql = "call STP_DATOSVENDEDOR("+cve+");";
+        modConexion con = new modConexion();
+        Connection cnn = con.conexion();
+        String consultaSql = "call STP_DATOSVENDEDOR(" + cve + ");";
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
 
         while (rs.next()) {
-            this.CveAdminAsig=Integer.parseInt(rs.getString(2));
-            this.Nombre=rs.getString(3);
-            this.Apellidos=rs.getString(4);
-            this.Usuario=rs.getString(5);
-            this.Correo=rs.getString(6);
-            this.Telefono=rs.getString(7);
-            this.Status=rs.getString(8).charAt(0);
+            this.CveAdminAsig = Integer.parseInt(rs.getString(2));
+            this.Nombre = rs.getString(3);
+            this.Apellidos = rs.getString(4);
+            this.Usuario = rs.getString(5);
+            this.Correo = rs.getString(6);
+            this.Telefono = rs.getString(7);
+            this.Status = rs.getString(8).charAt(0);
         }
         rs.close();
         cnn.close();
     }
-    
-    public int regVendedor() throws SQLException{
-        int res=0;
-        modConexion con=new modConexion();
-        Connection cnn=con.conexion();
-        String consultaSql = "call STP_REGVENDEDOR('"+CveAdminAsig+"','"+Nombre+"','"+Apellidos+"','"+Usuario+"','"+Contrasena+"','"+Correo+"','"+Telefono+"');";
+
+    public int regVendedor() throws SQLException {
+        int res = 0;
+        modConexion con = new modConexion();
+        Connection cnn = con.conexion();
+        String consultaSql = "call STP_REGVENDEDOR('" + CveAdminAsig + "','" + Nombre + "','" + Apellidos + "','" + Usuario + "','" + Contrasena + "','" + Correo + "','" + Telefono + "');";
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
 
         while (rs.next()) {
-            res=Integer.parseInt(rs.getString(1));
+            res = Integer.parseInt(rs.getString(1));
         }
         rs.close();
         cnn.close();
         return res;
     }
-    
-    public int modificarVendedor() throws SQLException{
-        int res=0;
-        modConexion con=new modConexion();
-        Connection cnn=con.conexion();
-        String consultaSql = "call STP_MODVENDEDOR("+CveVendedor+","+CveAdminAsig+",'"+Nombre+"','"+Apellidos+"','"+Contrasena+"','"+Correo+"','"+Telefono+"');";
+
+    public int modificarVendedor() throws SQLException {
+        int res = 0;
+        modConexion con = new modConexion();
+        Connection cnn = con.conexion();
+        String consultaSql = "call STP_MODVENDEDOR(" + CveVendedor + "," + CveAdminAsig + ",'" + Nombre + "','" + Apellidos + "','" + Contrasena + "','" + Correo + "','" + Telefono + "');";
         System.out.println(consultaSql);
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
 
         while (rs.next()) {
-            res=Integer.parseInt(rs.getString(1));
+            res = Integer.parseInt(rs.getString(1));
         }
         rs.close();
         cnn.close();
         return res;
     }
-    
-    public int statusVendedor() throws SQLException{
-        int res=0;
-        modConexion con=new modConexion();
-        Connection cnn=con.conexion();
-        String consultaSql = "call STP_STSVENDEDOR("+CveVendedor+","+Status+");";
+
+    public int statusVendedor() throws SQLException {
+        int res = 0;
+        modConexion con = new modConexion();
+        Connection cnn = con.conexion();
+        String consultaSql = "call STP_STSVENDEDOR(" + CveVendedor + "," + Status + ");";
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
 
         while (rs.next()) {
-            res=Integer.parseInt(rs.getString(1));
+            res = Integer.parseInt(rs.getString(1));
         }
         rs.close();
         cnn.close();
         return res;
     }
-    
-    public ResultSet listarTraduccionesVendedor() throws SQLException{
-        modConexion con=new modConexion();
-        Connection cnn=con.conexion();
-        String consultaSql = "call STP_LISTARTRADVENDEDOR("+CveVendedor+","+Status+");";
+
+    public ResultSet listarTraduccionesVendedor() throws SQLException {
+        modConexion con = new modConexion();
+        Connection cnn = con.conexion();
+        String consultaSql = "call STP_LISTARTRADVENDEDOR(" + CveVendedor + "," + Status + ");";
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
         return rs;
+    }
+
+    static public List<String[]> listarVendedores(int id) throws SQLException {
+        List<String[]> res = new ArrayList<>();
+
+        modConexion con = new modConexion();
+        Connection cnn = con.conexion();
+        String consultaSql = "call STP_LISTARVENDEDORESADMIN(" + id + ")";
+        Statement st = (Statement) cnn.createStatement();
+        ResultSet rs = st.executeQuery(consultaSql);
+
+        while (rs.next()) {
+            if (!"0".equals(rs.getString(1))) {
+
+                String[] f = new String[8];
+                f[0] = rs.getString(1);
+                f[1] = rs.getString(2);
+                f[2] = rs.getString(3);
+                f[3] = rs.getString(4);
+                f[4] = rs.getString(5);
+                f[5] = rs.getString(6);
+                f[6] = rs.getString(7);
+                f[7] = rs.getString(8);
+                res.add(f);
+            }
+        }
+        rs.close();
+        cnn.close();
+
+        return res;
     }
 }
