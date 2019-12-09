@@ -4,6 +4,8 @@
     Author     : migue
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
@@ -28,27 +30,26 @@
                         </td>
                     </tr>
                     <%
-                    if (request.getAttribute("edoC") != null) {
-                %>
-                <tr>
-                    <td>
+                        if (request.getAttribute("edoC") != null) {
+                    %>
+                    <tr>
+                        <td>
+                            <div id="error" style="font-size: 1rem;">
+                                <%=request.getAttribute("edoC")%>
+                            </div>
 
-                        <div id="error">
-                            <%=request.getAttribute("edoC")%>
-                        </div>
-
-                    </td>
-                </tr>
-                <%
-                    }
-                %>
+                        </td>
+                    </tr>
+                    <%
+                        }
+                    %>
 
                     <tr>
                         <td  align="right">
                             Nombre:
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="txt_Nombre" id="txt_Nombre" value="<% out.print((request.getAttribute("txt_Nombre")!=null)?request.getAttribute("txt_Nombre"):"");  %>" required="">
+                            <input type="text" class="form-control" name="txt_Nombre" id="txt_Nombre" value="<% out.print((request.getAttribute("txt_Nombre") != null) ? request.getAttribute("txt_Nombre") : "");  %>" required="" <% out.print((request.getAttribute("id") != null) ? "readonly=''" : "");  %>>
                         </td>
                     </tr>
                     <tr>
@@ -56,7 +57,7 @@
                             Apellidos:
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="txt_Apellido" id="txt_Apellido" value="<% out.print((request.getAttribute("txt_Apellido")!=null)?request.getAttribute("txt_Apellido"):"");  %>" required="">
+                            <input type="text" class="form-control" name="txt_Apellido" id="txt_Apellido" value="<% out.print((request.getAttribute("txt_Apellido") != null) ? request.getAttribute("txt_Apellido") : "");  %>" required="" <% out.print((request.getAttribute("id") != null) ? "readonly=''" : "");  %>>
                         </td>
                     </tr>
                     <tr>
@@ -64,7 +65,7 @@
                             Teléfono:
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="txt_Telefono" id="txt_Telefono" value="<% out.print((request.getAttribute("txt_Telefono")!=null)?request.getAttribute("txt_Telefono"):"");  %>" required="">
+                            <input type="text" class="form-control" name="txt_Telefono" id="txt_Telefono" value="<% out.print((request.getAttribute("txt_Telefono") != null) ? request.getAttribute("txt_Telefono") : "");  %>" required="" <% out.print((request.getAttribute("id") != null) ? "readonly=''" : "");  %>>
                         </td>
                     </tr>
                     <tr>
@@ -72,13 +73,13 @@
                             Correo electrónico:
                         </td>
                         <td >
-                            <input type="email" class="form-control" name="txt_Email" id="txt_Email" value="<% out.print((request.getAttribute("txt_Email")!=null)?request.getAttribute("txt_Email"):"");  %>" required="">
+                            <input type="email" class="form-control" name="txt_Email" id="txt_Email" value="<% out.print((request.getAttribute("txt_Email") != null) ? request.getAttribute("txt_Email") : "");  %>" required="" <% out.print((request.getAttribute("id") != null) ? "readonly=''" : "");  %>>
                         </td>
                     </tr>
                     <tr>
                         <td align="center" colspan="2">
                             <input type="hidden" name="org" value="regCliente" id="org">
-                            <input type="submit" class="btn" name="btn_Registrar" value="Registrar" id="btn_Registrar">
+                            <input type="submit" class="btn" name="btn_Registrar" value="Registrar" id="btn_Registrar" <% out.print((request.getAttribute("id") != null) ? "disabled='true'" : "");  %>>
                         </td>
                     </tr>
                 </table>
@@ -87,10 +88,11 @@
     </center>
 </section>
 <hr>
-<div id="registrarTrad">
 
+<div id="registrarTrad" style="display: none">
     <section class="m-content" style="min-width:700px">
         <center class="prz">
+            <h3>Registro traduccion</h3>
             <div class="texto2">
                 <table>
                     <tr align="center">
@@ -98,17 +100,27 @@
                             Idioma
                         </td>
                     </tr>
+                    <tr align="center">
+                        <td colspan="2">
+                            <div id="men">
+                            </div>
+                        </td>
+                    </tr>
                     <tr>
                         <td  align="right">
                             Origen:
                         </td>
                         <td>
-                            <select class="form-control" name="cmb_IdiomaOrigen" id="cmb_IdiomaOrigen">
-                                <option>Elige una opción</option>
-                                <option value="Ingles">Inglés</option>
-                                <option value="Español">Español</option>
-                                <option value="Chino">Chino</option>
-                                <option value="Japonés">Japonés</option>
+                            <select class="form-control" name="cmb_IdiomaOrigen" id="cmb_IdiomaOrigen" onchange="cambioCombo()">
+                                <%
+                                    if (request.getAttribute("idiomas") != null) {
+
+                                        List<String[]> rs = (List<String[]>) request.getAttribute("idiomas");
+                                        for (String[] aux : rs) {
+                                            out.print("<option value=" + aux[0] + ">" + aux[1] + "</option>");
+                                        }
+                                    }
+                                %>
                             </select>
                         </td>
                     </tr>
@@ -117,12 +129,16 @@
                             Destino:
                         </td>
                         <td>
-                            <select class="form-control" name="cmb_IdiomaDestino" id="cmb_IdiomaDestino">
-                                <option>Elige una opción</option>
-                                <option value="Ingles">Inglés</option>
-                                <option value="Español">Español</option>
-                                <option value="Chino">Chino</option>
-                                <option value="Japonés">Japonés</option>
+                            <select class="form-control" name="cmb_IdiomaDestino" id="cmb_IdiomaDestino" onchange="cambioCombo()">
+                                <%
+                                    if (request.getAttribute("idiomas") != null) {
+
+                                        List<String[]> rs = (List<String[]>) request.getAttribute("idiomas");
+                                        for (String[] aux : rs) {
+                                            out.print("<option value=" + aux[0] + ">" + aux[1] + "</option>");
+                                        }
+                                    }
+                                %>
                             </select>
                         </td>
                     </tr>
@@ -130,11 +146,15 @@
                         <td align="right">
                             Traductor:
                         </td>
+
                         <td>
-                            <select class="form-control"name="cmb_Traductor" id="cmb_Traductor" >
-                                <option>Elige una opción</option>
-                                <!-- este se tiene que llenar de bd-->
-                            </select>
+                            <div id='contTraductor' class="contTraductor">
+                                <select class="form-control"name="cmb_Traductor" id="cmb_Traductor" readonly>
+                                    <option>Selecciona el traductor</option>
+                                    <!-- este se tiene que llenar de bd-->
+                                </select>
+
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -143,7 +163,9 @@
                         </td>
                         <td>
                             <select class="form-control" name="cmb_TipoTraducion" id="cmb_TipoTraducion">
-                                <option>Elige una opción</option>
+                                <option value='1'>Estandar</option>
+                                <option value='1'>Certificada</option>
+                                <option value='2'>Premium</option>
 
                             </select>
                         </td>
@@ -275,6 +297,7 @@
                     <tr><td></td></tr>
                     <tr align="center">
                         <td colspan="2" style="background:none">
+                            <input type="hidden" name="estado" value="0" id="estado">
                             <input type="submit" class="btn" name="btn_Registrar" value="Confirmar" id="btn_Confirmar">
                         </td>
                     </tr>
@@ -282,5 +305,54 @@
             </div>
         </center>
     </section>
-
 </div>
+
+<%
+    if (request.getAttribute("id") != null) {
+        System.out.println("Hellos");
+%>
+
+<script languaje="javascipt">
+    document.getElementById("registrarTrad").style.display = "block";
+    document.location.href = "#registrarTrad";
+</script>
+
+<%
+    }
+%>
+
+<script language='javascript'>
+    function cambioCombo() {
+        var destino = document.getElementById("cmb_IdiomaDestino").value;
+        var origen = document.getElementById("cmb_IdiomaOrigen").value;
+        if (destino === origen) {
+            document.getElementById("men").innerHTML = "Origen y destino no pueden ser iguales";
+            document.getElementById("cmb_Traductor").readonly="readonly";
+                        document.getElementById("estado").value = "0";
+
+        } else {
+            document.getElementById("men").innerHTML = "";
+            document.getElementById("estado").value = "1";
+            mostrarTraductores(origen, destino);
+        }
+    }
+    
+    function mostrarTraductores(o,d) {
+        //document.getElementById("dpEspecialidad").addEventListener("change", function () {
+        var self = this;
+        httpRequest = new XMLHttpRequest();
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                if (httpRequest.status === 200) {
+                    var div = document.createElement('div');
+                    div.innerHTML = (httpRequest.responseText).trim();
+                    document.getElementsByClassName('contTraductor')[0].innerHTML = div.getElementsByClassName('contTraductor')[0].innerHTML;
+                }
+            }
+        };
+        httpRequest.open('GET', 'http://localhost:8080/wsVeryGoodTranslation/administrador.do?org=listTrad&orgI=' + o+'des='+d);
+        httpRequest.send();
+    //});
+
+    }
+</script>

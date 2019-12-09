@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +24,7 @@ import modelo.modConexion;
 import modelo.modDescuento;
 import modelo.modIdioma;
 import modelo.modTraduccion;
+import modelo.modTraductor;
 import modelo.modVendedor;
 
 /**
@@ -79,21 +81,25 @@ public class administrador extends HttpServlet {
                 case "modPrecio":
                     modifcarPrecio(request, response);
                     break;
-                    
+
                 case "detVendedor":
                     detVendedor(request, response);
                     break;
-                    
+
                 case "modVendedor":
                     modificarVendedor(request, response);
                     break;
-                    
+
                 case "loadVendedores":
                     loadVendedores(request, response);
                     break;
-                    
+
                 case "regCliente":
                     regCliente(request, response);
+                    break;
+
+                case "listTrad":
+                    listTraductores(request, response);
                     break;
 
                 default:
@@ -375,7 +381,7 @@ public class administrador extends HttpServlet {
         request.setAttribute("txt_Tel", obj.getTelefono());
         request.setAttribute("txt_Correo", obj.getCorreo());
         request.setAttribute("txt_Contra", obj.getContrasena());
-        
+
         request.setAttribute("ban", "1");
         request.setAttribute("op", "jspModVen.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -389,7 +395,7 @@ public class administrador extends HttpServlet {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
 
             } else {
-                int id=Integer.parseInt(request.getParameter("idVen"));
+                int id = Integer.parseInt(request.getParameter("idVen"));
                 modVendedor ven = new modVendedor(id);
                 ven.setCveAdminAsig(Integer.parseInt(request.getParameter("admin")));
                 ven.setNombre(request.getParameter("txt_Nombre"));
@@ -424,11 +430,10 @@ public class administrador extends HttpServlet {
     }
 
     private void loadVendedores(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-         
 
-        int idAdm=Integer.parseInt(request.getSession().getAttribute("id").toString());
+        int idAdm = Integer.parseInt(request.getSession().getAttribute("id").toString());
         List<String[]> res = modVendedor.listarVendedores(idAdm);
-        
+
         request.setAttribute("ven", res);
         request.setAttribute("ban", "1");
         request.setAttribute("op", "jspVendedores.jsp");
@@ -437,16 +442,18 @@ public class administrador extends HttpServlet {
 
     private void regCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        
+
         modCliente obj = new modCliente();
         obj.setCveTipoCliente(0);
         obj.setNombre(request.getParameter("txt_Nombre"));
         obj.setApellidos(request.getParameter("txt_Apellido"));
         obj.setCorreoE(request.getParameter("txt_Email"));
         obj.setTelefono(request.getParameter("txt_Telefono"));
-        if (obj.regCliente()== 0) {
+        int id = obj.regCliente();
+        if (id == 0) {
             request.setAttribute("edoC", "El correo ya existe");
         } else {
+            request.setAttribute("id", id);
             request.setAttribute("edoC", "Cliente agregado");
 
         }
@@ -454,9 +461,45 @@ public class administrador extends HttpServlet {
         request.setAttribute("txt_Apellido", request.getParameter("txt_Apellido"));
         request.setAttribute("txt_Email", request.getParameter("txt_Email"));
         request.setAttribute("txt_Telefono", request.getParameter("txt_Telefono"));
+
+        modIdioma idiomas = new modIdioma();
+        ResultSet rs = idiomas.listarIdiomas();
+        List<String[]> li = new ArrayList<>();
+        while (rs.next()) {
+            String[] aux = new String[2];
+            aux[0] = rs.getString(1);
+            aux[1] = rs.getString(2);
+            li.add(aux);
+        }
+
+        request.setAttribute("idiomas", li);
         request.setAttribute("op", "jspRegistrarTraduAdmin.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
 
+    }
+
+    private void listTraductores(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+
+            String orgI = request.getParameter("orgI");
+            String des = request.getParameter("des");
+            modIdioma tr = new modIdioma();
+            ResultSet rs = tr.listarTraductoresIdioma(0, 0);
+
+            response.setContentType("text/html;charset=UTF-8");
+            try (PrintWriter out = response.getWriter()) {
+                out.println("<div class='contTraductor'>");
+                out.println("<select class='form-control' id='cmb_Traductor' name='cmb_Traductor'>");
+                while (rs.next()) {
+                    out.println("<option value=" + rs.getString(1) + ">" + rs.getString(2) + "</option>");
+                }
+                out.println("</select>");
+                out.println("</div>");
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
     }
 
 }
