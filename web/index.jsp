@@ -11,7 +11,7 @@
         if (header.equals("2")) {
             header = "headers/administrador.jsp";
             dir = "administrador/";
-            pagina = "jspABCVendedor.jsp";
+            pagina = "jspVendedores.jsp";
         } else if (header.equals("1")) {
             header = "headers/vendedor.jsp";
             dir = "vendedor/";
