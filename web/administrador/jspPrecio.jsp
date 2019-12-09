@@ -52,7 +52,7 @@
                 <table>
 
                     <tr align="center">
-                        <td colspan="2" style="font-size: 22pt; background: #672988; text-shadow: none; border-radius: 50px;">
+                        <td colspan="2" >
                             Precio actual
                         </td>
                     </tr>

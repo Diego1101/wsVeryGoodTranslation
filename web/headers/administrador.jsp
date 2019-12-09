@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a href="index.jsp?op=jspVendedores.jsp" class="nav-link"><span data-hover="Vendedores">Vendedores</span></a>
+                    <a href="index.jsp?op=jspABCVendedor.jsp" class="nav-link"><span data-hover="Vendedores">Vendedores</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="index.jsp?op=jspPrecio.jsp" class="nav-link"><span data-hover="Precio">Precio</span></a>
