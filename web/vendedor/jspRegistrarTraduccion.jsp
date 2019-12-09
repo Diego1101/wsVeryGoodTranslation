@@ -154,9 +154,8 @@
              Ubicación:
            </td>
            <td align="center">
-<div id="drop_zone">Drop files here</div>
-<output id="list"></output>
-              
+               <input type="file"id="flu_Archivo" name="flu_Archivo" id="file"/>
+               <label for="file">Sube un archivo</label>
            </td>
          </tr>
          <tr>
@@ -201,7 +200,7 @@
   
 }
     </script>
-        
+    
    <hr>
    
    <section class="m-content" id="div_Desglose" style="min-width:700px;display:none;">
