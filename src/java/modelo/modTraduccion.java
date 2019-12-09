@@ -353,4 +353,20 @@ public class modTraduccion {
         cnn.close();
         return res;
     }
+    
+     public static int modPrecioTraduccion(float e, float c, float p) throws SQLException{
+        int res=0;
+        modConexion con=new modConexion();
+        Connection cnn=con.conexion();
+        String consultaSql = "call STP_MODFPRECIO("+e+","+c+","+p+");";
+        Statement st = (Statement) cnn.createStatement();
+        ResultSet rs = st.executeQuery(consultaSql);
+
+        while (rs.next()) {
+            res=Integer.parseInt(rs.getString(1));
+        }
+        rs.close();
+        cnn.close();
+        return res;
+    }
 }

@@ -20,6 +20,7 @@ import modelo.modAdministrador;
 import modelo.modConexion;
 import modelo.modDescuento;
 import modelo.modIdioma;
+import modelo.modTraduccion;
 import modelo.modVendedor;
 
 /**
@@ -68,9 +69,13 @@ public class administrador extends HttpServlet {
                 case "modIdioma":
                     modiIdioma(request, response);
                     break;
-                    
+
                 case "addIdioma":
                     addIdioma(request, response);
+                    break;
+
+                case "modPrecio":
+                    modifcarPrecio(request, response);
                     break;
 
                 default:
@@ -251,6 +256,8 @@ public class administrador extends HttpServlet {
 
         request.setAttribute("desc", res);
 
+        request.setAttribute("edo", request.getParameter("edo"));
+
         request.setAttribute("ban", "1");
         request.setAttribute("op", "jspPrecio.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -263,8 +270,10 @@ public class administrador extends HttpServlet {
         Statement st = (Statement) cnn.createStatement();
         ResultSet detIdiomas = st.executeQuery(consultaSql);
 
-        if(request.getParameter("edo")!=null)request.setAttribute("edo", request.getParameter("edo"));
-        
+        if (request.getParameter("edo") != null) {
+            request.setAttribute("edo", request.getParameter("edo"));
+        }
+
         request.setAttribute("idiomas", detIdiomas);
         request.setAttribute("ban", "1");
         request.setAttribute("op", "jspABCIdioma.jsp");
@@ -273,50 +282,67 @@ public class administrador extends HttpServlet {
     }
 
     private void modiIdioma(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-        try{
-            
-        int id = Integer.parseInt(request.getParameter("slidioma"));
-        modIdioma idioma = new modIdioma(id);
-        idioma.setCostoPalabra(Float.parseFloat(request.getParameter("txt_FacIdioma")));
-        idioma.setStatus(request.getParameter("slEstatus").charAt(0));
-        if (idioma.modificarIdioma() == 0) {
-            request.setAttribute("edo", "No se econctro el registro");
-        } else {
-            request.setAttribute("edo", "Idioma actualizado");
+        try {
 
-        }
-        request.setAttribute("op", "jspABCIdioma.jsp");
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+            int id = Integer.parseInt(request.getParameter("slidioma"));
+            modIdioma idioma = new modIdioma(id);
+            idioma.setCostoPalabra(Float.parseFloat(request.getParameter("txt_FacIdioma")));
+            idioma.setStatus(request.getParameter("slEstatus").charAt(0));
+            if (idioma.modificarIdioma() == 0) {
+                request.setAttribute("edo", "No se econctro el registro");
+            } else {
+                request.setAttribute("edo", "Idioma actualizado");
 
-        }
-        catch(NumberFormatException ex){
+            }
+            request.setAttribute("op", "jspABCIdioma.jsp");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+
+        } catch (NumberFormatException ex) {
             request.setAttribute("edo", "Solo introducir numeros");
             request.setAttribute("op", "jspABCIdioma.jsp");
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 
     private void addIdioma(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-        try{
-            
-        modIdioma idioma = new modIdioma();
-        idioma.setCostoPalabra(Float.parseFloat(request.getParameter("txt_NFactor")));
-        idioma.setIdioma(request.getParameter("txt_NIdioma"));
-        if (idioma.regIdioma()== 0) {
-            request.setAttribute("edo", "Ya existe el idioma");
-        } else {
-            request.setAttribute("edo", "Idioma agregado");
+        try {
 
-        }
-        request.setAttribute("op", "jspABCIdioma.jsp");
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+            modIdioma idioma = new modIdioma();
+            idioma.setCostoPalabra(Float.parseFloat(request.getParameter("txt_NFactor")));
+            idioma.setIdioma(request.getParameter("txt_NIdioma"));
+            if (idioma.regIdioma() == 0) {
+                request.setAttribute("edo", "Ya existe el idioma");
+            } else {
+                request.setAttribute("edo", "Idioma agregado");
 
-        }
-        catch(NumberFormatException ex){
+            }
+            request.setAttribute("op", "jspABCIdioma.jsp");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+
+        } catch (NumberFormatException ex) {
             request.setAttribute("edo", "Solo introducir numeros");
             request.setAttribute("op", "jspABCIdioma.jsp");
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
+    }
+
+    private void modifcarPrecio(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        try {
+
+            float estandar = Float.parseFloat(request.getParameter("txtPrecioE"));
+            float certificada = Float.parseFloat(request.getParameter("txtPrecioC"));
+            float premium = Float.parseFloat(request.getParameter("txtPrecioP"));
+
+            modTraduccion.modPrecioTraduccion(estandar, certificada, premium);
+
+            request.setAttribute("edo", "Modificacion realizada");
+        } catch (NumberFormatException ex) {
+            request.setAttribute("edo", "Solo introducir numeros");
+
+        }
+
+        request.setAttribute("op", "jspPrecio.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
 }
