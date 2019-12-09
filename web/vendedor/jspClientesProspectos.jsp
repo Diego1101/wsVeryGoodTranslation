@@ -20,8 +20,9 @@
     }
 %>
  <div class="fondo-negro">
+      <center >
         <div class="titulo">
-          Prospectos     
+          Clientes Prospectos  
         </div>
       </center>
     </div>
