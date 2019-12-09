@@ -53,7 +53,9 @@ public class modIdioma {
 
     
     
-    
+    public modIdioma(){
+        
+    }
     
     public modIdioma(int cve) throws SQLException {
         this.CveIdioma = cve;
@@ -76,7 +78,7 @@ public class modIdioma {
         int res=0;
         modConexion con=new modConexion();
         Connection cnn=con.conexion();
-        String consultaSql = "call STP_REGIDIOMA("+Idioma+","+CostoPalabra+");";
+        String consultaSql = "call STP_REGIDIOMA('"+Idioma+"',"+CostoPalabra+");";
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
 
@@ -92,7 +94,7 @@ public class modIdioma {
         int res=0;
         modConexion con=new modConexion();
         Connection cnn=con.conexion();
-        String consultaSql = "call STP_MODIDIOMA("+CveIdioma+","+Idioma+","+CostoPalabra+","+Status+");";
+        String consultaSql = "call STP_MODIDIOMA("+CveIdioma+",'"+Idioma+"',"+CostoPalabra+",'"+Status+"');";
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
 

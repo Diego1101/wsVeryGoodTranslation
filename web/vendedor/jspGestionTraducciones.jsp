@@ -178,7 +178,7 @@
                       <h4 class="texto-Centro" style="padding-left:10px;">Descuento</h4>
                     </td>
                     <td>
-                        <input type="text" class="form-control" name="txt_Nombre" id="txt_Nombre" style=" width:100px;">
+                        <input type="text" class="form-control" name="txt_Descuento" id="txt_Descuento" style=" width:100px;">
                     </td>
                     <td>
                       <input type="submit" style="font-size:10pt" class="btn" name="btn_Modificar" value="Modificar" id="btn_Modificar">

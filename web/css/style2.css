@@ -1,0 +1,15 @@
+.tdesc tr td{
+    width: 15.5% !important;
+    text-align: center;
+}
+
+.tdesc .Dmod{
+    width: 20px !important;
+}
+
+#error{
+     text-align: center; 
+     color: #ecef01; 
+     font-weight: bold;
+}
+

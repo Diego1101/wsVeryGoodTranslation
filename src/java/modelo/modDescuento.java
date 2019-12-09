@@ -9,6 +9,8 @@ import com.mysql.jdbc.Statement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Adaleysi
@@ -60,7 +62,9 @@ public class modDescuento {
     }
     
     
-    
+    public modDescuento(){
+        
+    }
 
     public modDescuento(int cve) throws SQLException {
         this.CveDescuento=cve;
@@ -85,7 +89,8 @@ public class modDescuento {
         int res=0;
         modConexion con=new modConexion();
         Connection cnn=con.conexion();
-        String consultaSql = "call STP_REGDESCUENTO("+CveTipoDesc+","+RazonDesc+","+FechaInicio+","+FrechaFin+");";
+        String consultaSql = "call STP_REGDESCUENTO("+CveTipoDesc+",'"+RazonDesc+"','"+FechaInicio+"','"+FrechaFin+"');";
+        System.out.println(consultaSql);
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
 
@@ -101,7 +106,7 @@ public class modDescuento {
         int res=0;
         modConexion con=new modConexion();
         Connection cnn=con.conexion();
-        String consultaSql = "call STP_MODDESCUENTO("+CveDescuento+","+CveTipoDesc+","+RazonDesc+","+FechaInicio+","+FrechaFin+");";
+        String consultaSql = "call STP_MODDESCUENTO("+CveDescuento+",'"+CveTipoDesc+"','"+RazonDesc+"','"+FechaInicio+"','"+FrechaFin+"');";
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
 
@@ -110,6 +115,32 @@ public class modDescuento {
         }
         rs.close();
         cnn.close();
+        return res;
+    }
+    
+    static public List<String[]> listarDescuento() throws SQLException{
+        List<String[]> res=new ArrayList<>();
+        
+         modConexion con=new modConexion();
+        Connection cnn=con.conexion();
+        String consultaSql = "SELECT * FROM VGT_DESCUENTO;";
+        Statement st = (Statement) cnn.createStatement();
+        ResultSet rs = st.executeQuery(consultaSql);
+
+        while (rs.next()) {
+            String[] f=new String[7];
+            f[0]=rs.getString(1);
+            f[1]=rs.getString(2);
+            f[2]=rs.getString(3);
+            f[3]=rs.getString(4);
+            f[4]=rs.getString(5);
+            f[5]=rs.getString(6);
+            f[6]=rs.getString(7);
+            res.add(f);
+        }
+        rs.close();
+        cnn.close();
+        
         return res;
     }
 }
