@@ -12,6 +12,10 @@
         <servlet-name>administrador</servlet-name>
         <servlet-class>controlador.administrador</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>multipart</servlet-name>
+        <servlet-class>controlador.multipart</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>vendedor</servlet-name>
         <url-pattern>/vendedor.do</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>administrador</servlet-name>
         <url-pattern>/administrador.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>multipart</servlet-name>
+        <url-pattern>/multipart.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

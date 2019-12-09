@@ -472,6 +472,18 @@ public class administrador extends HttpServlet {
             li.add(aux);
         }
 
+        modAdministrador adm = new modAdministrador();
+        adm.setCveAdministrador(Integer.parseInt(request.getSession().getAttribute("id").toString()));
+        ResultSet a=adm.listarTraductoresAdmin();
+        List<String[]> ven = new ArrayList<>();
+        while (a.next()) {
+            String[] aux = new String[2];
+            aux[0] = a.getString(1);
+            aux[1] = a.getString(2);
+            ven.add(aux);
+        }
+
+        request.setAttribute("vendedores", ven);
         request.setAttribute("idiomas", li);
         request.setAttribute("op", "jspRegistrarTraduAdmin.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -480,11 +492,11 @@ public class administrador extends HttpServlet {
 
     private void listTraductores(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
-
-            String orgI = request.getParameter("orgI");
-            String des = request.getParameter("des");
+            int orgI = Integer.parseInt(request.getParameter("orgI"));
+            int des = Integer.parseInt(request.getParameter("des"));
+            System.out.print(request.getParameter("orgI"));
             modIdioma tr = new modIdioma();
-            ResultSet rs = tr.listarTraductoresIdioma(0, 0);
+            ResultSet rs = tr.listarTraductoresIdioma(orgI, des);
 
             response.setContentType("text/html;charset=UTF-8");
             try (PrintWriter out = response.getWriter()) {
