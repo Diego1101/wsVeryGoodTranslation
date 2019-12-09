@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import clases.clsAdministrador;
 import com.mysql.jdbc.Statement;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -85,6 +86,10 @@ public class administrador extends HttpServlet {
                 case "modVendedor":
                     modificarVendedor(request, response);
                     break;
+                    
+                case "loadVendedores":
+                    loadVendedores(request, response);
+                    break;
 
                 default:
                     request.setAttribute("err", "Pagina no encontrada");
@@ -101,7 +106,7 @@ public class administrador extends HttpServlet {
             throws ServletException, IOException, SQLException {
 
         //int admAsig=((modAdministrador)request.getSession().getAttribute("usu")).getCveAdministrador();
-        int admAsig = 0;
+        int admAsig = Integer.parseInt(request.getSession().getAttribute("id").toString());;
         if (request.getParameter("txt_Nombre") != null || request.getParameter("txt_Apellidos") != null || request.getParameter("txt_Usuario") != null || request.getParameter("txt_Contra") != null || request.getParameter("txt_Correo") != null || request.getParameter("txt_Tel") != null) {
             if ("".equals(request.getParameter("txt_Nombre")) || "".equals(request.getParameter("txt_Apellidos")) || "".equals(request.getParameter("txt_Usuario")) || "".equals(request.getParameter("txt_Contra")) || "".equals(request.getParameter("txt_Correo")) || "".equals(request.getParameter("txt_Tel"))) {
                 request.setAttribute("edo", "Llenar todos los campos");
@@ -219,7 +224,7 @@ public class administrador extends HttpServlet {
 
         modDescuento obj = new modDescuento();
         obj.setCveDescuento(Integer.parseInt(request.getParameter("id")));
-        obj.setRazonDesc(Integer.parseInt(request.getParameter("txtRazon")));
+        obj.setRazonDesc(Float.parseFloat(request.getParameter("txtRazon")));
         obj.setFechaInicio(request.getParameter("txtInicio"));
         obj.setFrechaFin(request.getParameter("txtFin"));
         switch (obj.modificarDescuento()) {
@@ -236,7 +241,7 @@ public class administrador extends HttpServlet {
         request.setAttribute("txtRazon", request.getParameter("txtRazon"));
         request.setAttribute("txtInicio", request.getParameter("txtInicio"));
         request.setAttribute("txtFin", request.getParameter("txtFin"));
-        request.setAttribute("op", "jspModDescuento.jsp");
+        request.setAttribute("op", "jspPrecio.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
@@ -391,7 +396,7 @@ public class administrador extends HttpServlet {
                 if (ven.modificarVendedor() == 0) {
                     request.setAttribute("edo", "No se encontro el vendor");
                 } else {
-                    request.setAttribute("edo", "Vendedor modificado agregado");
+                    request.setAttribute("edo", "Vendedor modificado");
 
                 }
                 request.setAttribute("ban", "1");
@@ -401,16 +406,28 @@ public class administrador extends HttpServlet {
                 request.setAttribute("txt_Contra", request.getParameter("txt_Contra"));
                 request.setAttribute("txt_Tel", request.getParameter("txt_Tel"));
                 request.setAttribute("txt_Correo", request.getParameter("txt_Correo"));
-                request.setAttribute("op", "jspABCVendedor.jsp");
+                request.setAttribute("op", "jspModVen.jsp");
                 request.getRequestDispatcher("index.jsp").forward(request, response);
 
             }
 
         } else {
             request.setAttribute("edo", "Error");
-            request.setAttribute("op", "jspABCVendedor.jsp");
+            request.setAttribute("op", "jspModVen.jsp");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
+    }
+
+    private void loadVendedores(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+         
+
+        int idAdm=Integer.parseInt(request.getSession().getAttribute("id").toString());
+        List<String[]> res = modVendedor.listarVendedores(idAdm);
+        
+        request.setAttribute("ven", res);
+        request.setAttribute("ban", "1");
+        request.setAttribute("op", "jspVendedores.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
 }

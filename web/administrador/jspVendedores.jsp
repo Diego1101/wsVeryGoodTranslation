@@ -8,6 +8,30 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
+
+
+<form action="administrador.do" method="post" id="frmLoadV" name="frmLoadV">
+    <input type="hidden" id="org" name="org" value="loadVendedores">
+    <%
+        if (request.getAttribute("edo") != null) {
+    %>
+    <input type="hidden" id="edo" name="edo" value="<%=request.getAttribute("edo")%>">
+    <%
+        }
+    %>
+</form>
+
+<%    if (request.getAttribute("ban") == null || request.getAttribute("ban").equals("0")) {
+%>
+<script>
+    document.getElementById("frmLoadV").submit();
+</script>
+<%
+    }
+%>
+
+
+
 <div class="fondo-negro">
     <center >
         <div class="titulo">
@@ -22,7 +46,6 @@
             <center> <h4 style="font-weight:lighter;">Vendedores</h4> </center>
             <center> <a href="index.jsp?op=jspABCVendedor.jsp"> Agregar Vendedor </a>  </center>
             <center class="rs encabezadoTabla">
-                <a href="index.jsp?op=jspModVen.jsp&id=1"> Modificar vendedor</a>
                 <table class="tven">
                     <tr>
                         <td class="Dmod"></td>
@@ -60,6 +83,7 @@
                         <td class="Dmod"><a href="index.jsp?op=jspModVen.jsp&id=<%=f[0]%>"> Modificar </a></td>
                         <td><%=f[0]%></td>
                         <td><%=f[1]%></td>
+                        <td><%=f[2]%></td>
                         <td><%=f[3]%></td>
                         <td><%=f[4]%></td>
                         <td><%=f[5]%></td>

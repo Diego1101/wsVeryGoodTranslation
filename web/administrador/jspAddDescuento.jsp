@@ -98,7 +98,7 @@
         if (document.getElementById("txtFactor").value === "") {
             error += "No dejar campos vacios<br>";
         }
-        else if(document.getElementById("txtFactor").value>10){
+        else if(document.getElementById("txtFactor").value>100){
             error += "Introducir porcentajes<br>";
         }
         
