@@ -12,23 +12,20 @@
     <div class="container">
         <div class="about-text align-items-center">
             <center>
-                        <br>
-                        <div class="fondo">
-                        <h3>
-                            <span class="titulo"> Acceso al sistema</span>
-                        </h3>
-                        </div>
-                      </center>
+            <div class="fondo">
+            <h3>
+               Acceso al sistema
+            </h3>
+            </div>
+          </center>
         </div>
     </div>
-
-    <body>
-    <center>
+    <center class="m-content">
         <form action="general.do" method="post">
             <table >
                 <tr>
-                    <td>
-                        <div id="error" style="text-align: center; color: red; font-weight: bold;">
+                    <td align="center" colspan="2" style="color: #e22; font-weight: bold">
+                        <div>
                         <%
                             if (request.getAttribute("edo") != null) {
                         %>
@@ -41,59 +38,44 @@
 
                     </td>
                 </tr>
+                <tr><td></td></tr>
                 <tr>
                     <td>
-                <div  align="right">
-                    <h4 class="texto-Centro">&nbsp;&nbsp; Usuario:&nbsp;&nbsp;&nbsp;</h4>
+                    <h4 class="texto-Centro">Usuario:</h4>
               </td>
                     <td>
-                        <div class="auto-style4" align="center">
-                            <input type="text" class="form-control" name="txt_Usuario" id="miid" placeholder="Nombre Usuario" id="txt_Usuario" width="20"size="40">
-                        </div>
+                            <input type="text" class="form-control" name="txt_Usuario" id="miid" placeholder="Nombre Usuario" id="txt_Usuario" size="40">
+
                     </td>
                 </tr>
 
                 <tr>
                     <td>
                         <br>
-                        &nbsp;&nbsp;
                       <div class="small" align="right">
-                    <h4 class="texto-Centro" >&nbsp;&nbsp;Contraseña:&nbsp;&nbsp;&nbsp;</h4>
+                    <h4 class="texto-Centro" >Contraseña:</h4>
 
 
                     </td>
                     <td>
                         <br>
                         <div class="auto-style4"align="center">
-                            <input type="password" class="form-control" name="txt_Contra" id="miid" placeholder="Contraseña" id="txt_Contra" width="20"size="40">
+                            <input type="password" class="form-control" name="txt_Contra" id="miid" placeholder="Contraseña" id="txt_Contra">
                         </div>
                     </td>
                 </tr>
-                <br>
-                <tr>
-                    <td>
-                    </td>
-                    <td >
+                <tr align="center">
+                    <td colspan="2">
                         <div class="custom-btn-group mt-4" align="center">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input  type="hidden" name="org"value="acceso" id="org">
-                            <input  type="submit" class="btn  "name="btn_Entrar"value="Acceder"id="btn_Entrar" style="width: 172px" >
+                            <input  type="submit" class="btn  "name="btn_Entrar"value="Acceder"id="btn_Entrar">
                         </div>
                     </td>
-                    <td>
-                    </td>
-                    
                 </tr>
                 
                    
             </table>
-                        <br>
-                 <br>
-                  <br>
-                   <br>
         </form>
     </center>
-    <br>
     </div>
 </section>
-         </body>

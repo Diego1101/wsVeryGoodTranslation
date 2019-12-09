@@ -5,8 +5,13 @@
  */
 package controlador;
 
+import clases.clsConexion;
+import clases.clsVendedor;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,19 +34,66 @@ public class vendedor extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet vendedor</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet vendedor at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String org = request.getParameter("org");
+
+        switch (org) {
+            case "listarProspectos":
+                listarProspectos(request, response);
+                break;
+            case "listarActivos":
+                listarActivos(request, response);
+                break;
+            default:
+                break;
         }
+    }
+    
+     private void listarProspectos(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+                clsVendedor dat = new clsVendedor();
+            try {
+                ResultSet rs=dat.mostrarProspectos();
+                rs.next();
+                if(rs.getString(1).equals("0")){
+                    request.setAttribute("edo", "No existen prospectos registrados.");
+                }
+                else{
+                    request.getSession().setAttribute("rsProsp", rs);
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(vendedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            request.setAttribute("op", "jspClientesProspectos.jsp");
+            request.setAttribute("ban", "1");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+
+    }
+     
+     private void listarActivos(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+                clsConexion obj = new clsConexion();
+                clsVendedor dat = new clsVendedor();
+            try {
+                obj.conexion();
+                ResultSet rs=dat.mostrarActivos();
+                rs.next();
+                if(rs.getString(1).equals("0")){
+                    request.setAttribute("edo", "No existen clientes registrados.");
+                }
+                else{
+                    request.getSession().setAttribute("rsClientes", rs);
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(vendedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            request.setAttribute("op", "jspClientesActuales.jsp");
+            request.setAttribute("ban", "1");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
