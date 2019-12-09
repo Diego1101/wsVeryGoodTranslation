@@ -117,7 +117,7 @@
                     </tr>
                     <tr>
                         <td style="text-align: right">
-                            <h4 class="texto-Centro">Estatus</h4>
+                            <h4 class="texto-Centro">Estatus:</h4>
                         </td>
                         <td>
                             <div class="col-lg-6">
@@ -131,7 +131,6 @@
 
                     <tr>
                         <td style="text-align: right">
-                            <br>
                             <div class="texto-Centro">
                                 <h4 class="texto-Centro">Factor de Idioma:</h4>
                             </div>

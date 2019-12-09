@@ -80,7 +80,7 @@
    <hr>
    <section class="m-content" style="min-width:700px">
      <center class="prz">
-     <div class="texto2">
+     <div class="texto2" style="background: none;">
          <table>
            <tr align="center">
              <td colspan="2" style="font-size: 19pt; font-weight: bold; text-shadow: none; border-radius: 50px;">
@@ -154,18 +154,10 @@
              Ubicación:
            </td>
            <td align="center">
-               <input type="file"id="flu_Archivo" name="flu_Archivo" id="file"/>
-               <label for="file">Sube un archivo</label>
+               <input type="file" id="flu_Archivo"name="flu_Archivo" style="font-size: 10pt;"/>
            </td>
          </tr>
-         <tr>
-           <td>
-             Ruta:
-           </td>
-           <td>
-             <output for="" id=list> -- </output>
-           </td>
-         </tr>
+     
          <tr>
            <td>
              Número de palabras:

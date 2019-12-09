@@ -38,7 +38,7 @@
     </table>
     <hr>
     <!-- Dependiendo de lo que se seleccione se hará visible un div u otro -->
-   <!--  <script type="text/javascript">
+   <script type="text/javascript">
       function aparecerModulo() {
            var operation = document.getElementById("cmb_Modificacion").value;
             var div1 = document.getElementById("div_ModificarDatos");
@@ -68,34 +68,7 @@
 }
     
 }
-    </script> -->
-      <script type="text/javascript">
-      $("#cmb_Modificacion").change(function() {
-        var id = $(this).find("option:selected").attr("id");
-        switch (id) {
-          case "MDatos": // Modificar Datos
-            div1.style.display = "block";
-            div2.style.display = "none";
-            div3.style.display = "none";
-            break;
-          case "MDescuento": //Modificar Descuentos
-            div1.style.display = "none";
-            div2.style.display = "block";
-            div3.style.display = "none";
-            break;
-          case "SProrroga": //Solicitar Prroroga
-          div1.style.display = "none";
-            div2.style.display = "none";
-            div3.style.display = "block";
-            break;
-        case  "Default":
-             div1.style.display = "none";
-            div2.style.display = "none";
-            div3.style.display = "none";
-            break;
-        }
-      });
-    </script>
+    </script> 
     </center>
   </section>
   <section class="m-content" style="padding-top: 0">
