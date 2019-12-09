@@ -48,7 +48,7 @@ public class clsVendedor {
     public ResultSet mostrarProspectos() throws SQLException{
         clsConexion con=new clsConexion();
         Connection cnn=con.conexion();
-        String consultaSql = "CALL STP_LISTARCLIENTESPROSP(1,1);";
+        String consultaSql = "CALL STP_LISTARCLIENTESPROSP(0,1);";
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
         return rs;

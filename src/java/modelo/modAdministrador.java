@@ -76,6 +76,9 @@ public class modAdministrador {
     }
     
     
+    public modAdministrador(){
+        
+    }
     
     public modAdministrador(int cve) throws SQLException {
         this.CveAdministrador=cve;

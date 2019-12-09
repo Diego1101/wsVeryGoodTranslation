@@ -76,7 +76,9 @@ public class modTraductor {
     
     
     
-    
+    public modTraductor(){
+        
+    }
     
     public modTraductor(int cve) throws SQLException {
         this.CveTraductor = cve;
