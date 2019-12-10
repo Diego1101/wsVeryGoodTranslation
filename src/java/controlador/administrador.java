@@ -385,7 +385,7 @@ public class administrador extends HttpServlet {
 
            
             if (modTraduccion.modPrecioTraduccion(estandar, certificada, premium) == 0) {
-                request.setAttribute("edo", "No se realizo modificacion");
+                request.setAttribute("edo", "No se han realizado modificaciones");
             } else {
                 request.setAttribute("edo", "Modificacion realizada");
 
