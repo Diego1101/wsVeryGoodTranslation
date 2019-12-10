@@ -246,10 +246,13 @@ public class administrador extends HttpServlet {
         obj.setFrechaFin(request.getParameter("txtFin"));
         switch (obj.modificarDescuento()) {
             case 0:
-                request.setAttribute("edo", "No se encontro el registro");
+                request.setAttribute("edo", "No se encontró el registro");
                 break;
             case -1:
-                request.setAttribute("edo", "Ya existe un descuento con estas caracteristicas");
+                request.setAttribute("edo", "Ya existe un descuento con estas características");
+                break;
+            case -2:
+                request.setAttribute("edo", "No se han realizado modificaciones");
                 break;
             default:
                 request.setAttribute("edo", "Descuento modificado");
