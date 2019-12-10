@@ -213,6 +213,7 @@ public class vendedor extends HttpServlet {
         modCliente obj = new modCliente(id);
 
         request.setAttribute("idCli", id);
+        request.setAttribute("id", id);
         request.setAttribute("txt_Nombre", obj.getNombre());
         request.setAttribute("txt_Apellido", obj.getApellidos());
         request.setAttribute("txt_Email", obj.getCorreoE());
