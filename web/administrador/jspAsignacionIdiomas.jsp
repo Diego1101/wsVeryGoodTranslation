@@ -5,6 +5,17 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%    if (request.getAttribute("ban") == null || request.getAttribute("ban").equals("0")) {
+%>
+<script>
+    document.getElementById("ven").submit();
+</script>
+
+<%
+    }
+%>
+
 <div class="fondo-negro">
     <center >
         <div class="titulo">
@@ -24,7 +35,7 @@
       </tr>
       <tr>
         <td align="right" class="texto-Centro" colspan="2">
-          Nombre:<label style="line-height: 0;" name="lbl_IdiomaOrigen" id="lbl_IdiomaOrigen"> ---</label>
+          Nombre:<label style="line-height: 0;" name="lbl_IdiomaOrigen" value="<% out.print((request.getAttribute("txt_Nombre")!=null)?request.getAttribute("txt_Nombre"):"");  %>" id="lbl_IdiomaOrigen"></label>
         </td>
       </tr>
       <tr>
