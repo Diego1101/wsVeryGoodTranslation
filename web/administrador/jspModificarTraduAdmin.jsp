@@ -17,6 +17,15 @@
   <section style="padding: 40px">
     <center>
     <table>
+         <%
+            if (request.getAttribute("edo") != null) {
+        %>
+    <div id="error">
+        <%=request.getAttribute("edo")%>
+    </div>
+    <%
+        }
+    %>
       <tr>
         <td>
           Módulo:
