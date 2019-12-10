@@ -160,7 +160,7 @@ public class administrador extends HttpServlet {
                 if (ven.regVendedor() == 0) {
                     request.setAttribute("edo", "Ya existe el usuario");
                 } else {
-                    request.setAttribute("edo", "Vendedro agregado");
+                    request.setAttribute("edo", "Vendedor agregado");
 
                 }
                 request.setAttribute("txt_Nombre", request.getParameter("txt_Nombre"));
@@ -246,7 +246,7 @@ public class administrador extends HttpServlet {
         modDescuento obj = new modDescuento(id);
 
         request.setAttribute("id", obj.getCveDescuento());
-        request.setAttribute("txtRazon", obj.getRazonDesc());
+        request.setAttribute("txtRazon", obj.getRazonDesc()*100);
         request.setAttribute("txtInicio", obj.getFechaInicio().split(" ")[0]);
         request.setAttribute("txtFin", obj.getFrechaFin().split(" ")[0]);
         request.setAttribute("ban", "1");
@@ -383,7 +383,6 @@ public class administrador extends HttpServlet {
             float certificada = Float.parseFloat(request.getParameter("txtPrecioC"));
             float premium = Float.parseFloat(request.getParameter("txtPrecioP"));
 
-           
             if (modTraduccion.modPrecioTraduccion(estandar, certificada, premium) == 0) {
                 request.setAttribute("edo", "No se han realizado modificaciones");
             } else {

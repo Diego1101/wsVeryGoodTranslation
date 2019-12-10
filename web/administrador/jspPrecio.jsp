@@ -1,5 +1,6 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
 <form action="administrador.do" method="post" id="frmLoadP" name="frmLoadP">
@@ -109,7 +110,7 @@
                             <h5>Tipo</h5>
                         </td>
                         <td>
-                            <h5>Razon</h5>
+                            <h5>Razón</h5>
                         </td>
                         <td>
                             <h5>Inicio</h5>

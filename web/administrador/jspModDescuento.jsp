@@ -76,17 +76,20 @@ else{
                     <tr><td></td></tr>
                     <tr>
                         <td align="right">
-                            Razon: 
+                            Razón: 
                         </td>
                         <td>
                             <input class="form-control" type="text" name="txtRazon" id="txtFactor" value="<% out.print((request.getAttribute("txtRazon")!=null)?request.getAttribute("txtRazon"):"");  %>" required readonly>
+                        </td>
+                        <td align="left">
+                            %
                         </td>
                     </tr>
                     <tr>
                         <td align="right">
                             Inicio:  
                         </td>
-                        <td>
+                        <td colspan="2">
                             <input class="form-control" type="date" name="txtInicio" id="txtInicio" value="<% out.print((request.getAttribute("txtInicio")!=null)?request.getAttribute("txtInicio"):"");  %>" required>
                         </td>
                     </tr>
@@ -94,13 +97,13 @@ else{
                         <td align="right">
                             Fin:  
                         </td>
-                        <td>
+                        <td colspan="2">
                             <input class="form-control" type="date" name="txtFin" id="txtFin" value="<% out.print((request.getAttribute("txtFin")!=null)?request.getAttribute("txtFin"):"");  %>" required>
                         </td>
                     </tr>
                     <tr>
                         <td ></td>
-                        <td align="right">
+                        <td align="right" colspan="2">
                             <input type="hidden" class="btn custom-btn" name="org" value="modDescuento" id="org">
                             <input type="hidden" class="btn custom-btn" name="id" value="<%=id%>" id="id">
                             <input class="btnY" type="button" name="btn_ModDescuento" value="Modificar" id="btn_Entrar" required>
