@@ -22,7 +22,7 @@ public class modConexion {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            cnn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/BD_VGT", "root", "3209");
+            cnn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/BD_VGT", "root", "kakabfiio13");
             System.out.println("Se hizo la conexion a la base de datos");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("No se conecto: " + e.getMessage());
