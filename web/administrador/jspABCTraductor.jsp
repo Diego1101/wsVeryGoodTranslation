@@ -64,7 +64,7 @@
                 </td>
                 <td>
                     <h5>
-                        Seleccionar</h5>
+                        Modificar</h5>
                 </td>
                 <td>
                     
@@ -75,7 +75,6 @@
                 if (request.getAttribute("traductores") != null) {
 
                     ResultSet rs = (ResultSet) request.getAttribute("traductores");
-
                     while (rs.next()) {
                         out.print("<tr>");
                         out.print("<td>" + rs.getString(2) + "</td>");
@@ -86,7 +85,7 @@
                             }else{
                             out.print("<td>" + "Inactivo" + "</td>");
                         }
-                       out.println("<td style='text-align:center;'>" + "<input type='button' class='btn' name='button' onclick='llenarDatos(this);' value='+ ' style='width: 65px;' name='btnSeleccion' id='rs.getString(1)'>"+"</td>");
+                       out.println("<td style='text-align:center;'>" + "<input type='button' class='btn' name='button' href='index.jsp?op=jspModTraductor.jsp&id='rs.getString(1)' value='+ ' style='width: 65px;' name='btnSeleccion' id='rs.getString(1)'>"+"</td>");
                       out.println("<input style='display: none' type='text' name='Confrimartxt' id='SeleccionarTraductor' value='"+rs.getString(1)+"'>");
                       out.print("</tr>");
                     }
@@ -97,7 +96,22 @@
         </table>
       </center>
 </section>
-
+            <hr>
+            <br>
+             <center>
+    <div id="div_AgregarTraduc"  style="background-color: #fff;" >
+     <table style="background:#eee; overflow: hidden; ">
+      <tr>
+        <td>
+             <input type="button" class="btn" name="btnAgregar"  onclick = "location='index.jsp?op=jspAddTraductor.jsp'" id="btnAgregar"  value="Registrar Traductor" style="align:"left"; ">
+        </td>
+        
+        </tr>
+        
+      </table>
+       </div>
+    </center>
+   
   <section >
     <!-- Dependiendo de lo que se seleccione se hará visible un div u otro -->
      <script type="text/javascript">
@@ -132,13 +146,12 @@
 }
     </script>
            
-            <hr>
        <center>
     <div id="div_ClienteSeleccionar" class="texto2" style="background-color: #fff; display: none;" >
      <table style="background:#eee; overflow: hidden; ">
       <tr>
         <td colspan="2">
-          Cliente Seleccionado
+          Traductor Seleccionado
         </td>
         </tr>
         <tr>
@@ -184,59 +197,7 @@
 
 <section class="m-content" style="padding-top: 0">
   <center class="mtr">
-<div class="texto2" id="div_RegistrarTraductor" style="background:none; display: none;">
-    <form method="post" action="administrador.do" id="formTrad">
-    <h4> Registrar Traductor</h4>
-      <table>
-        <tr>
-          <td align="right" class="texto-Centro">
-            Nombre:
-          </td>
-          <td>
-              <input type="text" class="form-control" name="txt_Nombre" placeholder="Nombre del traductor" id="txt_Nombre" style="min-width: 240px; width:240;">
-          </td>
-        </tr>
-        <tr>
-          <td align="right" class="texto-Centro">
-            Apellido:
-          </td>
-          <td>
-              <input type="text" class="form-control" name="txt_Apellido" placeholder="Apellido" id="txt_Apellido" style="min-width: 240px; width:240;">
-          </td>
-        </tr>
-        <tr>
-          <td align="right" class="texto-Centro">
-            Correo Electrónico:
-          </td>
-          <td>
-              <input type="email" class="form-control" name="txt_CorreoElectronico" placeholder="Correo" id="txt_CorreoElectronico" style="min-width: 240px; width:240;">
-          </td>
-        </tr>
-        <tr>
-          <td align="right" class="texto-Centro">
-            Teléfono:
-          </td>
-          <td>
-              <input type="text" class="form-control" name="txt_Telefono" placeholder="Teléfono" id="txt_Telefono" style="min-width: 240px; width:240;">
-          </td>
-        </tr>
-        <tr>
-          <td align="right" class="texto-Centro">
-            Dirección:
-          </td>
-          <td>
-              <input type="text" class="form-control" name="txt_Direccion" placeholder="Dirección" id="txt_Direccion" style="min-width: 240px; width:240;">
-          </td>
-        </tr>
-          <tr align="center">
-            <td colspan="2">
-                <input type="submit" class="btn" name="btn_Registrar" value="Registrar" id="btn_Registrar">
-                <input type="hidden" name="org" value="addTraductor" id="org">
-            </td>                          
-          </tr>
-      </table>
-    </form>
-    </div>
+
     <div class="texto2" id="div_ModificarTraductor" style="background:none;display: none;"> <!-- este se tiene que ocultar con la propiedad dislpay none -->
         <h4> Modificar Traductor</h4>
           <table>
@@ -325,7 +286,8 @@
              document.getElementById('lbl_NombreSeleccionado').innerText = ' ';
         }else{
              div1.style.display = "block";
-             document.getElementById('lbl_NombreSeleccionado').innerText = 'adas';
+             var id = this.id;
+             document.getElementById('lbl_ClaveSeleccionado').innerText = this.id;
             }
         // let id = this.id;
         // var Row = document.getElementById("somerow");
