@@ -155,4 +155,12 @@ public class modAdministrador {
         ResultSet rs = st.executeQuery(consultaSql);
         return rs;
     }
+    public ResultSet listarTraductores() throws SQLException{
+        modConexion con=new modConexion();
+        Connection cnn=con.conexion();
+         String consultaSql = "call STP_LISTARTRADUCTORES();";
+        Statement st = (Statement) cnn.createStatement();
+        ResultSet rs = st.executeQuery(consultaSql);
+        return rs;
+    }
 }

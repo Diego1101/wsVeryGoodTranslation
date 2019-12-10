@@ -101,7 +101,13 @@ public class administrador extends HttpServlet {
                 case "listTrad":
                     listTraductores(request, response);
                     break;
-
+                    
+                case "listTradutores":
+                    loadTraductores(request, response);
+                    break;
+                 case "SeleccionarTraductor":
+                    seleccionarTraductor(request, response);
+                    break;
                 default:
                     request.setAttribute("err", "Pagina no encontrada");
                     request.getRequestDispatcher("jspError.jsp").forward(request, response);
@@ -512,6 +518,33 @@ public class administrador extends HttpServlet {
         } catch (SQLException ex) {
             System.out.println("ERROR: " + ex.getMessage());
         }
+    }
+
+    private void loadTraductores(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, SQLException {
+        modConexion con = new modConexion();
+        Connection cnn = con.conexion();
+        modAdministrador tr = new modAdministrador();
+        Statement st = (Statement) cnn.createStatement();
+        ResultSet detTraductores = tr.listarTraductores();
+
+        if (request.getParameter("edo") != null) {
+            request.setAttribute("edo", request.getParameter("edo"));
+        }
+
+        request.setAttribute("traductores", detTraductores);
+        request.setAttribute("ban", "1");
+        request.setAttribute("op", "jspABCTraductor.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+
+    private void seleccionarTraductor(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+                        String valor=request.getParameter("Confrimartxt");
+                        int busq= Integer.parseInt(valor);
+                        modConexion con = new modConexion();
+                        Connection cnn = con.conexion();
+                        ResultSet rsFrm4;
+                       
+        //To change body of generated methods, choose Tools | Templates.
     }
 
 }
