@@ -86,9 +86,7 @@
                             }else{
                             out.print("<td>" + "Inactivo" + "</td>");
                         }
-                        
-                         out.println("<td style='text-align:center;'>" + "<input type='button' class='btn' name='button' onclick='llenarDatos(this);' value='+ ' style='width: 65px;' name='btnSeleccion' id='btnSeleccion'>"+"</td>");
-                 
+                       out.println("<td style='text-align:center;'>" + "<input type='button' class='btn' name='button' onclick='llenarDatos(this);' value='+ ' style='width: 65px;' name='btnSeleccion' id='rs.getString(1)'>"+"</td>");
                       out.println("<input style='display: none' type='text' name='Confrimartxt' id='SeleccionarTraductor' value='"+rs.getString(1)+"'>");
                       out.print("</tr>");
                     }
@@ -97,8 +95,6 @@
             %>
             </tr>
         </table>
-        
-            <br>
       </center>
 </section>
 
@@ -135,16 +131,36 @@
     
 }
     </script>
-    <script type="text/javascript">
-      function llenarDatos() {
-         var nombre = document.getElementById("txt_Nombre");
-         nombre.value="Seleccion";
-        var div1 = document.getElementById("div_RegistrarTraductor");
-        div1.style.display = "block";
-        }
-    </script>
-    <hr>
+           
+            <hr>
+       <center>
+    <div id="div_ClienteSeleccionar" class="texto2" style="background-color: #fff; display: none;" >
+     <table style="background:#eee; overflow: hidden; ">
+      <tr>
+        <td colspan="2">
+          Cliente Seleccionado
+        </td>
+        </tr>
+        <tr>
+          <td align="right" class="texto-Centro">
+            Nombre:
+          </td>
+          <td>
+              <label style="line-height: 0;" name="lbl_NombreSeleccionado" id="lbl_NombreSeleccionado">---</label> 
+          </td>
+          <td align="right" class="texto-Centro">
+            Clave:
+          </td>
+          <td>
+              <label style="line-height: 0;" name="lbl_ClaveSeleccionado" id="lbl_ClaveSeleccionado">---</label> 
+          </td>
+        </tr>
+      </table>
+            </div>
+    </center>
+   
     <center>
+
     <div id="div_Seleccionar">
      <table>
       <tr>
@@ -168,8 +184,8 @@
 
 <section class="m-content" style="padding-top: 0">
   <center class="mtr">
-      <form method="post" action="administrador.do">
-<div class="texto2" id="div_RegistrarTraductor" style="background:none; display: none;"> <!-- este se tiene que ocultar con la propiedad dislpay none -->
+<div class="texto2" id="div_RegistrarTraductor" style="background:none; display: none;">
+    <form method="post" action="administrador.do" id="formTrad">
     <h4> Registrar Traductor</h4>
       <table>
         <tr>
@@ -219,8 +235,8 @@
             </td>                          
           </tr>
       </table>
+    </form>
     </div>
-      </form>
     <div class="texto2" id="div_ModificarTraductor" style="background:none;display: none;"> <!-- este se tiene que ocultar con la propiedad dislpay none -->
         <h4> Modificar Traductor</h4>
           <table>
@@ -301,3 +317,20 @@
             </div>
     </center>
     </section>
+      <script type="text/javascript">
+      function llenarDatos() {
+        var div1 = document.getElementById("div_ClienteSeleccionar");
+        if (!$('#div_ClienteSeleccionar').css('display') == 'none') {
+             div1.style.display = "none";
+        }else{
+             div1.style.display = "block";
+            }
+        let id = this.id;
+        var Row = document.getElementById("somerow");
+        var Cells = Row.getElementsByTagName("td");
+       alert(Cells[0].innerText);
+        document.getElementById('lbl_NombreSeleccionado').innerText = 'adas';
+                }
+
+    </script>
+    
