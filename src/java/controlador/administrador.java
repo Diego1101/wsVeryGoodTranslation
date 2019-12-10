@@ -535,7 +535,7 @@ public class administrador extends HttpServlet {
             ResultSet rs = adm.reporteVentas();
             rs.next();
                 if(rs.getString(2).equals("0")){
-                    request.setAttribute("edo", "No existen clientes registrados.");
+                    request.setAttribute("edo", "No existen ventas registradas.");
                 }
                 else{
                     request.getSession().setAttribute("rsRepVen", rs);
@@ -554,7 +554,7 @@ public class administrador extends HttpServlet {
             ResultSet rs = adm.reporteVentasTotales();
             rs.next();
                 if(rs.getString(2).equals("0")){
-                    request.setAttribute("edo", "No existen clientes registrados.");
+                    request.setAttribute("edo", "No existen ventas registradas");
                 }
                 else{
                     request.getSession().setAttribute("rsRepVenT", rs);
@@ -573,7 +573,7 @@ public class administrador extends HttpServlet {
             ResultSet rs = adm.reporteVendedorVentas();
             rs.next();
                 if(rs.getString(2).equals("0")){
-                    request.setAttribute("edo", "No existen clientes registrados.");
+                    request.setAttribute("edo", "No existen ventas registradas.");
                 }
                 else{
                     request.getSession().setAttribute("rsRepVentasVen", rs);
@@ -592,7 +592,7 @@ public class administrador extends HttpServlet {
             ResultSet rs = adm.reporteVendedorTVentas();
             rs.next();
                 if(rs.getString(2).equals("0")){
-                    request.setAttribute("edo", "No existen clientes registrados.");
+                    request.setAttribute("edo", "No existen ventas registradas.");
                 }
                 else{
                     request.getSession().setAttribute("rsRepMasVen", rs);
@@ -611,7 +611,7 @@ public class administrador extends HttpServlet {
             ResultSet rs = adm.reporteVentasC();
             rs.next();
                 if(rs.getString(2).equals("0")){
-                    request.setAttribute("edo", "No existen clientes registrados.");
+                    request.setAttribute("edo", "No se canceló ninguna venta.");
                 }
                 else{
                     request.getSession().setAttribute("rsRepVenC", rs);
