@@ -6,6 +6,7 @@
 
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
 <form action="administrador.do" method="post" id="frmLoadI" name="frmLoadI">
