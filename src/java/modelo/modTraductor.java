@@ -104,7 +104,7 @@ public class modTraductor {
         int res=0;
         modConexion con=new modConexion();
         Connection cnn=con.conexion();
-        String consultaSql = "call REGTRADUCTOR("+Nombre+","+Apellidos+","+CorreoE+","+Telefono+","+Direccion+");";
+        String consultaSql = "call REGTRADUCTOR('"+Nombre+"','"+Apellidos+"','"+CorreoE+"','"+Telefono+"','"+Direccion+"');";
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
 

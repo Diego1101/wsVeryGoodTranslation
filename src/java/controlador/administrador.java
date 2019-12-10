@@ -77,7 +77,9 @@ public class administrador extends HttpServlet {
                 case "addIdioma":
                     addIdioma(request, response);
                     break;
-
+                 case "addTraductor":
+                    registrarTraductor(request, response);
+                    break;            
                 case "modPrecio":
                     modifcarPrecio(request, response);
                     break;
@@ -669,6 +671,29 @@ public class administrador extends HttpServlet {
         ResultSet rsFrm4;
 
         //To change body of generated methods, choose Tools | Templates.
+    }
+     private void registrarTraductor(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        modTraductor obj = new modTraductor();
+         if ("".equals(request.getParameter("txt_Nombre")) || "".equals(request.getParameter("txt_Apellidos")) || "".equals(request.getParameter("txt_Usuario")) || "".equals(request.getParameter("txt_Contra")) || "".equals(request.getParameter("txt_Correo")) || "".equals(request.getParameter("txt_Tel"))) {
+              request.setAttribute("edo", "Asegurate de introducir todos los datos");
+                request.setAttribute("op", "jspABCTraductor.jsp");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+         }else{
+             obj.setNombre(request.getParameter("txt_Nombre"));
+        obj.setApellidos(request.getParameter("txt_Apellido"));
+        obj.setCorreoE(request.getParameter("txt_CorreoElectronico"));
+        obj.setTelefono(request.getParameter("txt_Telefono"));
+        obj.setDireccion(request.getParameter("txt_Direccion"));
+        if (obj.regTraductor()== 0) {
+            request.setAttribute("edo", "Ya existe el Traductor que se intenta ingresar");
+        } else {
+            request.setAttribute("edo", "Traductor agregado");
+        }
+        request.setAttribute("op", "jspABCTraductor.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+         }
+        
+
     }
 
 }
