@@ -61,6 +61,26 @@ public class traducciones extends HttpServlet {
                 case "prorrogaTrad":
                     prorrogaTrad(request, response);
                     break;
+                    
+                case "loadModTradV":
+                    loadModTradV(request, response);
+                    break;
+
+                case "modTradSelV":
+                    modTradSelV(request, response);
+                    break;
+
+                case "modDatosTradV":
+                    modDatosTradV(request, response);
+                    break;
+
+                case "modDescuentoTradV":
+                    modDescuentoTradV(request, response);
+                    break;
+
+                case "prorrogaTradV":
+                    prorrogaTradV(request, response);
+                    break;
 
                 default:
                     request.setAttribute("err", "Pagina no encontrada");
@@ -255,6 +275,151 @@ public class traducciones extends HttpServlet {
             request.setAttribute("edo", "Fecha modificada");
         }
         loadModTrad(request, response);
+    }
+
+    private void loadModTradV(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        ResultSet rs = modTraduccion.listarTrad();
+
+        if (request.getParameter("edo") != null) {
+            request.setAttribute("edo", request.getParameter("edo"));
+        }
+
+        List<String[]> trad = new ArrayList<>();
+        while (rs.next()) {
+            String[] aux = new String[8];
+            aux[0] = rs.getString(1);
+            aux[1] = rs.getString(2);
+            aux[2] = rs.getString(3);
+            aux[3] = rs.getString(4);
+            aux[4] = rs.getString(5);
+            aux[5] = rs.getString(6);
+            aux[6] = rs.getString(7);
+            aux[7] = rs.getString(8);
+            trad.add(aux);
+        }
+
+        modIdioma idiomas = new modIdioma();
+        ResultSet rs1 = idiomas.listarIdiomas();
+        List<String[]> li = new ArrayList<>();
+        while (rs1.next()) {
+            String[] aux = new String[2];
+            aux[0] = rs1.getString(1);
+            aux[1] = rs1.getString(2);
+            li.add(aux);
+        }
+        System.out.print(trad.size());
+        request.setAttribute("trad", trad);
+        request.setAttribute("idiomas", li);
+        request.setAttribute("ban", "1");
+        request.setAttribute("op", "jspGestionTraducciones.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
+    }
+
+    private void modTradSelV(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        ResultSet rs = modTraduccion.listarTrad();
+
+        if (request.getParameter("edo") != null) {
+            request.setAttribute("edo", request.getParameter("edo"));
+        }
+        List<String[]> trad = new ArrayList<>();
+        while (rs.next()) {
+            String[] aux = new String[8];
+            aux[0] = rs.getString(1);
+            aux[1] = rs.getString(2);
+            aux[2] = rs.getString(3);
+            aux[3] = rs.getString(4);
+            aux[4] = rs.getString(5);
+            aux[5] = rs.getString(6);
+            aux[6] = rs.getString(7);
+            aux[7] = rs.getString(8);
+            trad.add(aux);
+        }
+
+        modIdioma idiomas = new modIdioma();
+        ResultSet rs1 = idiomas.listarIdiomas();
+        List<String[]> li = new ArrayList<>();
+        while (rs1.next()) {
+            String[] aux = new String[2];
+            aux[0] = rs1.getString(1);
+            aux[1] = rs1.getString(2);
+            li.add(aux);
+        }
+
+        request.setAttribute("trad", trad);
+        request.setAttribute("idiomas", li);
+        request.setAttribute("ban", "1");
+
+        int id = Integer.parseInt(request.getParameter("idS"));
+        modTraduccion tra = new modTraduccion(id);
+        request.setAttribute("sel", id);
+        request.setAttribute("tra", tra);
+
+        int idAdm = Integer.parseInt(request.getSession().getAttribute("id").toString());
+        List<String[]> res = modVendedor.listarVendedores(idAdm);
+
+        request.setAttribute("ven", res);
+
+        request.setAttribute("op", "jspGestionTraducciones.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+
+    private void modDatosTradV(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+ 
+        int idT = Integer.parseInt(request.getParameter("idTrad"));
+        modTraduccion trad = new modTraduccion(idT);
+
+        int origen = Integer.parseInt(request.getParameter("cmb_IdiomaOrigen"));
+        int destino = Integer.parseInt(request.getParameter("cmb_IdiomaDestino"));
+        int tipo = Integer.parseInt(request.getParameter("cmb_TipoTraducion"));
+        char estatus = request.getParameter("cmb_Estatus").charAt(0);
+
+        trad.setCveIdiomaDestino(destino);
+        trad.setCveIdiomaOrigen(origen);
+        trad.setCveTipoTrad(tipo);
+        trad.setStatus(estatus);
+
+        if (trad.modificarTraduccion() == -1) {
+            request.setAttribute("edo", "No se encontro el registro");
+        } else if (trad.modificarTraduccion() == 0) {
+            request.setAttribute("edo", "No se encontro el registro");
+        } else {
+            request.setAttribute("edo", "Traduccion modificada");
+        }
+        
+        loadModTradV(request, response);
+        
+    }
+
+    private void modDescuentoTradV(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        
+        int idT = Integer.parseInt(request.getParameter("idTradD"));
+        float descuento = Float.parseFloat(request.getParameter("txt_Descuento"));
+        modTraduccion trad = new modTraduccion(idT);
+        trad.setDescuento(descuento);
+
+        trad.setTotal(trad.getTotal()-descuento);
+        System.out.println("preioc: "+trad.getPrecio());
+        if (trad.modificarTraduccion() == 0) {
+            request.setAttribute("edo", "No se encontro el registro");
+        } else {
+            request.setAttribute("edo", "Descuento agregado");
+        }
+        loadModTradV(request, response);
+    }
+
+    private void prorrogaTradV(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        int idT = Integer.parseInt(request.getParameter("idTradP"));
+        String nuevaFecha = request.getParameter("txt_FechaEntrega");
+        modTraduccion trad = new modTraduccion(idT);
+        trad.setFechaEntrega(nuevaFecha);
+
+        if (trad.modificarTraduccion()== 0) {
+            request.setAttribute("edo", "No se encontro el registro");
+        } else {
+            request.setAttribute("edo", "Fecha modificada");
+        }
+        loadModTradV(request, response);
     }
 
 }

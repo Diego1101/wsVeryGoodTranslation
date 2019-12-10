@@ -66,6 +66,9 @@ public class multipart extends HttpServlet {
                 case "regTraduccion":
                     regTraduccionn(request, response, items);
                     break;
+                case "regTraduccionV":
+                    regTraduccionV(request, response, items);
+                    break;
                 case "a":
                     throw new SQLException();
 
@@ -234,6 +237,121 @@ public class multipart extends HttpServlet {
         trad.modCotizar((float)0.16);
         
         request.setAttribute("op", "jspModificarTraduAdmin.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
+    }
+    
+    private void regTraduccionV(HttpServletRequest request, HttpServletResponse response, List items) throws IOException, SQLException, ServletException {
+
+        InputStream in = null;
+        String nombreA = "";
+        int idCli = 0;
+        int origen = 0;
+        int destino = 0;
+        int traductor = Integer.parseInt(request.getSession().getAttribute("id").toString());
+        int vendedor = 0;
+        int tipo = 0;
+        int cantidad = 0;
+        String fechaEntrega = "";
+
+        //Información:   cmb_IdiomaOrigen
+//Información:   3
+//Información:   cmb_IdiomaDestino
+//Información:   1
+//Información:   cmb_Traductor
+//Información:   1
+//Información:   cmb_Vendedor
+//Información:   2
+//Información:   cmb_TipoTraducion
+//Información:   1
+//Información:   txt_CantidadPalabras
+//Información:   23
+//Información:   txt_FechaEntrega
+//Información:   2019-12-11
+//Información:   estado
+//Información:   1
+//Información:   org
+//Información:   regTraduccion
+//Información:   txt_CodigoDescuento
+//Información:   estado
+//Información:   0
+//Información:   org
+//Información:   regTraduccion
+        //CALL STP_REGTRADUCCION(1,1,1,2,1,1,0,'1','docs/doc1.txt','trad/trad.txt',2000000,0,0,0,0,0,0);
+        for (Object item : items) {
+            FileItem uploaded = (FileItem) item;
+            if (uploaded.isFormField()) {
+                switch (uploaded.getFieldName()) {
+                    case "cmb_IdiomaOrigen":
+                        origen = Integer.parseInt(uploaded.getString());
+                        break;
+                    case "cmb_IdiomaDestino":
+                        destino = Integer.parseInt(uploaded.getString());
+                        break;
+                    case "cmb_Traductor":
+                        traductor = Integer.parseInt(uploaded.getString());
+                        break;
+
+                    case "cmb_TipoTraducion":
+                        tipo = Integer.parseInt(uploaded.getString());
+                        break;
+
+                    case "txt_CantidadPalabras":
+                        cantidad = Integer.parseInt(uploaded.getString());
+                        break;
+
+                    case "txt_FechaEntrega":
+                        fechaEntrega = uploaded.getString();
+                        break;
+
+                    case "idCli":
+                        idCli = Integer.parseInt(uploaded.getString());
+                        break;
+
+                    default:
+                        break;
+                }
+            } else {
+                if (uploaded.getFieldName().equals("fluArchivo")) {
+                    in = uploaded.getInputStream();
+                    nombreA = uploaded.getName();
+                }
+            }
+        }
+
+        File f = new File("docs/" + nombreA);
+        System.out.println(f.getAbsolutePath());
+        OutputStream salida = new FileOutputStream(f);
+        byte[] buf = new byte[1024];
+        int len;
+        while ((len = in.read(buf)) > 0) {
+            salida.write(buf, 0, len);
+        }
+        salida.close();
+        in.close();
+
+        modTraduccion trad = new modTraduccion();
+        trad.setCveIdiomaDestino(destino);
+        trad.setCveIdiomaOrigen(origen);
+        trad.setCveTipoTrad(tipo);
+        trad.setCveCliente(idCli);
+        trad.setCveTraductor(traductor);
+        trad.setCveVendedor(vendedor);
+        trad.setPalabras(cantidad);
+        trad.setFechaEntrega(fechaEntrega);
+        trad.setRutaDoc("doc/"+nombreA);
+        trad.setStatus('0');
+        int idTrad=trad.regTraduccion();
+        if (idTrad != 0) {
+            request.setAttribute("edo", "Traduccion agegada");
+
+        } else {
+            request.setAttribute("edo", "ERROR");
+        }
+        trad.setCveTrad(idTrad);
+        trad.modCotizar((float)0.16);
+        
+        request.setAttribute("op", "jspGestionTraducciones.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
 
     }

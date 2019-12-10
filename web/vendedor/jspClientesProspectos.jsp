@@ -7,7 +7,6 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-
 <form action="vendedor.do" method="post" id="lstProspectos" name="lstProspectos">
     <input type="hidden" id="org" name="org" value="listarProspectos">
 </form>
@@ -50,14 +49,17 @@
                     <td style="width: 15%">
                         <h4 >Clave</h4>
                     </td>
-                    <td style="width: 25%">
+                    <td style="width: 20%">
                         <h4>Nombre</h4>
                     </td>
-                    <td  style="width: 35%">
+                    <td  style="width: 25%">
                         <h4>Correo electrónico</h4>
                     </td>
-                    <td style="width: 25%">
+                    <td style="width: 20%">
                         <h4>Teléfono</h4>
+                    </td>
+                    <td style="width: 20%">
+                        <h4>Traducción</h4>
                     </td>
                     </tr>
                     <%
@@ -68,11 +70,12 @@
                                 out.println("<td style='text-align:center;'>"+rsPros.getString(1)+"</td>");
                                 out.println("<td style='text-align:center;'>"+rsPros.getString(2)+"</td>");
                                 out.println("<td style='text-align:center;'>"+rsPros.getString(3)+"</td>");
-                                out.println("<td style='text-align:center;'>"+rsPros.getString(4)+"</td></tr>");
+                                out.println("<td style='text-align:center;'>"+rsPros.getString(4)+"</td>");
+                                out.println("<td style='text-align:center;'> <input  type='hidden' name='idPros'value='"+ rsPros.getString(1)+"' id='idPros'> <input type='button' class='btn' value='Nueva' id='btnNuevaT'> </td></tr>");
                             }
                         }
                     %>
+                    
             </table>
         </center>
 </section>
-
