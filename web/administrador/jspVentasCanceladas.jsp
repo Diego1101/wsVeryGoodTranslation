@@ -65,7 +65,7 @@
       </tr>
       <tr><td style="height:20px" colspan="5"></td></tr>
       <tr>
-        <td colspan="3">Tipo de reporte: Ventas del mes</td>
+        <td colspan="3">Tipo de reporte: Ventas canceladas del mes</td>
       </tr>
     </table>
     <hr align="center"color="black"> 
@@ -104,12 +104,6 @@
                     %>
                     <tr align="center"><td colspan="5"> <br> Exportar</td></tr>
                     <tr><td style="height: 10px"></td></tr>
-                    <tr align="center">
-                        <td colspan="5">
-                            
-                            <input  type="submit" class="btn custom-btn" name="btn_GenerarXLS"value="Generar archivo XLS"id="btn_GenerarXLS" >
-                        </td>
-                    </tr>
                     <% }
                     %>
         </table>

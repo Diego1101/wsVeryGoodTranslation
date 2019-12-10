@@ -104,12 +104,7 @@
                     %>
                     <tr align="center"><td colspan="5"> <br> Exportar</td></tr>
                     <tr><td style="height: 10px"></td></tr>
-                    <tr align="center">
-                        <td colspan="5">
-                            
-                            <input  type="submit" class="btn custom-btn" name="btn_GenerarXLS"value="Generar archivo XLS"id="btn_GenerarXLS" >
-                        </td>
-                    </tr>
+
                     <% }
                     %>
         </table>
