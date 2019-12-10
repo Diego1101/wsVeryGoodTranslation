@@ -206,6 +206,11 @@ public class multipart extends HttpServlet {
             }
         }
 
+        File directorio = new File("./doc");
+        if (!directorio.exists()) {
+            directorio.mkdirs();
+        }
+
         File f = new File("docs/" + nombreA);
         System.out.println(f.getAbsolutePath());
         OutputStream salida = new FileOutputStream(f);
