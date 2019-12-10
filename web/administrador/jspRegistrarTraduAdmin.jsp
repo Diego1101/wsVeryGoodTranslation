@@ -22,6 +22,7 @@
     <center class="prz">
         <div class="texto2" style="background: none;" id="div_Cliente">
             <form method="post" action="administrador.do">
+
                 <table>
                     <tr align="center">
                         <td colspan="2" style="font-size: 20pt; font-weight: bold; text-shadow: none; border-radius: 50px;">
@@ -89,7 +90,7 @@
 <hr>
 
 
-<form action="multipart.do" method="post" enctype="multipart/form-data" id="frmRegTrad">
+<<form action="multipart.do" method="post">
     <div id="registrarTrad" style="display: none">
         <section class="m-content" style="min-width:700px">
             <center class="prz">
@@ -237,11 +238,7 @@
                         </tr>
                     </table>
                 </div>
-
-                <input type="hidden" name="idCli" value="<% out.print((request.getAttribute("id") != null) ? request.getAttribute("id").toString() : "");  %>" id="idCli">
-                <input type="hidden" name="estado" value="0" id="estado">
-                <input type="hidden" name="org" value="regTraduccion" id="org">
-                <input type="button" class="btn" name="btn_RegistrarT" value="Registrar" id="btn_RegistrarT">
+                <input type="button" class="btn" name="btn_CalcularTotal" value="Calcular Desglose" id="btn_CalcularTotal">
             </center>
         </section>
         <script type="text/javascript">
@@ -258,7 +255,6 @@
         </script>
         <hr>
 
-        <!-- 
         <div id="div_Desglose" style="display: none;">
 
             <section class="m-content" style="min-width:700px;">
@@ -324,7 +320,9 @@
                             <tr><td></td></tr>
                             <tr align="center">
                                 <td colspan="2" style="background:none">
-                                    <input type="submit" class="btn" name="btn_Confirmar" value="Confirmar" id="btn_Confirmar">
+                                    <input type="hidden" name="estado" value="0" id="estado">
+                                    <input type="hidden" name="org" value="regTraduccion" id="org">
+                                    <input type="submit" class="btn" name="btn_Registrar" value="Confirmar" id="btn_Confirmar">
                                 </td>
                             </tr>
                         </table>
@@ -332,7 +330,6 @@
                 </center>
             </section>
         </div>
-        -->
     </div>
 </form>
 
@@ -391,45 +388,24 @@
     });
 
 
-    document.getElementById('btn_RegistrarT').addEventListener("click", function () {
+    document.getElementById('btn_CalcularTotal').addEventListener("click", function () {
         var palabras = document.getElementById("txt_CantidadPalabras").value;
-        var error = "";
-        if (palabras === "")
-            error += "Ingresar las palabras<br>";
-        else if (!parseInt(palabras))
-            error += "Ingresar las palabras<br>";
-
-        if (document.getElementById("fluArchivo").value === "")
-            error += "Seleccionar un archivo<br>";
-
-        if (document.getElementById("txt_FechaEntrega").value === "")
-            error += "Seleccionar la fecha de entrega<br>";
-
-        if (document.getElementById("estado").value === "0")
-            error += "Seleccionar idiomas<br>";
-
-        if (error === "") {
-            document.getElementById("frmRegTrad").submit();
-        } else {
-            document.getElementById("men").innerHTML = error;
+        if (palabras !== "") {
+            if (document.getElementById("estado").value === "1" && parseInt(palabras)) {
+                calcularDesglose();
+                aparecerModulo();
+            } else {
+                document.getElementById("div_Desglose").style.display = "none";
+                alert("Selecciona los idiomas y el numero de palabras");
+            }
         }
-        document.location.href = "#registrarTrad";
-        /*
-         if (palabras !== "") {
-         if (document.getElementById("estado").value === "1" && parseInt(palabras)) {
-         calcularDesglose();
-         //aparecerModulo();
-         } else {
-         document.getElementById("div_Desglose").style.display = "none";
-         alert("Selecciona los idiomas y el numero de palabras");
-         }
-         } else {
-         document.getElementById("div_Desglose").style.display = "none";
-         alert("Selecciona los idiomas y el numero de palabras");
-         }*/
+        else{
+            document.getElementById("div_Desglose").style.display = "none";
+                alert("Selecciona los idiomas y el numero de palabras");
+        }
     });
-
-    function calcularDesglose() {
-
+    
+    function calcularDesglose(){
+        
     }
 </script>
