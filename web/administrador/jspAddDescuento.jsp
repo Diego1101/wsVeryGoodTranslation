@@ -48,19 +48,22 @@
                         </td>
                     </tr>
                     <tr><td></td></tr>
-                    <tr>
+                    <tr >
                         <td align="right">
                             Razon: 
                         </td>
                         <td>
-                            <input class="form-control" type="number" name="txtRazon" id="txtFactor" value="<% out.print((request.getAttribute("txtRazon")!=null)?request.getAttribute("txtRazon"):"");  %>" required>
+                            <input  class="form-control" type="number" name="txtRazon" id="txtFactor" value="<% out.print((request.getAttribute("txtRazon")!=null)?request.getAttribute("txtRazon"):"");  %>" required> 
+                        </td>
+                        <td align="left">
+                            %
                         </td>
                     </tr>
                     <tr>
                         <td align="right">
                             Inicio:  
                         </td>
-                        <td>
+                        <td colspan="2">
                             <input class="form-control" type="date" name="txtInicio" id="txtInicio" value="<% out.print((request.getAttribute("txtInicio")!=null)?request.getAttribute("txtInicio"):"");  %>" required>
                         </td>
                     </tr>
@@ -68,13 +71,13 @@
                         <td align="right">
                             Fin:  
                         </td>
-                        <td>
+                        <td colspan="2">
                             <input class="form-control" type="date" name="txtFin" id="txtFin" value="<% out.print((request.getAttribute("txtFin")!=null)?request.getAttribute("txtFin"):"");  %>" required>
                         </td>
                     </tr>
                     <tr>
                         <td ></td>
-                        <td align="right">
+                        <td align="right" colspan="2">
                             <input type="hidden" class="btn custom-btn" name="org" value="addDescuento" id="org">
                             <input class="btnY" type="button" name="btn_ModDescuento" value="Agregar" id="btn_Entrar" required>
                         </td>

@@ -26,6 +26,9 @@
                   <a href="index.jsp?op=jspABCIdioma.jsp" class="nav-link"><span data-hover="Idiomas">Idiomas</span></a>
                 </li>
                 <li class="nav-item">
+                    <a href="index.jsp?op=jspABCTraductor.jsp" class="nav-link"><span data-hover="Traductor">Traductor</span></a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link"><span data-hover="Cotización" href="index.jsp?op=jspModificarTraduAdmin.jsp">Cotización</span></a>
                     <ul>
                     <li><a href="index.jsp?op=jspRegistrarTraduAdmin.jsp">Nueva cotización</a></li>

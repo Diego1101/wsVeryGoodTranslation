@@ -101,6 +101,7 @@ public class administrador extends HttpServlet {
                 case "listTrad":
                     listTraductores(request, response);
                     break;
+                
                 case "errepeVentas":
                     repVentas(request, response);
                     break;
@@ -115,6 +116,13 @@ public class administrador extends HttpServlet {
                     break;
                 case "errepeCitasCanceladas":
                     repVentasC(request, response);
+                    break;
+  
+                case "listTradutores":
+                    loadTraductores(request, response);
+                    break;
+                 case "SeleccionarTraductor":
+                    seleccionarTraductor(request, response);
                     break;
 
                 default:
@@ -255,10 +263,13 @@ public class administrador extends HttpServlet {
         obj.setFrechaFin(request.getParameter("txtFin"));
         switch (obj.modificarDescuento()) {
             case 0:
-                request.setAttribute("edo", "No se encontro el registro");
+                request.setAttribute("edo", "No se encontró el registro");
                 break;
             case -1:
-                request.setAttribute("edo", "Ya existe un descuento con estas caracteristicas");
+                request.setAttribute("edo", "Ya existe un descuento con estas características");
+                break;
+            case -2:
+                request.setAttribute("edo", "No se han realizado modificaciones");
                 break;
             default:
                 request.setAttribute("edo", "Descuento modificado");
@@ -623,4 +634,31 @@ public class administrador extends HttpServlet {
         request.setAttribute("ban", "1");
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
+    private void loadTraductores(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, SQLException {
+        modConexion con = new modConexion();
+        Connection cnn = con.conexion();
+        modAdministrador tr = new modAdministrador();
+        Statement st = (Statement) cnn.createStatement();
+        ResultSet detTraductores = tr.listarTraductores();
+
+        if (request.getParameter("edo") != null) {
+            request.setAttribute("edo", request.getParameter("edo"));
+        }
+
+        request.setAttribute("traductores", detTraductores);
+        request.setAttribute("ban", "1");
+        request.setAttribute("op", "jspABCTraductor.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+
+    private void seleccionarTraductor(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+                        String valor=request.getParameter("Confrimartxt");
+                        int busq= Integer.parseInt(valor);
+                        modConexion con = new modConexion();
+                        Connection cnn = con.conexion();
+                        ResultSet rsFrm4;
+                       
+        //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

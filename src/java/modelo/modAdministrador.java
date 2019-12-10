@@ -155,7 +155,7 @@ public class modAdministrador {
         ResultSet rs = st.executeQuery(consultaSql);
         return rs;
     }
-    
+
     public ResultSet reporteVentas() throws SQLException{
         modConexion con=new modConexion();
         Connection cnn=con.conexion();
@@ -196,6 +196,15 @@ public class modAdministrador {
         modConexion con=new modConexion();
         Connection cnn=con.conexion();
         String consultaSql = "CALL STP_REPVENTASCANCELADAS(DATE_SUB(NOW(), INTERVAL 30 DAY),DATE_ADD(NOW(), INTERVAL 1 HOUR));";
+      Statement st = (Statement) cnn.createStatement();
+        ResultSet rs = st.executeQuery(consultaSql);
+        return rs;
+    }
+  
+    public ResultSet listarTraductores() throws SQLException{
+        modConexion con=new modConexion();
+        Connection cnn=con.conexion();
+         String consultaSql = "call STP_LISTARTRADUCTORES();";
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
         return rs;

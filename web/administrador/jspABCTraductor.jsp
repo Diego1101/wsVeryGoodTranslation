@@ -3,12 +3,33 @@
     Created on : Dec 9, 2019, 12:23:29 PM
     Author     : migue
 --%>
-
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<form action="administrador.do" method="post" id="frmLoadI" name="frmLoadI">
+    <input type="hidden" id="org" name="org" value="listTradutores">
+    <%
+        if (request.getAttribute("edo") != null) {
+    %>
+    <input type="hidden" id="edo" name="edo" value="<%=request.getAttribute("edo")%>">
+    <%
+        }
+    %>
+</form>
+
+<%    if (request.getAttribute("ban") == null || request.getAttribute("ban").equals("0")) {
+%>
+<script>
+    document.getElementById("frmLoadI").submit();
+</script>
+<%
+    }
+%>
+
   <div class="fondo-negro">
     <center >
         <div class="titulo">
-            Registro de Traductores
+             Traductores
         </div>
     </center>
 </div>
@@ -24,28 +45,7 @@
     <%
         }
     %>
-    <table>
-      <tr>
-        <td>
-          Módulo:
-        </td>
-        <td style="padding: 15px">
-          <select class="form-control"name="cmb_Modificacion" id="cmb_Modificacion">
-            <option selected='selected'>Elige una opción</option>
-            <option value="MDatos" id="MDatos">Registrar Traductor</option>
-            <option value="MDescuento" id="MDescuento">Modificar Traductor</option>
-            <option value="SProrroga" id="SProrroga">Baja Traductor</option>
-          </select>
-        </td>
-        </tr>
-        <tr>
-        <td style="padding: 10px; text-align:center" colspan="2">
-          <input type="button" class="btn" name="btnOpcion" value="Cargar módulo">
-        </td>
-      </tr>
-      </table>
-            <br>
-      </center>
+   
     <center class="rs encabezadoTabla">
         <table class="tRep" style="min-widht:100px">
             <tr>
@@ -66,36 +66,110 @@
                     <h5>
                         Seleccionar</h5>
                 </td>
+                <td>
+                    
+                </td>
+            </tr>
+            <tr>
+                <%
+                if (request.getAttribute("traductores") != null) {
+
+                    ResultSet rs = (ResultSet) request.getAttribute("traductores");
+
+                    while (rs.next()) {
+                        out.print("<tr>");
+                        out.print("<td>" + rs.getString(2) + "</td>");
+                        out.print("<td>" + rs.getString(3) + "</td>");
+                        out.print("<td>" + rs.getString(4).split(" ")[0] + "</td>");
+                        if (rs.getString(5).toString().equals("1")) {
+                                out.print("<td>" + "Activo" + "</td>");
+                            }else{
+                            out.print("<td>" + "Inactivo" + "</td>");
+                        }
+                        
+                         out.println("<td style='text-align:center;'>" + "<input type='button' class='btn' name='button' onclick='llenarDatos(this);' value='+ ' style='width: 65px;' name='btnSeleccion' id='btnSeleccion'>"+"</td>");
+                 
+                      out.println("<input style='display: none' type='text' name='Confrimartxt' id='SeleccionarTraductor' value='"+rs.getString(1)+"'>");
+                      out.print("</tr>");
+                    }
+
+                }
+            %>
             </tr>
         </table>
-    </center>
+        
+            <br>
+      </center>
 </section>
 
   <section >
     <!-- Dependiendo de lo que se seleccione se hará visible un div u otro -->
-    <script type="text/javascript">
-      $("#cmb_Modificacion").change(function() {
-        var id = $(this).find("option:selected").attr("id");
-        switch (id) {
-          case "MDatos": // Modificar Datos
-            alert('Opcion Modificar Datos');
-            break;
-          case "MDescuento": //Modificar Descuentos
-            alert('Opcion Modificar Descuentos');
-            break;
-          case "SProrroga": //Solicitar Prroroga
-          alert('Opcion Solicitar Prroroga');
-            break;
-        }
-      });
+     <script type="text/javascript">
+      function aparecerModulo() {
+           var operation = document.getElementById("cmb_Modificacion").value;
+            var div1 = document.getElementById("div_RegistrarTraductor");
+            var div2 = document.getElementById("div_ModificarTraductor");
+            var div3 = document.getElementById("div_BajaTraductor");
+        if (operation=="RTraductor" ){
+               
+            div1.style.display = "block";
+            div2.style.display = "none";
+            div3.style.display = "none";
+            
+         }
+         if (operation=="MTraductor" ){
+            div1.style.display = "none";
+            div2.style.display = "block";
+            div3.style.display = "none";
+        }    
+     if (operation=="BTraductor" ){
+            div1.style.display = "none";
+            div2.style.display = "none";
+            div3.style.display = "block";
+    } 
+    if (operation=="Default") {
+             div1.style.display = "none";
+            div2.style.display = "none";
+            div3.style.display = "none";
+}
+    
+}
     </script>
+    <script type="text/javascript">
+      function llenarDatos() {
+         var nombre = document.getElementById("txt_Nombre");
+         nombre.value="Seleccion";
+        var div1 = document.getElementById("div_RegistrarTraductor");
+        div1.style.display = "block";
+        }
+    </script>
+    <hr>
+    <center>
+    <div id="div_Seleccionar">
+     <table>
+      <tr>
+        <td>
+          Módulo:
+        </td>
+        <td style="padding: 15px">
+            <select class="form-control"name="cmb_Modificacion" id="cmb_Modificacion" onchange="aparecerModulo()">
+            <option selected='selected'>Elige una opción</option>
+            <option value="RTraductor" id="RTraductor">Registrar Traductor</option>
+            <option value="MTraductor" id="MTraductor">Modificar Traductor</option>
+            <option value="BTraductor" id="BTraductor">Baja Traductor</option>
+          </select>
+        </td>
+        </tr>
+      </table>
+            </div>
     </center>
   </section>
-<hr>
+
 
 <section class="m-content" style="padding-top: 0">
   <center class="mtr">
-<div class="texto2" id="div_RegistrarTraduccion" style="background:none"> <!-- este se tiene que ocultar con la propiedad dislpay none -->
+      <form method="post" action="administrador.do">
+<div class="texto2" id="div_RegistrarTraductor" style="background:none; display: none;"> <!-- este se tiene que ocultar con la propiedad dislpay none -->
     <h4> Registrar Traductor</h4>
       <table>
         <tr>
@@ -141,11 +215,13 @@
           <tr align="center">
             <td colspan="2">
                 <input type="submit" class="btn" name="btn_Registrar" value="Registrar" id="btn_Registrar">
-            </td>
+                <input type="hidden" name="org" value="addTraductor" id="org">
+            </td>                          
           </tr>
       </table>
     </div>
-    <div class="texto2" id="div_ModificarTraduccion" style="background:none"> <!-- este se tiene que ocultar con la propiedad dislpay none -->
+      </form>
+    <div class="texto2" id="div_ModificarTraductor" style="background:none;display: none;"> <!-- este se tiene que ocultar con la propiedad dislpay none -->
         <h4> Modificar Traductor</h4>
           <table>
             <tr>
@@ -196,7 +272,7 @@
 
           </table>
         </div>
-        <div class="texto2" id="div_ModificarTraduccion" style="background:none"> <!-- este se tiene que ocultar con la propiedad dislpay none -->
+        <div class="texto2" id="div_BajaTraductor" style="background:none;display: none;"> <!-- este se tiene que ocultar con la propiedad dislpay none -->
             <h4> Baja Traductor</h4>
               <table>
                 <tr>
