@@ -241,7 +241,7 @@ public class modTraduccion {
         int res=0;
         modConexion con=new modConexion();
         Connection cnn=con.conexion();
-        String consultaSql = "call STP_MODTRADUCCION("+CveTrad+","+CveCliente+","+CveVendedor+","+CveIdiomaOrigen+","+CveIdiomaDestino+","+CveTipoTrad+","+CveTraductor+","+CveDescuento+","+Status+","+RutaDoc+","+RutaTrad+","+FechaEntrega+","+Palabras+","+Precio+","+Descuento+","+Subtotal+","+Iva+","+Total+");";
+        String consultaSql = "call STP_MODTRADUCCION("+CveTrad+","+CveCliente+","+CveVendedor+","+CveIdiomaOrigen+","+CveIdiomaDestino+","+CveTipoTrad+","+CveTraductor+","+CveDescuento+","+Status+",'"+RutaDoc+"','"+RutaTrad+"','"+FechaEntrega+"',"+Palabras+","+Precio+","+Descuento+","+Subtotal+","+Iva+","+Total+");";
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
 
@@ -380,6 +380,17 @@ public class modTraduccion {
         modConexion con=new modConexion();
         Connection cnn=con.conexion();
         String consultaSql = "call STP_COTIZACIONTRAD("+this.CveTrad+", "+impuesto+");";
+        Statement st = (Statement) cnn.createStatement();
+        ResultSet rs = st.executeQuery(consultaSql);
+        return rs;
+    }
+     
+     
+     public static ResultSet listarTrad() throws SQLException{
+        int res=0;
+        modConexion con=new modConexion();
+        Connection cnn=con.conexion();
+        String consultaSql = "call STP_LISTARTRAD();";
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
         return rs;

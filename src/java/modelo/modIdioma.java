@@ -125,8 +125,8 @@ public class modIdioma {
     public ResultSet listarTraductoresIdioma(int origen, int destino) throws SQLException {
         modConexion con = new modConexion();
         Connection cnn = con.conexion();
-//        String consultaSql = "call STP_LISTARTRADUCTORESIDIOMA(" + origen + ", " + destino + ");";
-        String consultaSql = "SELECT TRD_CVE, TRD_NOMBRE FROM VGT_TRADUCTOR;";
+        String consultaSql = "call STP_LISTARTRADUCTORESIDIOMA(" + origen + ", " + destino + ");";
+//        String consultaSql = "SELECT TRD_CVE, TRD_NOMBRE FROM VGT_TRADUCTOR;";
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
         return rs;

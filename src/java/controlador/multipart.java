@@ -47,6 +47,7 @@ public class multipart extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         try {
             FileItemFactory factory = new DiskFileItemFactory();
             ServletFileUpload upload = new ServletFileUpload(factory);
@@ -61,7 +62,6 @@ public class multipart extends HttpServlet {
                     }
                 }
             }
-
             switch (op) {
                 case "regTraduccion":
                     regTraduccionn(request, response, items);

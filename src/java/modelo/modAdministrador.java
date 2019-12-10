@@ -151,6 +151,7 @@ public class modAdministrador {
         modConexion con=new modConexion();
         Connection cnn=con.conexion();
         String consultaSql = "call STP_LISTARVENDEDORESADMIN("+CveAdministrador+");";
+        System.out.println(consultaSql);
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
         return rs;
