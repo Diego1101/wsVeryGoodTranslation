@@ -322,14 +322,16 @@
         var div1 = document.getElementById("div_ClienteSeleccionar");
         if (!$('#div_ClienteSeleccionar').css('display') == 'none') {
              div1.style.display = "none";
+             document.getElementById('lbl_NombreSeleccionado').innerText = ' ';
         }else{
              div1.style.display = "block";
+             document.getElementById('lbl_NombreSeleccionado').innerText = 'adas';
             }
-        let id = this.id;
-        var Row = document.getElementById("somerow");
-        var Cells = Row.getElementsByTagName("td");
-       alert(Cells[0].innerText);
-        document.getElementById('lbl_NombreSeleccionado').innerText = 'adas';
+        // let id = this.id;
+        // var Row = document.getElementById("somerow");
+        // var Cells = Row.getElementsByTagName("td");
+       // alert(Cells[0].innerText);
+        
                 }
 
     </script>
