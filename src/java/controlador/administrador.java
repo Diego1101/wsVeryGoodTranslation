@@ -383,9 +383,13 @@ public class administrador extends HttpServlet {
             float certificada = Float.parseFloat(request.getParameter("txtPrecioC"));
             float premium = Float.parseFloat(request.getParameter("txtPrecioP"));
 
-            modTraduccion.modPrecioTraduccion(estandar, certificada, premium);
+           
+            if (modTraduccion.modPrecioTraduccion(estandar, certificada, premium) == 0) {
+                request.setAttribute("edo", "No se realizo modificacion");
+            } else {
+                request.setAttribute("edo", "Modificacion realizada");
 
-            request.setAttribute("edo", "Modificacion realizada");
+            }
         } catch (NumberFormatException ex) {
             request.setAttribute("edo", "Solo introducir numeros");
 
