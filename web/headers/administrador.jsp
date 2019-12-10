@@ -13,7 +13,7 @@
         <!--  <a >
                                                 <img src="https://verygoodtranslation.com/wp-content/uploads/2019/07/logo3-para-web.png" alt="Very Good Translation" id="logo" data-height-percentage="10" height="50"   />
                                         </a> -->
-        <a class="navbar-brand" href="index.jsp?op=jspABCVendedor.jsp"><i class='uil uil-user'></i> Administrador</a>
+        <a class="navbar-brand" href="index.jsp?op=jspVendedores.jsp"><i class='uil uil-user'></i> Administrador</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
