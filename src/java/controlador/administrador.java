@@ -226,7 +226,7 @@ public class administrador extends HttpServlet {
     private void registrarDescuento(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         modDescuento obj = new modDescuento();
         obj.setCveDescuento(0);
-        obj.setRazonDesc(Float.parseFloat(request.getParameter("txtRazon"))/100);
+        obj.setRazonDesc(Float.parseFloat(request.getParameter("txtRazon")) / 100);
         obj.setFechaInicio(request.getParameter("txtInicio"));
         obj.setFrechaFin(request.getParameter("txtFin"));
         if (obj.regDescuento() == 0) {
@@ -260,7 +260,7 @@ public class administrador extends HttpServlet {
 
         modDescuento obj = new modDescuento();
         obj.setCveDescuento(Integer.parseInt(request.getParameter("id")));
-        obj.setRazonDesc(Float.parseFloat(request.getParameter("txtRazon"))/100);
+        obj.setRazonDesc(Float.parseFloat(request.getParameter("txtRazon")) / 100);
         obj.setFechaInicio(request.getParameter("txtInicio"));
         obj.setFrechaFin(request.getParameter("txtFin"));
         switch (obj.modificarDescuento()) {
@@ -338,17 +338,25 @@ public class administrador extends HttpServlet {
 
             int id = Integer.parseInt(request.getParameter("slidioma"));
             modIdioma idioma = new modIdioma(id);
-            idioma.setCostoPalabra(Float.parseFloat(request.getParameter("txt_FacIdioma")));
-            idioma.setStatus(request.getParameter("slEstatus").charAt(0));
-            if (idioma.modificarIdioma() == 0) {
-                request.setAttribute("edo", "No se econctro el registro");
-            } else {
-                request.setAttribute("edo", "Idioma actualizado");
+            if (Float.parseFloat(request.getParameter("txt_FacIdioma")) > 0) {
 
+                idioma.setCostoPalabra(Float.parseFloat(request.getParameter("txt_FacIdioma")));
+                idioma.setStatus(request.getParameter("slEstatus").charAt(0));
+                if (idioma.modificarIdioma() == 0) {
+                    request.setAttribute("edo", "No se econctro el registro");
+                } else {
+                    request.setAttribute("edo", "Idioma actualizado");
+
+                }
+                request.setAttribute("op", "jspABCIdioma.jsp");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             }
-            request.setAttribute("op", "jspABCIdioma.jsp");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-
+            else{
+                
+                request.setAttribute("edo", "Solo valores mayores a cero");
+                request.setAttribute("op", "jspABCIdioma.jsp");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
         } catch (NumberFormatException ex) {
             request.setAttribute("edo", "Solo introducir numeros");
             request.setAttribute("op", "jspABCIdioma.jsp");
@@ -360,6 +368,7 @@ public class administrador extends HttpServlet {
         try {
 
             modIdioma idioma = new modIdioma();
+            if (Float.parseFloat(request.getParameter("txt_NFactor")) > 0) {
             idioma.setCostoPalabra(Float.parseFloat(request.getParameter("txt_NFactor")));
             idioma.setIdioma(request.getParameter("txt_NIdioma"));
             if (idioma.regIdioma() == 0) {
@@ -370,6 +379,12 @@ public class administrador extends HttpServlet {
             }
             request.setAttribute("op", "jspABCIdioma.jsp");
             request.getRequestDispatcher("index.jsp").forward(request, response);
+            }else{
+                
+                request.setAttribute("edo", "Solo valores mayores a cero");
+                request.setAttribute("op", "jspABCIdioma.jsp");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
 
         } catch (NumberFormatException ex) {
             request.setAttribute("edo", "Solo introducir numeros");
@@ -550,18 +565,17 @@ public class administrador extends HttpServlet {
             System.out.println("ERROR: " + ex.getMessage());
         }
     }
-    
+
     private void repVentas(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
             modAdministrador adm = new modAdministrador();
             ResultSet rs = adm.reporteVentas();
             rs.next();
-                if(rs.getString(2).equals("0")){
-                    request.setAttribute("edo", "No existen ventas registradas.");
-                }
-                else{
-                    request.getSession().setAttribute("rsRepVen", rs);
-                }
+            if (rs.getString(2).equals("0")) {
+                request.setAttribute("edo", "No existen ventas registradas.");
+            } else {
+                request.getSession().setAttribute("rsRepVen", rs);
+            }
         } catch (SQLException ex) {
             System.out.println("ERROR: " + ex.getMessage());
         }
@@ -569,18 +583,17 @@ public class administrador extends HttpServlet {
         request.setAttribute("ban", "1");
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
-    
+
     private void repVentasT(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
             modAdministrador adm = new modAdministrador();
             ResultSet rs = adm.reporteVentasTotales();
             rs.next();
-                if(rs.getString(2).equals("0")){
-                    request.setAttribute("edo", "No existen ventas registradas");
-                }
-                else{
-                    request.getSession().setAttribute("rsRepVenT", rs);
-                }
+            if (rs.getString(2).equals("0")) {
+                request.setAttribute("edo", "No existen ventas registradas");
+            } else {
+                request.getSession().setAttribute("rsRepVenT", rs);
+            }
         } catch (SQLException ex) {
             System.out.println("ERROR: " + ex.getMessage());
         }
@@ -588,18 +601,17 @@ public class administrador extends HttpServlet {
         request.setAttribute("ban", "1");
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
-    
+
     private void repVentasVendedor(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
             modAdministrador adm = new modAdministrador();
             ResultSet rs = adm.reporteVendedorVentas();
             rs.next();
-                if(rs.getString(2).equals("0")){
-                    request.setAttribute("edo", "No existen ventas registradas.");
-                }
-                else{
-                    request.getSession().setAttribute("rsRepVentasVen", rs);
-                }
+            if (rs.getString(2).equals("0")) {
+                request.setAttribute("edo", "No existen ventas registradas.");
+            } else {
+                request.getSession().setAttribute("rsRepVentasVen", rs);
+            }
         } catch (SQLException ex) {
             System.out.println("ERROR: " + ex.getMessage());
         }
@@ -607,18 +619,17 @@ public class administrador extends HttpServlet {
         request.setAttribute("ban", "1");
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
-    
+
     private void repMasVentas(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
             modAdministrador adm = new modAdministrador();
             ResultSet rs = adm.reporteVendedorTVentas();
             rs.next();
-                if(rs.getString(2).equals("0")){
-                    request.setAttribute("edo", "No existen ventas registradas.");
-                }
-                else{
-                    request.getSession().setAttribute("rsRepMasVen", rs);
-                }
+            if (rs.getString(2).equals("0")) {
+                request.setAttribute("edo", "No existen ventas registradas.");
+            } else {
+                request.getSession().setAttribute("rsRepMasVen", rs);
+            }
         } catch (SQLException ex) {
             System.out.println("ERROR: " + ex.getMessage());
         }
@@ -626,18 +637,17 @@ public class administrador extends HttpServlet {
         request.setAttribute("ban", "1");
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
-    
+
     private void repVentasC(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
             modAdministrador adm = new modAdministrador();
             ResultSet rs = adm.reporteVentasC();
             rs.next();
-                if(rs.getString(2).equals("0")){
-                    request.setAttribute("edo", "No se canceló ninguna venta.");
-                }
-                else{
-                    request.getSession().setAttribute("rsRepVenC", rs);
-                }
+            if (rs.getString(2).equals("0")) {
+                request.setAttribute("edo", "No se canceló ninguna venta.");
+            } else {
+                request.getSession().setAttribute("rsRepVenC", rs);
+            }
         } catch (SQLException ex) {
             System.out.println("ERROR: " + ex.getMessage());
         }
@@ -645,6 +655,7 @@ public class administrador extends HttpServlet {
         request.setAttribute("ban", "1");
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
+
     private void loadTraductores(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, SQLException {
         modConexion con = new modConexion();
         Connection cnn = con.conexion();
