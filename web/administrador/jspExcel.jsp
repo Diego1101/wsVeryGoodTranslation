@@ -22,32 +22,51 @@
 
     int ban = 0;
     try {
-        //HSSFRow row=sheet.createRow(0);
-        //row.createCell(0).setCellValue("Clave");
-        //row.createCell(1).setCellValue("Especialidad");
-        //row.createCell(2).setCellValue("Descripción");
-        //row.createCell(3).setCellValue("Número de Médicos");
+        HSSFRow row = sheet.createRow(0);
         int i = 0;
         ResultSet rsFrm = null;
 
         if (request.getSession().getAttribute("rsRepVen") != null) {
             rsFrm = (ResultSet) request.getSession().getAttribute("rsRepVen");
+            row.createCell(0).setCellValue("Clave");
+            row.createCell(1).setCellValue("Especialidad");
+            row.createCell(2).setCellValue("Descripción");
+            row.createCell(3).setCellValue("Número de Médicos");
             request.getSession().setAttribute("rsRepVen", null);
-        }else if (request.getSession().getAttribute("rsRepVenT") != null) {
+            
+        } else if (request.getSession().getAttribute("rsRepVenT") != null) {
             rsFrm = (ResultSet) request.getSession().getAttribute("rsRepVenT");
+            row.createCell(0).setCellValue("Canrtidad de ventas");
+            row.createCell(1).setCellValue("Preio");
+            row.createCell(2).setCellValue("Descuentos");
+            row.createCell(3).setCellValue("Impuesto");
+            row.createCell(3).setCellValue("Monto cobrado");
             request.getSession().setAttribute("rsRepVenT", null);
-        }else if (request.getSession().getAttribute("rsRepMasVen") != null) {
+            
+        } else if (request.getSession().getAttribute("rsRepMasVen") != null) {
             rsFrm = (ResultSet) request.getSession().getAttribute("rsRepMasVen");
+            row.createCell(0).setCellValue("Clave");
+            row.createCell(1).setCellValue("Nombre vendedor");
+            row.createCell(2).setCellValue("Ganancias generadas");
             request.getSession().setAttribute("rsRepMasVen", null);
-        }else if (request.getSession().getAttribute("rsRepVenC") != null) {
+            
+        } else if (request.getSession().getAttribute("rsRepVenC") != null) {
             rsFrm = (ResultSet) request.getSession().getAttribute("rsRepVenC");
+            row.createCell(0).setCellValue("Clave");
+            row.createCell(1).setCellValue("Nombre");
+            row.createCell(2).setCellValue("Correo");
+            row.createCell(3).setCellValue("Fecha");
+            row.createCell(3).setCellValue("Tipo traducción");
             request.getSession().setAttribute("rsRepVenC", null);
-        }else if (request.getSession().getAttribute("rsRepVentasVen") != null) {
+            
+        } else if (request.getSession().getAttribute("rsRepVentasVen") != null) {
             rsFrm = (ResultSet) request.getSession().getAttribute("rsRepVentasVen");
+            row.createCell(0).setCellValue("Clave");
+            row.createCell(1).setCellValue("Nombre vendedor");
+            row.createCell(2).setCellValue("Numero de ventas");
             request.getSession().setAttribute("rsRepVentasVen", null);
         }
-        
-        
+
         rsFrm.beforeFirst();
         while (rsFrm.next()) {
             HSSFRow row1 = sheet.createRow(i);

@@ -51,7 +51,7 @@
             %>
             <%
                 if (request.getAttribute("sel") != null) {
-                    
+
                     modTraduccion tradL = (modTraduccion) request.getAttribute("tra");
             %>
             <tr>
@@ -71,7 +71,7 @@
                 <td style="padding: 10px; text-align:center" colspan="2">
                     <input type="button" class="btn" name="btnOpcion" value="Cargar módulo" onclick="aparecerModulo()">
                     <a class="btn" href="https://verygoodtranslation.com/authorized-quote/?tot=<%=tradL.getTotal()%>&pw=0.066&words=<%=tradL.getPalabras()%>&discount=<%=tradL.getDescuento()%>&tipo=1&del=1-3">Liga Pago</a>
-                
+
                 </td>
             </tr>
             <%
@@ -311,8 +311,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td colspan="5">
                             <div id="mensaje"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <h4 class="texto-Centro">Descuento</h4>
                         </td>
                         <td>
@@ -334,6 +338,8 @@
                             <h4 class="texto-Centro">Subtotal</h4>
                         </td>
                         <td>
+                            <input type="hidden" id="txt_Total" value="<% out.print((request.getAttribute("tra") != null) ? ((modTraduccion) request.getAttribute("tra")).getSubtotal() : "");%>">
+
                             <h4><label class="texto-Centro" for="" id="lbl_Subtotal">$<% out.print((request.getAttribute("tra") != null) ? ((modTraduccion) request.getAttribute("tra")).getSubtotal() : "");%></label></h4>
                         </td>
                     </tr>
@@ -346,11 +352,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td >
+                        <td>
                             <h4 class="texto-Centro">Total Traducción</h4>
                         </td>
                         <td>
-                            <input type="hidden" id="txt_Total" value="<% out.print((request.getAttribute("tra") != null) ? ((modTraduccion) request.getAttribute("tra")).getTotal() : "");%>">
                             <h4><label class="texto-Centro" for="" id="lbl_Total">$<% out.print((request.getAttribute("tra") != null) ? ((modTraduccion) request.getAttribute("tra")).getTotal() : "");%></label></h4>
                         </td>
                     </tr>
@@ -408,11 +413,13 @@
 
             if ((total - descuento) < 0) {
                 document.getElementById("txt_Descuento").value = 0;
-                document.getElementById("mensaje").value = "El descuento no puede ser mayor que el precio";
+                document.getElementById("mensaje").innerHTML = "El descuento no puede ser mayor que el precio";
             } else {
                 document.getElementById("txt_Descuento").value = descuento;
                 document.getElementById("lbl_Descuento").innerHTML = "$" + descuento;
-                document.getElementById("lbl_Total").innerHTML = "$" + (total - descuento);
+                document.getElementById("lbl_Subtotal").innerHTML = "$" + (total - descuento);
+                document.getElementById("lbl_Iva").innerHTML = "$" + (total - descuento)*0.16;
+                document.getElementById("lbl_Total").innerHTML = "$" + (((total - descuento)*0.16)+(total - descuento));
             }
         } else {
             descuento = 0;

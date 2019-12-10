@@ -254,7 +254,9 @@ public class traducciones extends HttpServlet {
         modTraduccion trad = new modTraduccion(idT);
         trad.setDescuento(descuento);
 
-        trad.setTotal(trad.getTotal()-descuento);
+        trad.setSubtotal(trad.getSubtotal()-descuento);
+        trad.setIva(trad.getSubtotal()*(float)0.16);
+        trad.setTotal(trad.getSubtotal()+trad.getIva());
         System.out.println("preioc: "+trad.getPrecio());
         if (trad.modificarTraduccion() == 0) {
             request.setAttribute("edo", "No se encontro el registro");
