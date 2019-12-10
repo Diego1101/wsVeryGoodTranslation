@@ -61,7 +61,7 @@
 
                     <tr>
                         <td align="right">
-                            Estandar:
+                            Estándar:
                         </td>
                         <td>
                             <input class="form-control" type="text" name="txtPrecioE" id="txtPrecioE" value="<% out.print((request.getAttribute("txtPrecioE") != null) ? request.getAttribute("txtPrecioE") : "");  %>">
