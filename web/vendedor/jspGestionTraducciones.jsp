@@ -306,6 +306,7 @@
                             <h4 class="texto-Centro">Descuento</h4>
                         </td>
                         <td>
+                             
                             <input type="hidden" id="txt_Descuento" name="txt_Descuento" value="<% out.print((request.getAttribute("tra") != null) ? ((modTraduccion) request.getAttribute("tra")).getDescuento() : "");%>"
                                    <h4><label class="texto-Centro" for="" id="lbl_Descuento">$<% out.print((request.getAttribute("tra") != null) ? ((modTraduccion) request.getAttribute("tra")).getDescuento() : "");%></label></h4>
                         </td>
@@ -313,10 +314,24 @@
                             <h4 class="texto-Centro" style="padding-left:10px;">Descuento</h4>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="ctxt_Descuento" id="ctxt_Descuento" style=" width:100px;">
+                            <select class="form-control" style="color:#6b6b6b;"  name="cmd_Descuento" id="cmd_Descuento" style="width:240;">
+                                <%
+                                    if (request.getAttribute("descuentos") != null && request.getAttribute("tra") != null) {
+                                        List<String[]> listI = (List<String[]>) request.getAttribute("descuentos");
+                                        modTraduccion traduccion = (modTraduccion) request.getAttribute("tra");
+                                        for (String[] aux : listI) {
+                                            if (traduccion.getCveDescuento()== Integer.parseInt(aux[0])) {
+                                                out.print("<option value='" + aux[0] + "' selected>" + Float.parseFloat(aux[2])*100 + "%</option>");
+                                            } else {
+                                                out.print("<option value='" + aux[0] + "'>" + Float.parseFloat(aux[2])*100 + "%</option>");
+                                            }
+
+                                        }
+                                    }
+                                %>
+                            </select>
                         </td>
                         <td>
-                            <input type="button" style="font-size:10pt" class="btn" name="btn_ModificarD" value="Modificar" id="btn_ModificarD">
                         </td>
                     </tr>
                     <tr>

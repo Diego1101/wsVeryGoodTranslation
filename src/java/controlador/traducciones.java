@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.modAdministrador;
+import modelo.modDescuento;
 import modelo.modIdioma;
 import modelo.modTraduccion;
 import modelo.modVendedor;
@@ -307,7 +308,7 @@ public class traducciones extends HttpServlet {
             aux[1] = rs1.getString(2);
             li.add(aux);
         }
-        System.out.print(trad.size());
+        
         request.setAttribute("trad", trad);
         request.setAttribute("idiomas", li);
         request.setAttribute("ban", "1");
@@ -346,6 +347,9 @@ public class traducciones extends HttpServlet {
             li.add(aux);
         }
 
+        List<String[]> desc = modDescuento.listarDescuento();
+        request.setAttribute("descuentos", desc);
+        
         request.setAttribute("trad", trad);
         request.setAttribute("idiomas", li);
         request.setAttribute("ban", "1");
@@ -394,15 +398,14 @@ public class traducciones extends HttpServlet {
     private void modDescuentoTradV(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         
         int idT = Integer.parseInt(request.getParameter("idTradD"));
-        float descuento = Float.parseFloat(request.getParameter("txt_Descuento"));
+        int descuento = Integer.parseInt(request.getParameter("cmd_Descuento"));
         modTraduccion trad = new modTraduccion(idT);
-        trad.setDescuento(descuento);
-
-        trad.setTotal(trad.getTotal()-descuento);
+        trad.setCveDescuento(descuento);
         System.out.println("preioc: "+trad.getPrecio());
         if (trad.modificarTraduccion() == 0) {
             request.setAttribute("edo", "No se encontro el registro");
         } else {
+            trad.modCotizar((float)0.16);
             request.setAttribute("edo", "Descuento agregado");
         }
         loadModTradV(request, response);

@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.modAdministrador;
 import modelo.modCliente;
+import modelo.modDescuento;
 import modelo.modIdioma;
 
 /**
@@ -201,7 +202,6 @@ public class vendedor extends HttpServlet {
             }
         }
 
-        request.setAttribute("vendedores", ven);
         request.setAttribute("idiomas", li);
         request.setAttribute("op", "jspRegistrarTraduccion.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -241,6 +241,19 @@ public class vendedor extends HttpServlet {
                 ven.add(aux);
             }
         }
+        
+//        modDescuento adm = new modDescuento();
+//        adm.setCveAdministrador(Integer.parseInt(request.getSession().getAttribute("id").toString()));
+//        ResultSet a = adm.listarTraductoresAdmin();
+//        List<String[]> ven = new ArrayList<>();
+//        while (a.next()) {
+//            if (!"0".equals(a.getString(1))) {
+//                String[] aux = new String[2];
+//                aux[0] = a.getString(1);
+//                aux[1] = a.getString(2);
+//                ven.add(aux);
+//            }
+//        }
 
         request.setAttribute("vendedores", ven);
         request.setAttribute("idiomas", li);

@@ -224,7 +224,7 @@ public class administrador extends HttpServlet {
     private void registrarDescuento(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         modDescuento obj = new modDescuento();
         obj.setCveDescuento(0);
-        obj.setRazonDesc(Integer.parseInt(request.getParameter("txtRazon"))/100);
+        obj.setRazonDesc(Float.parseFloat(request.getParameter("txtRazon"))/100);
         obj.setFechaInicio(request.getParameter("txtInicio"));
         obj.setFrechaFin(request.getParameter("txtFin"));
         if (obj.regDescuento() == 0) {

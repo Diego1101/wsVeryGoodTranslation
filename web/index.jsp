@@ -40,10 +40,10 @@
 
         <title>Very Good Translation</title>
 
-          <link rel="stylesheet" href="css/bootstrap.min.css">
-          <link rel="stylesheet" href="css/Estilo.css">
-          <link rel="stylesheet" href="css/style2.css">
-          
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/Estilo.css">
+        <link rel="stylesheet" href="css/style2.css">
+
 
         <style type="text/css">
             .auto-style1 {
@@ -136,29 +136,37 @@
     </head>
     <body>
 
+        <%            try {
+        %>
 
         <jsp:include page="<%=header%>"/>
         <jsp:include page="<%=dir + pagina%>"/>
+        <%
+            } catch (Exception e) {
+                request.setAttribute("err", e.getMessage());
+                request.getRequestDispatcher("jspError.jsp").forward(request, response);
+            }
+        %>
 
 
         <!-- FOOTER -->
-        
-    <footer>
-      <div class="container">
-        <div class="row">
 
-          <div class="col-lg-12 col-12" align="center">
-            <p style="color:#ffffff;">Copyright &copy; Very Good Translation</p>
+        <footer>
+            <div class="container">
+                <div class="row">
 
-          </div>
+                    <div class="col-lg-12 col-12" align="center">
+                        <p style="color:#ffffff;">Copyright &copy; Very Good Translation</p>
 
-        </div>
-      </div>
+                    </div>
 
-    </footer>
+                </div>
+            </div>
+
+        </footer>
         <footer id="main-footer">
 
-           
+
 
 
             <div id="et-footer-nav">

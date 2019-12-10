@@ -47,7 +47,7 @@ public class multipart extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         try {
             FileItemFactory factory = new DiskFileItemFactory();
             ServletFileUpload upload = new ServletFileUpload(factory);
@@ -79,7 +79,9 @@ public class multipart extends HttpServlet {
 
             }
         } catch (FileUploadException | SQLException ex) {
-            System.out.println("Error: " + ex.getMessage());
+
+            request.setAttribute("err", ex.getMessage());
+            request.getRequestDispatcher("jspError.jsp").forward(request, response);
         }
     }
 
@@ -224,9 +226,9 @@ public class multipart extends HttpServlet {
         trad.setCveVendedor(vendedor);
         trad.setPalabras(cantidad);
         trad.setFechaEntrega(fechaEntrega);
-        trad.setRutaDoc("doc/"+nombreA);
+        trad.setRutaDoc("doc/" + nombreA);
         trad.setStatus('0');
-        int idTrad=trad.regTraduccion();
+        int idTrad = trad.regTraduccion();
         if (idTrad != 0) {
             request.setAttribute("edo", "Traduccion agegada");
 
@@ -234,13 +236,13 @@ public class multipart extends HttpServlet {
             request.setAttribute("edo", "ERROR");
         }
         trad.setCveTrad(idTrad);
-        trad.modCotizar((float)0.16);
-        
+        trad.modCotizar((float) 0.16);
+
         request.setAttribute("op", "jspModificarTraduAdmin.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
 
     }
-    
+
     private void regTraduccionV(HttpServletRequest request, HttpServletResponse response, List items) throws IOException, SQLException, ServletException {
 
         InputStream in = null;
@@ -339,9 +341,9 @@ public class multipart extends HttpServlet {
         trad.setCveVendedor(vendedor);
         trad.setPalabras(cantidad);
         trad.setFechaEntrega(fechaEntrega);
-        trad.setRutaDoc("doc/"+nombreA);
+        trad.setRutaDoc("doc/" + nombreA);
         trad.setStatus('0');
-        int idTrad=trad.regTraduccion();
+        int idTrad = trad.regTraduccion();
         if (idTrad != 0) {
             request.setAttribute("edo", "Traduccion agegada");
 
@@ -349,8 +351,8 @@ public class multipart extends HttpServlet {
             request.setAttribute("edo", "ERROR");
         }
         trad.setCveTrad(idTrad);
-        trad.modCotizar((float)0.16);
-        
+        trad.modCotizar((float) 0.16);
+
         request.setAttribute("op", "jspGestionTraducciones.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
 
