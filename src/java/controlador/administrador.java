@@ -101,13 +101,30 @@ public class administrador extends HttpServlet {
                 case "listTrad":
                     listTraductores(request, response);
                     break;
-                    
+                
+                case "errepeVentas":
+                    repVentas(request, response);
+                    break;
+                case "errepeVentasT":
+                    repVentasT(request, response);
+                    break;
+                case "errepeMasVentas":
+                    repMasVentas(request, response);
+                    break;
+                case "errepeVentasVendedores":
+                    repVentasVendedor(request, response);
+                    break;
+                case "errepeCitasCanceladas":
+                    repVentasC(request, response);
+                    break;
+  
                 case "listTradutores":
                     loadTraductores(request, response);
                     break;
                  case "SeleccionarTraductor":
                     seleccionarTraductor(request, response);
                     break;
+
                 default:
                     request.setAttribute("err", "Pagina no encontrada");
                     request.getRequestDispatcher("jspError.jsp").forward(request, response);
@@ -522,7 +539,101 @@ public class administrador extends HttpServlet {
             System.out.println("ERROR: " + ex.getMessage());
         }
     }
-
+    
+    private void repVentas(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        try {
+            modAdministrador adm = new modAdministrador();
+            ResultSet rs = adm.reporteVentas();
+            rs.next();
+                if(rs.getString(2).equals("0")){
+                    request.setAttribute("edo", "No existen ventas registradas.");
+                }
+                else{
+                    request.getSession().setAttribute("rsRepVen", rs);
+                }
+        } catch (SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+        request.setAttribute("op", "jspRepVentas.jsp");
+        request.setAttribute("ban", "1");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+    
+    private void repVentasT(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        try {
+            modAdministrador adm = new modAdministrador();
+            ResultSet rs = adm.reporteVentasTotales();
+            rs.next();
+                if(rs.getString(2).equals("0")){
+                    request.setAttribute("edo", "No existen ventas registradas");
+                }
+                else{
+                    request.getSession().setAttribute("rsRepVenT", rs);
+                }
+        } catch (SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+        request.setAttribute("op", "jspRepVentasTotales.jsp");
+        request.setAttribute("ban", "1");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+    
+    private void repVentasVendedor(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        try {
+            modAdministrador adm = new modAdministrador();
+            ResultSet rs = adm.reporteVendedorVentas();
+            rs.next();
+                if(rs.getString(2).equals("0")){
+                    request.setAttribute("edo", "No existen ventas registradas.");
+                }
+                else{
+                    request.getSession().setAttribute("rsRepVentasVen", rs);
+                }
+        } catch (SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+        request.setAttribute("op", "jspVentasVendedores.jsp");
+        request.setAttribute("ban", "1");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+    
+    private void repMasVentas(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        try {
+            modAdministrador adm = new modAdministrador();
+            ResultSet rs = adm.reporteVendedorTVentas();
+            rs.next();
+                if(rs.getString(2).equals("0")){
+                    request.setAttribute("edo", "No existen ventas registradas.");
+                }
+                else{
+                    request.getSession().setAttribute("rsRepMasVen", rs);
+                }
+        } catch (SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+        request.setAttribute("op", "jspRepMasVentas.jsp");
+        request.setAttribute("ban", "1");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+    
+    private void repVentasC(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        try {
+            modAdministrador adm = new modAdministrador();
+            ResultSet rs = adm.reporteVentasC();
+            rs.next();
+                if(rs.getString(2).equals("0")){
+                    request.setAttribute("edo", "No se canceló ninguna venta.");
+                }
+                else{
+                    request.getSession().setAttribute("rsRepVenC", rs);
+                }
+        } catch (SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
+        request.setAttribute("op", "jspVentasCanceladas.jsp");
+        request.setAttribute("ban", "1");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
     private void loadTraductores(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, SQLException {
         modConexion con = new modConexion();
         Connection cnn = con.conexion();
