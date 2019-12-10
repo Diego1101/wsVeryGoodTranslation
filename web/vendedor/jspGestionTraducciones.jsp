@@ -45,6 +45,7 @@
             %>
             <%
                 if (request.getAttribute("sel") != null) {
+                    modTraduccion tradL = (modTraduccion) request.getAttribute("tra");
             %>
             <tr>
                 <td>
@@ -62,6 +63,7 @@
             <tr>
                 <td style="padding: 10px; text-align:center" colspan="2">
                     <input type="button" class="btn" name="btnOpcion" value="Cargar módulo" onclick="aparecerModulo()">
+                    <a class="btn" href="https://verygoodtranslation.com/authorized-quote/?tot=<%=tradL.getTotal()%>&pw=0.066&words=<%=tradL.getPalabras()%>&discount=<%=tradL.getDescuento()%>&tipo=1&del=1-3">Liga Pago</a>
                 </td>
             </tr>
             <%
