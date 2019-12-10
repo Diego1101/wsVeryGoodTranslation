@@ -31,6 +31,8 @@
   <!-- CONTENIDO -->
   <section class="m-content" style="min-width:600px">
   <center>
+      
+      <a href="administrador/jspExcel.jsp" class="btn">Decargar Reporte</a>
   <div class="reporte">
     <!-- Encabezado del reporte -->
     <table class="tRep">
