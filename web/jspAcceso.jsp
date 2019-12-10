@@ -8,7 +8,7 @@
 
 <link href="css/Acceso.css" rel="stylesheet" type="text/css"/>
 
-<section>
+<section class="m-content">
     <div class="container">
         <div class="about-text align-items-center">
             <center>
@@ -22,7 +22,6 @@
         </div>
     </div>
 
-    <body>
     <center>
         <form action="general.do" method="post">
             <table >
@@ -44,7 +43,7 @@
                 <tr>
                     <td>
                 <div  align="right">
-                    <h4 class="texto-Centro">&nbsp;&nbsp; Usuario:&nbsp;&nbsp;&nbsp;</h4>
+                    <h4 class="texto-Centro">Usuario:</h4>
               </td>
                     <td>
                         <div class="auto-style4" align="center">
@@ -56,9 +55,8 @@
                 <tr>
                     <td>
                         <br>
-                        &nbsp;&nbsp;
                       <div class="small" align="right">
-                    <h4 class="texto-Centro" >&nbsp;&nbsp;Contraseña:&nbsp;&nbsp;&nbsp;</h4>
+                    <h4 class="texto-Centro" >Contraseña:</h4>
 
 
                     </td>
@@ -75,7 +73,6 @@
                     </td>
                     <td >
                         <div class="custom-btn-group mt-4" align="center">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input  type="hidden" name="org"value="acceso" id="org">
                             <input  type="submit" class="btn  "name="btn_Entrar"value="Acceder"id="btn_Entrar" style="width: 172px" >
                         </div>
@@ -87,13 +84,7 @@
                 
                    
             </table>
-                        <br>
-                 <br>
-                  <br>
-                   <br>
         </form>
     </center>
-    <br>
     </div>
 </section>
-         </body>

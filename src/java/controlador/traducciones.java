@@ -270,7 +270,7 @@ public class traducciones extends HttpServlet {
         modTraduccion trad = new modTraduccion(idT);
         trad.setFechaEntrega(nuevaFecha);
 
-        if (trad.modificarTraduccion()== 0) {
+        if (trad.retardoTraduccion()== 0) {
             request.setAttribute("edo", "No se encontro el registro");
         } else {
             request.setAttribute("edo", "Fecha modificada");
