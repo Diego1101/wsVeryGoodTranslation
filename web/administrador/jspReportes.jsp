@@ -27,9 +27,10 @@
           Tipo de reporte:
         <td>
           <select class="form-control">
-            <option value="clientesRegistradps">Clientes Registrados</option>
-            <option value="Traducciones">Traducciones Efectuadas </option>
-            <option value="Ganancias">Ganancias</option>
+            <option value="0">Empleado con más ventas</option>
+            <option value="1">Ventas totales</option>
+            <option value="2">Ventas canceladas</option>
+            <option value="3">Ventas canceladas</option>
           </select>
         </td>
       </tr>

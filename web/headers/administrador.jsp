@@ -36,7 +36,15 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="index.jsp?op=jspReportes.jsp" class="nav-link"><span data-hover="Reportes">Reportes</span></a>
+                    <a href="#" class="nav-link"><span data-hover="Reportes">Reportes</span></a>
+                    <ul>
+                        <li><a href="index.jsp?op=jspRepVentas.jsp">Ventas</a></li>
+                        <li><a href="index.jsp?op=jspRepVentasTotales.jsp">Ventas totales</a></li>
+                        <li><a href="index.jsp?op=jspVentasCanceladas.jsp">Ventas canceladas</a></li>
+                        <li><a href="index.jsp?op=jspRepMasVentas.jsp">Vendedor con más ventas</a></li>
+                        <li><a href="index.jsp?op=jspVentasVendedores.jsp">Ventas por vendedor</a></li>
+                    
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="jspCerrarSesion.jsp" class="nav-link"><span data-hover="Cerrar Sesion">Cerrar Sesion</span></a>
