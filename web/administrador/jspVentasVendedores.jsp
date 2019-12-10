@@ -10,7 +10,7 @@
     <input type="hidden" id="org" name="org" value="errepeVentasVendedores">
 </form>
 
-    <%    if (request.getAttribute("ban") == null || request.getAttribute("ban").equals("0")) {
+<%    if (request.getAttribute("ban") == null || request.getAttribute("ban").equals("0")) {
 %>
 <script>
     document.getElementById("rpVentasVen").submit();
@@ -18,88 +18,89 @@
 <%
     }
 %>
-  <div class="fondo-negro">
+<div class="fondo-negro">
     <center >
-      <div class="titulo">
-        Reporte de ventas
-      </div>
+        <div class="titulo">
+            Reporte de ventas
+        </div>
     </center>
-  </div>
+</div>
 
-  <!-- CONTENIDO -->
-  <section class="m-content" style="min-width:600px">
-  <center>
-  <div class="reporte">
-    <!-- Encabezado del reporte -->
-    <table class="tRep">
-        <tr>
-            <td align="center" colspan="5">
-                <div id="error" style="text-align: center; color: red; font-weight: bold;">
-                <%
-                    if (request.getAttribute("edo") != null) {
-                %>
+<!-- CONTENIDO -->
+<section class="m-content" style="min-width:600px">
+    <center>
+        <a href="administrador/jspExcel.jsp" class="btn">Decargar Reporte</a>
+        <div class="reporte">
+            <!-- Encabezado del reporte -->
+            <table class="tRep">
+                <tr>
+                    <td align="center" colspan="5">
+                        <div id="error" style="text-align: center; color: red; font-weight: bold;">
+                            <%
+                                if (request.getAttribute("edo") != null) {
+                            %>
 
-               <%=request.getAttribute("edo")%>
+                            <%=request.getAttribute("edo")%>
+                            <%
+                                }
+                            %>
+                        </div>
+
+                    </td>
+                </tr>
                 <%
+             if (request.getSession().getAttribute("rsRepVentasVen") != null) {%>
+                <tr>
+                    <td align="left" style="width:60%" colspan="3">
+                        <img src="https://verygoodtranslation.com/wp-content/uploads/2019/07/logo3-para-web.png" alt="Very Good Translation" id="logo" data-height-percentage="10" height="50" />
+                    </td>
+                    <td  align="right" style="font-size:12pt; width: 40%" colspan="2">
+                        Fecha: <span id="datetime"></span>
+                        <script>
+                            var dt = new Date();
+                            document.getElementById("datetime").innerHTML = dt.toLocaleString();
+                        </script>
+                    </td>
+                </tr>
+                <tr><td style="height:20px" colspan="5"></td></tr>
+                <tr>
+                    <td colspan="3">Tipo de reporte: Ventas por vendedor</td>
+                </tr>
+            </table>
+            <hr align="center"color="black"> 
+            <!-- Area del reporte -->
+
+            <table class="tRep">
+                <tr align="center">
+                    <td style="width: 30%">
+                        Clave de venta
+                    </td>
+                    <td style="width: 30%">
+                        Nombre del vendedor
+                    </td>
+                    <td style="width: 30%">
+                        Número de ventas
+                    </td>
+                </tr>
+
+                <%
+                    ResultSet rsVen = (ResultSet) request.getSession().getAttribute("rsRepVentasVen");
+                    rsVen.beforeFirst();
+                    while (rsVen.next()) {
+                        out.println("<tr>");
+                        out.println("<td style='text-align:center;'>" + rsVen.getString(1) + "</td>");
+                        out.println("<td style='text-align:center;'>" + rsVen.getString(2) + "</td>");
+                        out.println("<td style='text-align:center;'>" + rsVen.getString(3) + "</td></tr>");
                     }
                 %>
-                </div>
-
-                </td>
-        </tr>
-         <%
-                        if (request.getSession().getAttribute("rsRepVentasVen") != null){%>
-      <tr>
-          <td align="left" style="width:60%" colspan="3">
-          <img src="https://verygoodtranslation.com/wp-content/uploads/2019/07/logo3-para-web.png" alt="Very Good Translation" id="logo" data-height-percentage="10" height="50" />
-        </td>
-        <td  align="right" style="font-size:12pt; width: 40%" colspan="2">
-            Fecha: <span id="datetime"></span>
-          <script>
-            var dt = new Date();
-            document.getElementById("datetime").innerHTML = dt.toLocaleString();
-          </script>
-        </td>
-      </tr>
-      <tr><td style="height:20px" colspan="5"></td></tr>
-      <tr>
-        <td colspan="3">Tipo de reporte: Ventas por vendedor</td>
-      </tr>
-    </table>
-    <hr align="center"color="black"> 
-        <!-- Area del reporte -->
-                 
-        <table class="tRep">
-          <tr align="center">
-              <td style="width: 30%">
-                  Clave de venta
-              </td>
-              <td style="width: 30%">
-                  Nombre del vendedor
-              </td>
-              <td style="width: 30%">
-                  Número de ventas
-              </td>
-          </tr>
-
-                    <%
-                            ResultSet rsVen = (ResultSet)request.getSession().getAttribute("rsRepVentasVen");
-                            rsVen.beforeFirst();
-                            while(rsVen.next()){
-                                out.println("<tr>");
-                                out.println("<td style='text-align:center;'>"+rsVen.getString(1)+"</td>");
-                                out.println("<td style='text-align:center;'>"+rsVen.getString(2)+"</td>");
-                                out.println("<td style='text-align:center;'>"+rsVen.getString(3)+"</td></tr>");
-                            }
-                    %>
-                    <tr align="center"><td colspan="5"> <br> Exportar</td></tr>
-                    <tr><td style="height: 10px"></td></tr>
+                <tr align="center"><td colspan="5"> <br> Exportar</td></tr>
+                <tr><td style="height: 10px"></td></tr>
                     <% }
                     %>
-        </table>
-      </div>
+            </table>
+        </div>
     </center>
-      <center>
-            
-      </center>
-  </section>
+    <center>
+
+    </center>
+</section>
