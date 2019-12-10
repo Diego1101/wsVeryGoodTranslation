@@ -101,7 +101,7 @@ public class administrador extends HttpServlet {
                 case "listTrad":
                     listTraductores(request, response);
                     break;
-                
+
                 case "errepeVentas":
                     repVentas(request, response);
                     break;
@@ -117,11 +117,11 @@ public class administrador extends HttpServlet {
                 case "errepeCitasCanceladas":
                     repVentasC(request, response);
                     break;
-  
+
                 case "listTradutores":
                     loadTraductores(request, response);
                     break;
-                 case "SeleccionarTraductor":
+                case "SeleccionarTraductor":
                     seleccionarTraductor(request, response);
                     break;
 
@@ -224,7 +224,7 @@ public class administrador extends HttpServlet {
     private void registrarDescuento(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         modDescuento obj = new modDescuento();
         obj.setCveDescuento(0);
-        obj.setRazonDesc(Integer.parseInt(request.getParameter("txtRazon")));
+        obj.setRazonDesc(Float.parseFloat(request.getParameter("txtRazon"))/100);
         obj.setFechaInicio(request.getParameter("txtInicio"));
         obj.setFrechaFin(request.getParameter("txtFin"));
         if (obj.regDescuento() == 0) {
@@ -258,7 +258,7 @@ public class administrador extends HttpServlet {
 
         modDescuento obj = new modDescuento();
         obj.setCveDescuento(Integer.parseInt(request.getParameter("id")));
-        obj.setRazonDesc(Float.parseFloat(request.getParameter("txtRazon")));
+        obj.setRazonDesc(Float.parseFloat(request.getParameter("txtRazon"))/100);
         obj.setFechaInicio(request.getParameter("txtInicio"));
         obj.setFrechaFin(request.getParameter("txtFin"));
         switch (obj.modificarDescuento()) {
@@ -475,14 +475,18 @@ public class administrador extends HttpServlet {
         obj.setApellidos(request.getParameter("txt_Apellido"));
         obj.setCorreoE(request.getParameter("txt_Email"));
         obj.setTelefono(request.getParameter("txt_Telefono"));
+
         int id = obj.regCliente();
         if (id == 0) {
+
             request.setAttribute("edoC", "El correo ya existe");
         } else {
+
             request.setAttribute("id", id);
             request.setAttribute("edoC", "Cliente agregado");
 
         }
+
         request.setAttribute("txt_Nombre", request.getParameter("txt_Nombre"));
         request.setAttribute("txt_Apellido", request.getParameter("txt_Apellido"));
         request.setAttribute("txt_Email", request.getParameter("txt_Email"));
@@ -500,13 +504,15 @@ public class administrador extends HttpServlet {
 
         modAdministrador adm = new modAdministrador();
         adm.setCveAdministrador(Integer.parseInt(request.getSession().getAttribute("id").toString()));
-        ResultSet a=adm.listarTraductoresAdmin();
+        ResultSet a = adm.listarTraductoresAdmin();
         List<String[]> ven = new ArrayList<>();
         while (a.next()) {
-            String[] aux = new String[2];
-            aux[0] = a.getString(1);
-            aux[1] = a.getString(2);
-            ven.add(aux);
+            if (!"0".equals(a.getString(1))) {
+                String[] aux = new String[2];
+                aux[0] = a.getString(1);
+                aux[1] = a.getString(2);
+                ven.add(aux);
+            }
         }
 
         request.setAttribute("vendedores", ven);
@@ -652,12 +658,12 @@ public class administrador extends HttpServlet {
     }
 
     private void seleccionarTraductor(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-                        String valor=request.getParameter("Confrimartxt");
-                        int busq= Integer.parseInt(valor);
-                        modConexion con = new modConexion();
-                        Connection cnn = con.conexion();
-                        ResultSet rsFrm4;
-                       
+        String valor = request.getParameter("Confrimartxt");
+        int busq = Integer.parseInt(valor);
+        modConexion con = new modConexion();
+        Connection cnn = con.conexion();
+        ResultSet rsFrm4;
+
         //To change body of generated methods, choose Tools | Templates.
     }
 

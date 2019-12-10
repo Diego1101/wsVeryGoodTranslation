@@ -78,11 +78,15 @@
                     <td style="width: 25%">
                         <h4>Nombre</h4>
                     </td>
-                    <td  style="width: 35%">
+                    <td  style="width: 25%">
                         <h4>Correo electrónico</h4>
                     </td>
                     <td style="width: 25%">
                         <h4>Teléfono</h4>
+                    </td>
+                    <td style="width: 10%">
+                                                <h4>Nueva</h4>
+
                     </td>
                     </tr>
                     <%
@@ -93,7 +97,9 @@
                                 out.println("<td style='text-align:center;'>"+rsPros.getString(1)+"</td>");
                                 out.println("<td style='text-align:center;'>"+rsPros.getString(2)+"</td>");
                                 out.println("<td style='text-align:center;'>"+rsPros.getString(3)+"</td>");
-                                out.println("<td style='text-align:center;'>"+rsPros.getString(4)+"</td></tr>");
+                                out.println("<td style='text-align:center;'>"+rsPros.getString(4)+"</td>");
+                                out.println("<td style='text-align:center;'> <form method='post' action='vendedor.do'> <input type='hidden' id='org' name='org' value='addTraduccion'><input  type='hidden' name='idCli'value='"+ rsPros.getString(1)+"' id='idCli'><input type='submit' class='btn' value='Nueva' id='btnNuevaT'></form> </td></tr>");
+
                             }
                         }
                     %>
