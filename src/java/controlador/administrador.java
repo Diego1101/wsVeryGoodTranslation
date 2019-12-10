@@ -87,6 +87,7 @@ public class administrador extends HttpServlet {
                 case "detVendedor":
                     detVendedor(request, response);
                     break;
+                    
 
                 case "modVendedor":
                     modificarVendedor(request, response);
@@ -686,7 +687,7 @@ public class administrador extends HttpServlet {
         modTraductor obj = new modTraductor();
          if ("".equals(request.getParameter("txt_Nombre")) || "".equals(request.getParameter("txt_Apellidos")) || "".equals(request.getParameter("txt_Usuario")) || "".equals(request.getParameter("txt_Contra")) || "".equals(request.getParameter("txt_Correo")) || "".equals(request.getParameter("txt_Tel"))) {
               request.setAttribute("edo", "Asegurate de introducir todos los datos");
-                request.setAttribute("op", "jspABCTraductor.jsp");
+                request.setAttribute("op", "jspAddTraductor.jsp");
                 request.getRequestDispatcher("index.jsp").forward(request, response);
          }else{
              obj.setNombre(request.getParameter("txt_Nombre"));
@@ -698,8 +699,10 @@ public class administrador extends HttpServlet {
             request.setAttribute("edo", "Ya existe el Traductor que se intenta ingresar");
         } else {
             request.setAttribute("edo", "Traductor agregado");
+            request.setAttribute("op", "jspAsignacionIdiomas.jsp");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
-        request.setAttribute("op", "jspABCTraductor.jsp");
+        request.setAttribute("op", "jspAddTraductor.jsp");
         request.getRequestDispatcher("index.jsp").forward(request, response);
          }
         
