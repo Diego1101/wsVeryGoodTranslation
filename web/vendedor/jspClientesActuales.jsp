@@ -27,31 +27,6 @@
     </div>
 <section class="m-content" style="min-width:600px">
 
-  <center  >
-    <table>
-      <tr>
-        <td style="font-size:14pt;">
-          Estatus traducción:
-        </td>
-        <td style="padding: 15px; ">
-          <select class="form-control"name="cmb_Modificacion" id="cmb_Modificacion">
-            <option selected='selected'>Elige una opción</option>
-            <option value="Sts_Proceso" id="Sts_Proceso">En proceso</option>
-            <option value="Sts_Concluida" id="Sts_Concluida">Concluida </option>      
-          </select>
-        </td>
-        </tr>
-        <tr>
-        <td style="padding: 10px; text-align:center" colspan="2">
-          <input type="button" class="btn" name="btn_Mostrar" value="Mostrar">
-        </td>
-      </tr>
-    </table>
-    </center>
-    <br>
-    <hr>
-    <br>
-
 <center class="prs">
             <table >
                 <tr>
