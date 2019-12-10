@@ -24,7 +24,7 @@
 <%    if (request.getAttribute("ban") == null || request.getAttribute("ban").equals("0")) {
 %>
 <script>
- //   document.getElementById("frmLoadV").submit();
+   document.getElementById("frmLoadV").submit();
 </script>
 <%
     }

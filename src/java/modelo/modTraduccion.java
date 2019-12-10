@@ -282,7 +282,7 @@ public class modTraduccion {
         int res=0;
         modConexion con=new modConexion();
         Connection cnn=con.conexion();
-        String consultaSql = "call STP_STSTRADUCCION("+CveTrad+","+FechaEntrega+");";
+        String consultaSql = "call STP_RETARDOTRAD("+CveTrad+",'"+FechaEntrega+"');";
         Statement st = (Statement) cnn.createStatement();
         ResultSet rs = st.executeQuery(consultaSql);
 
